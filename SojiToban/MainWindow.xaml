@@ -11,5 +11,5 @@
         <DataGrid Name="dataGrid" Margin="21,-36,-203,28" Grid.Column="1" />
         <Label Content="清掃箇所の難儀度に応じて平等に掃除当番を割り振るツール" HorizontalAlignment="Left" Margin="-323,-82,0,0" VerticalAlignment="Top" Height="42" Width="337"/>
     </Grid>
-
+    
 </Window>

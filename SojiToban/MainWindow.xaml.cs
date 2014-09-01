@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SojiToban.dto;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,20 +29,22 @@ namespace SojiToban
             var data = new ObservableCollection<Person>(
                 Enumerable.Range(1, 100).Select(i => new Person
                 {
+                    Id = i,
                     Name = "田中　太郎" + i,
                     Gender = i % 2 == 0 ? Gender.Men : Gender.Women,
                     Number = 20 + i % 50,
                     AuthMember = i % 5 == 0
                 }));
             // DataGridに設定する
-            this.dataGrid.ItemsSource = data;
+            this.dataGrid.ItemsSource = data;            
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
 
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dataGrid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.V)
@@ -56,6 +59,7 @@ namespace SojiToban
                 }
             }
         }
+
 
         /// <summary>
         /// クリップボード貼り付け
@@ -90,10 +94,7 @@ namespace SojiToban
                         var column = dataGrid.Columns[colCount + startColIndex];
 
                         // 貼り付け
-                        //if (!byteFiled.Contains(column.Header.ToString()))
-                        //{
-                        //    column.OnPastingCellClipboardContent(dataGrid.Items[rowIndex], pasteCells[colCount]);
-                        //}
+                        column.OnPastingCellClipboardContent(dataGrid.Items[rowIndex], pasteCells[colCount]);                        
                     }
                 }
 
@@ -106,21 +107,6 @@ namespace SojiToban
             }
         }
 
-        // 性別
-        enum Gender
-        {            
-            Men,
-            Women
-        }
 
-        // DataGridに表示するデータ
-        class Person
-        {
-            public string Name { get; set; }
-            public Gender Gender { get; set; }
-            public int Number { get; set; }
-            public int Score { get; set; }
-            public bool AuthMember { get; set; }
-        }
     }
 }
