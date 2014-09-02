@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,23 +26,29 @@ namespace SojiToban
         public MainWindow()
         {
             InitializeComponent();
+            CreateData();
+      
+        }
+
+
+        private void CreateData()
+        {
             // 適当なデータ100件生成する
             var data = new ObservableCollection<Person>(
                 Enumerable.Range(1, 100).Select(i => new Person
                 {
-                    Id = i,
                     Name = "田中　太郎" + i,
+                    No = i,
                     Gender = i % 2 == 0 ? Gender.Men : Gender.Women,
-                    Number = 20 + i % 50,
-                    AuthMember = i % 5 == 0
+                    Kbn1 = 1
                 }));
-            // DataGridに設定する
-            this.dataGrid.ItemsSource = data;            
+            //DataGridに設定する
+           this.dataGrid.ItemsSource = data;            
         }
 
 
         /// <summary>
-        /// 
+        /// クリップボードを貼り付けるアクションを検知する
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -80,6 +87,10 @@ namespace SojiToban
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 var maxRowCount = pasteRows.Count();
+                string str = pasteRows[0];
+                str = str.Replace("※", "");
+                string pattern = "(\t[0-9]*)";
+                str = Regex.Replace(str, pattern, String.Empty);
                 for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
@@ -106,7 +117,5 @@ namespace SojiToban
             {
             }
         }
-
-
     }
 }

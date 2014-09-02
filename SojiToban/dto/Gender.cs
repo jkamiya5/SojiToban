@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace SojiToban.dto
 {
     // 性別
-    enum Gender
+    public enum Gender
     {
         Men,
         Women
