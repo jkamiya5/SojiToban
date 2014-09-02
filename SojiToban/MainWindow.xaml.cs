@@ -23,14 +23,20 @@ namespace SojiToban
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
             CreateData();
-      
+
         }
 
 
+        /// <summary>
+        /// ダミーデータを作成する
+        /// </summary>
         private void CreateData()
         {
             // 適当なデータ100件生成する
@@ -43,7 +49,7 @@ namespace SojiToban
                     Kbn1 = 1
                 }));
             //DataGridに設定する
-           this.dataGrid.ItemsSource = data;            
+            this.dataGrid.ItemsSource = data;
         }
 
 
@@ -87,28 +93,22 @@ namespace SojiToban
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                 var maxRowCount = pasteRows.Count();
-                string str = pasteRows[0];
-                str = str.Replace("※", "");
-                string pattern = "(\t[0-9]*)";
-                str = Regex.Replace(str, pattern, String.Empty);
+                String firstCell = firstCellValue(pasteRows);
                 for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
-
                     // タブ区切りでセル値を取得
                     var pasteCells = pasteRows[rowCount].Split('\t');
-
                     // 選択位置から列数繰り返す
                     var maxColCount = Math.Min(pasteCells.Count(), dataGrid.Columns.Count - startColIndex);
                     for (int colCount = 0; colCount < maxColCount; colCount++)
                     {
                         var column = dataGrid.Columns[colCount + startColIndex];
-
                         // 貼り付け
-                        column.OnPastingCellClipboardContent(dataGrid.Items[rowIndex], pasteCells[colCount]);                        
+                        column.OnPastingCellClipboardContent(dataGrid.Items[rowIndex], pasteCells[colCount]);
                     }
                 }
-
+                
                 // 選択位置復元
                 dataGrid.CurrentCell = new DataGridCellInfo(
                     dataGrid.Items[startRowIndex], dataGrid.Columns[startColIndex]);
@@ -117,5 +117,16 @@ namespace SojiToban
             {
             }
         }
+
+        private string firstCellValue(string[] pasteRows)
+        {
+            string str = pasteRows[0];
+            str = str.Replace("※", "");
+            string pattern = "(\t[0-9]*)";
+            str = Regex.Replace(str, pattern, String.Empty);
+            return str;
+        }
+
+
     }
 }
