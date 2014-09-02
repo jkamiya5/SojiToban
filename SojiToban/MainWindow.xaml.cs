@@ -69,7 +69,7 @@ namespace SojiToban
                     if (dataGrid != null)
                     {
                         pasteClipboard(dataGrid);
-
+                        //以降のイベントをスキップする
                         e.Handled = true;
                     }
                 }
@@ -95,8 +95,7 @@ namespace SojiToban
                 var pasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                var maxRowCount = pasteRows.Count();
-                String firstCell = firstCellValue(pasteRows);
+                var maxRowCount = pasteRows.Count();                
                 for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
@@ -121,20 +120,6 @@ namespace SojiToban
             catch
             {
             }
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="pasteRows"></param>
-        /// <returns></returns>
-        private string firstCellValue(string[] pasteRows)
-        {
-            string str = pasteRows[0];
-            str = str.Replace("※", "");
-            string pattern = "(\t[0-9]*)";
-            str = Regex.Replace(str, pattern, String.Empty);
-            return str;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
