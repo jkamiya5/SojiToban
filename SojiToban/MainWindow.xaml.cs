@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -39,14 +40,14 @@ namespace SojiToban
         /// </summary>
         private void CreateData()
         {
-            // 適当なデータ100件生成する
+            //空のセルを作成する
             var data = new ObservableCollection<Person>(
                 Enumerable.Range(1, 100).Select(i => new Person
                 {
-                    Name = "田中　太郎" + i,
-                    No = i,
-                    Gender = i % 2 == 0 ? Gender.Men : Gender.Women,
-                    Kbn1 = 1
+                    Name = string.Empty,
+                    No = null,
+                    Gender = null,
+                    Kbn1 = null
                 }));
             //DataGridに設定する
             this.dataGrid.ItemsSource = data;
@@ -68,6 +69,8 @@ namespace SojiToban
                     if (dataGrid != null)
                     {
                         pasteClipboard(dataGrid);
+
+                        e.Handled = true;
                     }
                 }
             }
@@ -81,7 +84,7 @@ namespace SojiToban
         private void pasteClipboard(DataGrid dataGrid)
         {
             try
-            {
+            {                                      
                 // 張り付け開始位置設定
                 var startRowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(
                     (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem
@@ -111,13 +114,20 @@ namespace SojiToban
                 
                 // 選択位置復元
                 dataGrid.CurrentCell = new DataGridCellInfo(
-                    dataGrid.Items[startRowIndex], dataGrid.Columns[startColIndex]);
+                dataGrid.Items[startRowIndex], dataGrid.Columns[2]);
+                
+
             }
             catch
             {
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pasteRows"></param>
+        /// <returns></returns>
         private string firstCellValue(string[] pasteRows)
         {
             string str = pasteRows[0];
@@ -127,6 +137,10 @@ namespace SojiToban
             return str;
         }
 
-
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            DataTable DataTable = (DataTable)this.dataGrid.DataContext;
+        }
     }
 }
+    

@@ -62,13 +62,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="dto\Gender.cs" />
-    <Compile Include="dto\Person.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dto\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
