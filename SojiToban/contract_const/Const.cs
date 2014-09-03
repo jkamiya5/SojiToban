@@ -8,8 +8,8 @@ namespace SojiToban.contract_const
 {
     public class Const
     {
-        public static String[] pId = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰" };
-        public static String[] place = {"・給湯室（排水溝・食器の整理等）"
+        public static String[] PID = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰" };
+        public static String[] PLACE = {"・給湯室（排水溝・食器の整理等）"
                                 , "･拭きそうじ（カウンター）"
                                 , "　　　〃　　　（応接室）"
                                 , "　　　〃　　　（会議室）"

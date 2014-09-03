@@ -52,19 +52,21 @@ namespace SojiToban
                 }));
             //バインド
             this.dataGrid.ItemsSource = data;
+            string str = Const.PLACE[0].ToString();
 
             //Person型の表オブジェクト作成
             var data1 = new ObservableCollection<Target>(
-                Enumerable.Range(1, 17).Select(i => new Target
+                Enumerable.Range(0, 17).Select(i => new Target
                 {
-                    PlaceId = Const.pId[i],
-                    Place = Const.place[i],
+                    PlaceId = Const.PID[i],
+                    Place = Const.PLACE[i],
                     day1 = null,
                     day2 = null,
                     day3 = null,
                     day4 = null,
                     day5 = null,
                 }));
+            this.targetGrid.ItemsSource = data1;
         }
 
 
@@ -144,7 +146,7 @@ namespace SojiToban
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var data = this.dataGrid;
-            List<Person> list = new List<Person>();            
+            List<Person> list = new List<Person>();
             foreach (Person obj in data.Items)
             {
                 list.Add(obj);                

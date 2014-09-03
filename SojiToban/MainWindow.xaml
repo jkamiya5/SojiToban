@@ -18,10 +18,10 @@
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="清掃箇所の難儀度に応じて平等に掃除当番を割り振るツール" HorizontalAlignment="Left" Margin="0,-51,0,0" VerticalAlignment="Top" Height="42" Width="337" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="40" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1">
+        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="40" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="place_id" Header="ID" Width="20*" Binding="{Binding PlaceId}"/>
-                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="20*" Binding="{Binding Place}"/>
+                <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding PlaceId}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding Place}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding day1}"/>
                 <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding day2}"/>
                 <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding day3}"/>
