@@ -1,4 +1,5 @@
-﻿using SojiToban.dto;
+﻿using SojiToban.contract_const;
+using SojiToban.dto;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,7 +41,7 @@ namespace SojiToban
         /// </summary>
         private void CreateData()
         {
-            //空のセルを作成する
+            //Person型の表オブジェクト作成
             var data = new ObservableCollection<Person>(
                 Enumerable.Range(1, 100).Select(i => new Person
                 {
@@ -49,8 +50,21 @@ namespace SojiToban
                     Gender = null,
                     Kbn1 = null
                 }));
-            //DataGridに設定する
+            //バインド
             this.dataGrid.ItemsSource = data;
+
+            //Person型の表オブジェクト作成
+            var data1 = new ObservableCollection<Target>(
+                Enumerable.Range(1, 17).Select(i => new Target
+                {
+                    PlaceId = Const.pId[i],
+                    Place = Const.place[i],
+                    day1 = null,
+                    day2 = null,
+                    day3 = null,
+                    day4 = null,
+                    day5 = null,
+                }));
         }
 
 
@@ -122,10 +136,22 @@ namespace SojiToban
             }
         }
 
+        /// <summary>
+        /// 割り振りボタンクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataTable DataTable = (DataTable)this.dataGrid.DataContext;
+            var data = this.dataGrid;
+            List<Person> list = new List<Person>();            
+            foreach (Person obj in data.Items)
+            {
+                list.Add(obj);                
+            }
         }
+
+        public int pId { get; set; }
     }
 }
     
