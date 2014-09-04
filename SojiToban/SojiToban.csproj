@@ -53,6 +53,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="dto\Rireki.cs" />
+    <Compile Include="Service\MainService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -63,7 +65,7 @@
     </Compile>
     <Compile Include="contract_const\Const.cs" />
     <Compile Include="dto\Gender.cs" />
-    <Compile Include="dto\Target.cs" />
+    <Compile Include="dto\SojiPlace.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -9,6 +9,7 @@ namespace SojiToban.contract_const
     public class Const
     {
         public static String[] PID = { "①", "②", "③", "④", "⑤", "⑥", "⑦", "⑧", "⑨", "⑩", "⑪", "⑫", "⑬", "⑭", "⑮", "⑯", "⑰" };
+        public static int[] RANK = { 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3 };
         public static String[] PLACE = {"・給湯室（排水溝・食器の整理等）"
                                 , "･拭きそうじ（カウンター）"
                                 , "　　　〃　　　（応接室）"
@@ -28,5 +29,7 @@ namespace SojiToban.contract_const
                                 , "･ベランダの掃き掃除"
                                 , "・男子トイレ掃除（水を流して掃除）"
                                 , "・女子トイレ掃除（水を流して掃除）"};
+
+        public static int PERSON_COUNT = 100;
     }
 }

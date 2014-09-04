@@ -1,5 +1,6 @@
 ﻿using SojiToban.contract_const;
 using SojiToban.dto;
+using SojiToban.Service;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,7 +44,7 @@ namespace SojiToban
         {
             //Person型の表オブジェクト作成
             var data = new ObservableCollection<Person>(
-                Enumerable.Range(1, 100).Select(i => new Person
+                Enumerable.Range(1, Const.PERSON_COUNT).Select(i => new Person
                 {
                     Name = string.Empty,
                     No = null,
@@ -51,12 +52,11 @@ namespace SojiToban
                     Kbn1 = null
                 }));
             //バインド
-            this.dataGrid.ItemsSource = data;
-            string str = Const.PLACE[0].ToString();
+            this.dataGrid.ItemsSource = data;            
 
             //Person型の表オブジェクト作成
-            var data1 = new ObservableCollection<Target>(
-                Enumerable.Range(0, 17).Select(i => new Target
+            var data1 = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(0, 17).Select(i => new SojiPlace
                 {
                     PlaceId = Const.PID[i],
                     Place = Const.PLACE[i],
@@ -147,13 +147,21 @@ namespace SojiToban
         {
             var data = this.dataGrid;
             List<Person> list = new List<Person>();
+            int i = 0;
             foreach (Person obj in data.Items)
             {
-                list.Add(obj);                
+                i++;
+                if (obj.Name != "" && obj.No != null)
+                {
+                    list.Add(obj);
+                }                 
+                if(i == Const.PERSON_COUNT)
+                {
+                    MainService sv = new MainService();
+                    sv.execute(list);
+                }
             }
         }
-
-        public int pId { get; set; }
     }
 }
     
