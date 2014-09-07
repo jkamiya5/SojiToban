@@ -13,6 +13,6 @@ namespace SojiToban.dto
             public Gender? Gender { get; set; }            
             public int? No { get; set; }
             public int? Kbn1 { get; set; }
-            public Rireki rireki { get; set; }
+            public Warifuri warifuri { get; set; }
         }
 }

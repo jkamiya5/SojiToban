@@ -26,6 +26,8 @@ namespace SojiToban
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static int maxRowCount { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -111,7 +113,7 @@ namespace SojiToban
                 var pasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                var maxRowCount = pasteRows.Count();                
+                maxRowCount = pasteRows.Count();                
                 for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
@@ -154,14 +156,17 @@ namespace SojiToban
                 if (obj.Name != "" && obj.No != null)
                 {
                     list.Add(obj);
-                }                 
-                if(i == Const.PERSON_COUNT)
+                }
+                if (i == maxRowCount || i == Const.PERSON_COUNT)
                 {
                     MainService sv = new MainService();
                     sv.execute(list);
+                    break;
                 }
             }
         }
+
+        
     }
 }
     
