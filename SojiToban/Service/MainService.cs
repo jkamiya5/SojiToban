@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows.Documents;
+using MathNet.Numerics.Statistics;
 
 namespace SojiToban.Service
 {
@@ -17,27 +18,60 @@ namespace SojiToban.Service
             List<List<int>> RandamNumListOfWeek = CreateNumMap();
             System.Random rng = new System.Random();
             int k = rng.Next(5);
+            List<double> vlist = new List<double>();
+            Dictionary<int, int> dict = new Dictionary<int, int>();
+            List<int> Score = new List<int>();
+            List<int> Data = new List<int>();            
 
             while (true)
             {
-                int i1 = rng.Next(5);
-                int j1 = rng.Next(RandamNumListOfWeek[i1].Count());
-                int i2 = rng.Next(5);
-                int j2 = rng.Next(RandamNumListOfWeek[i2].Count());
-                int i3 = rng.Next(5);
-                int j3 = rng.Next(RandamNumListOfWeek[i3].Count());
-                int i4 = rng.Next(5);
-                int j4 = rng.Next(RandamNumListOfWeek[i4].Count());
-                int i5 = rng.Next(5);
-                int j5 = rng.Next(RandamNumListOfWeek[i5].Count());
-                int Score1 = +Const.RANK[RandamNumListOfWeek[i1][j1]];
-                int Score2 = +Const.RANK[RandamNumListOfWeek[i2][j2]];
-                int Score3 = +Const.RANK[RandamNumListOfWeek[i3][j3]];
-                int Score4 = +Const.RANK[RandamNumListOfWeek[i4][j4]];
-                int Score5 = +Const.RANK[RandamNumListOfWeek[i5][j5]];
-                int[] Scores = { Score1, Score2, Score3, Score4, Score5 };
+                int i = rng.Next(5);
+                int j = rng.Next(RandamNumListOfWeek[i].Count());
+                //Data.Add(GatScore(RandamNumListOfWeek, dict, i, j, Score));
             }
         }
+
+        private int GatScore(List<List<int>> RandamNumListOfWeek, Dictionary<int, int> dict, int i, int j, List<int> Score)
+        {
+            int Total = 0;
+            if (Score.Count < 3 && !dict.ContainsKey(i) && !dict.ContainsValue(j))
+            {
+                dict.Add(i, j);
+                Score.Add(Const.RANK[RandamNumListOfWeek[i][j]]);
+            }
+            if (Score.Count == 3)
+            {                
+                for (int ii = 0; ii < Score.Count; ii++)
+                {
+                    Total += Score[ii];
+                }               
+            }
+            return Total;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="RandamNumListOfWeek"></param>
+        /// <param name="i"></param>
+        /// <param name="j"></param>
+        /// <returns></returns>
+        private double Variance(List<List<int>> RandamNumListOfWeek, int i, int j)
+        {
+            int Score1 = +Const.RANK[RandamNumListOfWeek[i][j]];
+            int Score2 = +Const.RANK[RandamNumListOfWeek[0][1]];
+            int Score3 = +Const.RANK[RandamNumListOfWeek[0][2]];
+            Score1 = +Const.RANK[RandamNumListOfWeek[1][1]];
+            Score2 = +Const.RANK[RandamNumListOfWeek[1][2]];
+            Score3 = +Const.RANK[RandamNumListOfWeek[1][0]];
+            Score1 = +Const.RANK[RandamNumListOfWeek[2][2]];
+            Score2 = +Const.RANK[RandamNumListOfWeek[2][0]];
+            Score3 = +Const.RANK[RandamNumListOfWeek[2][1]];
+            var data = new double[] { Score1, Score2, Score3 };
+            return data.PopulationVariance();
+        }
+
 
         /// <summary>
         /// 
