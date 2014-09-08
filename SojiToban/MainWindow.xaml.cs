@@ -46,7 +46,7 @@ namespace SojiToban
         {
             //Person型の表オブジェクト作成
             var data = new ObservableCollection<Person>(
-                Enumerable.Range(1, Const.PERSON_COUNT).Select(i => new Person
+                Enumerable.Range(1, ContractConst.PERSON_COUNT).Select(i => new Person
                 {
                     Name = string.Empty,
                     No = null,
@@ -60,8 +60,8 @@ namespace SojiToban
             var data1 = new ObservableCollection<SojiPlace>(
                 Enumerable.Range(0, 17).Select(i => new SojiPlace
                 {
-                    PlaceId = Const.PID[i],
-                    Place = Const.PLACE[i],
+                    PlaceId = ContractConst.PID[i],
+                    Place = ContractConst.PLACE[i],
                     day1 = null,
                     day2 = null,
                     day3 = null,
@@ -157,7 +157,7 @@ namespace SojiToban
                 {
                     list.Add(obj);
                 }
-                if (i == maxRowCount || i == Const.PERSON_COUNT)
+                if (i == maxRowCount || i == ContractConst.PERSON_COUNT)
                 {
                     MainService sv = new MainService();
                     sv.execute(list);

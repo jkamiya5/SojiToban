@@ -10,44 +10,70 @@ using MathNet.Numerics.Statistics;
 
 namespace SojiToban.Service
 {
+    class NumHistoryDTO
+    {
+        public List<int> dayIndex { get; set; }
+        public List<int> placeIndex { get; set; }
+
+        public NumHistoryDTO()
+        {
+            this.dayIndex = new List<int>();
+            this.placeIndex = new List<int>();
+        }
+    }
+
     class MainService
     {
         internal void execute(List<Person> list)
         {
-            List<Person> ret = RandamSort(list);
-            List<List<int>> RandamNumListOfWeek = CreateNumMap();
-            System.Random rng = new System.Random();
-            int k = rng.Next(5);
-            List<double> vlist = new List<double>();
-            Dictionary<int, int> dict = new Dictionary<int, int>();
-            List<int> Score = new List<int>();
-            List<int> Data = new List<int>();            
+            List<Person> SortedList = RandamSort(list);
+            List<List<int>> RandamNumListOfWeek = CreateNumMap();            
+            Dictionary<int, int> NumberHistory = new Dictionary<int, int>();
+            List<int> vlist = new List<int>();
+            NumHistoryDTO History = new NumHistoryDTO();
+            while(true)
+            {
+                int ScoreA = 0;
+                ScoreA = Calculate(RandamNumListOfWeek, History);
+                vlist.Add(ScoreA);
+            }      
+        }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="RandamNumListOfWeek"></param>
+        /// <param name="NumberHistory"></param>
+        /// <returns></returns>
+        private int Calculate(List<List<int>> RandamNumListOfWeek, NumHistoryDTO History)
+        {
+            System.Random rng = new System.Random();            
+            List<int> Works = new List<int>();
+            int Score = 0;
             while (true)
             {
-                int i = rng.Next(5);
-                int j = rng.Next(RandamNumListOfWeek[i].Count());
-                //Data.Add(GatScore(RandamNumListOfWeek, dict, i, j, Score));
+                int dayIndex = rng.Next(5);
+                int placeIndex = rng.Next(RandamNumListOfWeek[dayIndex].Count());
+
+                if (Works.Count < 5 && !History.dayIndex.Contains(dayIndex) && !History.placeIndex.Contains(placeIndex))
+                {
+                    History.dayIndex.Add(dayIndex);
+                    History.placeIndex.Add(placeIndex);
+                    int AmountOfWork = ContractConst.COEFFICIENT[RandamNumListOfWeek[dayIndex][placeIndex]];
+                    Works.Add(AmountOfWork);
+                }
+                if (Works.Count == 5)
+                {
+                    for (int ii = 0; ii < Works.Count; ii++)
+                    {
+                        Score += Works[ii];                        
+                    }
+                    break;
+                }
             }
+            return Score;
         }
 
-        private int GatScore(List<List<int>> RandamNumListOfWeek, Dictionary<int, int> dict, int i, int j, List<int> Score)
-        {
-            int Total = 0;
-            if (Score.Count < 3 && !dict.ContainsKey(i) && !dict.ContainsValue(j))
-            {
-                dict.Add(i, j);
-                Score.Add(Const.RANK[RandamNumListOfWeek[i][j]]);
-            }
-            if (Score.Count == 3)
-            {                
-                for (int ii = 0; ii < Score.Count; ii++)
-                {
-                    Total += Score[ii];
-                }               
-            }
-            return Total;
-        }
 
 
         /// <summary>
@@ -59,15 +85,15 @@ namespace SojiToban.Service
         /// <returns></returns>
         private double Variance(List<List<int>> RandamNumListOfWeek, int i, int j)
         {
-            int Score1 = +Const.RANK[RandamNumListOfWeek[i][j]];
-            int Score2 = +Const.RANK[RandamNumListOfWeek[0][1]];
-            int Score3 = +Const.RANK[RandamNumListOfWeek[0][2]];
-            Score1 = +Const.RANK[RandamNumListOfWeek[1][1]];
-            Score2 = +Const.RANK[RandamNumListOfWeek[1][2]];
-            Score3 = +Const.RANK[RandamNumListOfWeek[1][0]];
-            Score1 = +Const.RANK[RandamNumListOfWeek[2][2]];
-            Score2 = +Const.RANK[RandamNumListOfWeek[2][0]];
-            Score3 = +Const.RANK[RandamNumListOfWeek[2][1]];
+            int Score1 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[i][j]];
+            int Score2 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[0][1]];
+            int Score3 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[0][2]];
+            Score1 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[1][1]];
+            Score2 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[1][2]];
+            Score3 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[1][0]];
+            Score1 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[2][2]];
+            Score2 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[2][0]];
+            Score3 = +ContractConst.COEFFICIENT[RandamNumListOfWeek[2][1]];
             var data = new double[] { Score1, Score2, Score3 };
             return data.PopulationVariance();
         }
@@ -81,9 +107,9 @@ namespace SojiToban.Service
         {
             List<int> RandamNumListOfDay = new List<int>();
             List<List<int>> RandamNumListOfWeek = new List<List<int>>();
-            for (int i = 0; i < Const.WEEK.Count() - 1; i++)
+            for (int i = 0; i < ContractConst.WEEK.Count() - 1; i++)
             {
-                int[] obj = (int[])Const.WEEK[i];
+                int[] obj = (int[])ContractConst.WEEK[i];
                 RandamNumListOfDay = GetNumListByDay(obj);
                 RandamNumListOfWeek.Add(RandamNumListOfDay);
             }
