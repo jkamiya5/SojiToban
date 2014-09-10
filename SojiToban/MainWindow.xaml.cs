@@ -54,9 +54,9 @@ namespace SojiToban
                     Kbn1 = null
                 }));
             //バインド
-            this.dataGrid.ItemsSource = data;            
+            this.dataGrid.ItemsSource = data;
 
-            //Person型の表オブジェクト作成
+            //SojiPlace型の表オブジェクト作成
             var data1 = new ObservableCollection<SojiPlace>(
                 Enumerable.Range(0, 17).Select(i => new SojiPlace
                 {
@@ -86,7 +86,7 @@ namespace SojiToban
                     var dataGrid = sender as DataGrid;
                     if (dataGrid != null)
                     {
-                        pasteClipboard(dataGrid);
+                        PasteClipboard(dataGrid);
                         //以降のイベントをスキップする
                         e.Handled = true;
                     }
@@ -99,7 +99,7 @@ namespace SojiToban
         /// クリップボード貼り付け
         /// </summary>
         /// <param name="dataGrid"></param>
-        private void pasteClipboard(DataGrid dataGrid)
+        private void PasteClipboard(DataGrid dataGrid)
         {
             try
             {                                      
@@ -160,7 +160,7 @@ namespace SojiToban
                 if (i == maxRowCount || i == ContractConst.PERSON_COUNT)
                 {
                     MainService sv = new MainService();
-                    sv.execute(list);
+                    sv.MainProc(list);
                     break;
                 }
             }

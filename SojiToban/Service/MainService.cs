@@ -10,34 +10,53 @@ using MathNet.Numerics.Statistics;
 
 namespace SojiToban.Service
 {
-    class NumHistoryDTO
+    /// <summary>
+    /// 
+    /// </summary>
+    class PersonalSchedule
     {
         public List<int> dayIndex { get; set; }
         public List<int> placeIndex { get; set; }
 
-        public NumHistoryDTO()
+        public PersonalSchedule()
         {
             this.dayIndex = new List<int>();
             this.placeIndex = new List<int>();
         }
     }
 
+    class TeamSchedule
+    {
+        public List<int> dayIndex { get; set; }
+        public List<int> placeIndex { get; set; }
+
+        public TeamSchedule()
+        {
+            this.dayIndex = new List<int>();
+            this.placeIndex = new List<int>();
+        }
+    }
+
+
+    /// <summary>
+    /// 
+    /// </summary>
     class MainService
     {
-        internal void execute(List<Person> list)
+        internal void MainProc(List<Person> list)
         {
-            List<Person> SortedList = RandamSort(list);
-            List<List<int>> RandamNumListOfWeek = CreateNumMap();            
+            List<List<int>> RandamNumListOfWeek = CreateNumMap();
             Dictionary<int, int> NumberHistory = new Dictionary<int, int>();
             List<int> vlist = new List<int>();
-            NumHistoryDTO History = new NumHistoryDTO();
-            while(true)
+            PersonalSchedule Schedule = new PersonalSchedule();            
+            while (true)
             {
                 int ScoreA = 0;
-                ScoreA = Calculate(RandamNumListOfWeek, History);
-                vlist.Add(ScoreA);
-            }      
+                ScoreA = Calculate(RandamNumListOfWeek, Schedule);
+                vlist.Add(ScoreA);                
+            }
         }
+
 
         /// <summary>
         /// 
@@ -45,20 +64,21 @@ namespace SojiToban.Service
         /// <param name="RandamNumListOfWeek"></param>
         /// <param name="NumberHistory"></param>
         /// <returns></returns>
-        private int Calculate(List<List<int>> RandamNumListOfWeek, NumHistoryDTO History)
+        private int Calculate(List<List<int>> RandamNumListOfWeek, PersonalSchedule Schedule)
         {
-            System.Random rng = new System.Random();            
+            System.Random rng = new System.Random();
             List<int> Works = new List<int>();
             int Score = 0;
+
             while (true)
             {
                 int dayIndex = rng.Next(5);
                 int placeIndex = rng.Next(RandamNumListOfWeek[dayIndex].Count());
 
-                if (Works.Count < 5 && !History.dayIndex.Contains(dayIndex) && !History.placeIndex.Contains(placeIndex))
+                if (Works.Count < 5 && !Schedule.dayIndex.Contains(dayIndex) && !Schedule.placeIndex.Contains(placeIndex))
                 {
-                    History.dayIndex.Add(dayIndex);
-                    History.placeIndex.Add(placeIndex);
+                    Schedule.dayIndex.Add(dayIndex);
+                    Schedule.placeIndex.Add(placeIndex);
                     int AmountOfWork = ContractConst.COEFFICIENT[RandamNumListOfWeek[dayIndex][placeIndex]];
                     Works.Add(AmountOfWork);
                 }
@@ -66,7 +86,7 @@ namespace SojiToban.Service
                 {
                     for (int ii = 0; ii < Works.Count; ii++)
                     {
-                        Score += Works[ii];                        
+                        Score += Works[ii];
                     }
                     break;
                 }

@@ -15,7 +15,7 @@ namespace SojiToban.contract_const
         public static int[] THURSDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         public static int[] FRIDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 14, 15, 16, 17 };
         public static Object[] WEEK = { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, WEEK };
-        public static int[] COEFFICIENT = { 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3 };
+        public static int[] COEFFICIENT = { 999, 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3 };
 
         public static String[] PLACE = {"・給湯室（排水溝・食器の整理等）"
                                 , "･拭きそうじ（カウンター）"
