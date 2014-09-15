@@ -1,5 +1,4 @@
-﻿using SojiToban.contract_const;
-using SojiToban.dto;
+﻿using SojiToban.dto;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Documents;
 using MathNet.Numerics.Statistics;
+using SojiToban.CommonModule;
 
 namespace SojiToban.Service
 {
@@ -17,14 +17,29 @@ namespace SojiToban.Service
     /// </summary>
     class MainService
     {
-        internal void MainProc(List<Person> list)
+        internal void MainProc(Queue<Person> persons)
         {
-            List<Queue<int>> RandamWeekMap = CreateNumMap();
-            Dictionary<int, int> NumberHistory = new Dictionary<int, int>();
-            List<int> vlist = new List<int>();
-            PersonalSchedule pSchedule = new PersonalSchedule();
-            //TeamSchedule tSchedule = Assign(RandamWeekMap);
-            //System.Diagnostics.Debug.WriteLine(tSchedule);
+            RandamWeekMap RandamWeekMap = CreateNumMap();
+            Person person = new Person();
+            Schedule schedule = new Schedule();
+            
+            //foreach (var day in RandamWeekMap)
+            //{
+            //    foreach (var place in day)
+            //    {
+            //        foreach (var p in persons)
+            //        {
+            //            if (!GenderAllocationJudge.Judge(p.Gender, place))
+            //            {
+            //                continue;
+            //            }
+            //            if (!GenderAllocationJudge.Judge(p.Gender, place))
+            //            {
+            //                continue;
+            //            }
+            //        }
+            //    }                
+            //}
         }
 
 
@@ -40,7 +55,7 @@ namespace SojiToban.Service
         //    System.Random rng = new System.Random();
         //    List<int> Works = new List<int>();
         //    Schedule tSchedule = new Schedule();            
-            
+
         //    for (int i = 0; i < RandamWeekMap.Count(); i++ )
         //    {
         //        while (RandamWeekMap[i].Count > 0)
@@ -58,43 +73,48 @@ namespace SojiToban.Service
         //}
 
 
+
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        private List<Queue<int>> CreateNumMap()
+        private RandamWeekMap CreateNumMap()
         {
-            Queue<int> RandamDayMap = new Queue<int>();
-            List<Queue<int>> RandamWeekMap = new List<Queue<int>>();
+            Day RandamDayMap = new Day();
+            RandamWeekMap RandamWeekMap = new RandamWeekMap();
             for (int i = 0; i < ContractConst.WEEK.Count() - 1; i++)
             {
                 int[] obj = (int[])ContractConst.WEEK[i];
                 RandamDayMap = DayLoccation(obj);
-                RandamWeekMap.Add(RandamDayMap);
+                RandamWeekMap.day.Add(RandamDayMap);
+                
             }
             System.Diagnostics.Debug.WriteLine(RandamWeekMap);
             return RandamWeekMap;
         }
+
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>
-        private Queue<int> DayLoccation(int[] p)
-        {            
-            Queue<int> RandamDayMap = new Queue<int>();
-            while (RandamDayMap.Count() < p.Count())
+        private Day DayLoccation(int[] p)
+        {
+            Day day = new Day();
+            Place place = new Place();
+            while (place.value.Count() < p.Count())
             {
                 System.Random rng = new System.Random();
                 int k = rng.Next(p.Count());
                 int num = p[k];
-                if (!RandamDayMap.Contains(num))
+                if (!place.value.Contains(num))
                 {
-                    RandamDayMap.Enqueue(p[k]);
+                    place.value.Enqueue(p[k]);
                 }
             }
-            return RandamDayMap;
+            day.place.Add(place);
+            return day;
         }
     }
 

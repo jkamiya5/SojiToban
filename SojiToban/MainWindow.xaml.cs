@@ -1,5 +1,4 @@
-﻿using SojiToban.contract_const;
-using SojiToban.dto;
+﻿using SojiToban.dto;
 using SojiToban.Service;
 using System;
 using System.Collections.Generic;
@@ -148,19 +147,19 @@ namespace SojiToban
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var data = this.dataGrid;
-            List<Person> list = new List<Person>();
+            Queue<Person> persons = new Queue<Person>();
             int i = 0;
             foreach (Person obj in data.Items)
             {
                 i++;
                 if (obj.Name != "" && obj.No != null)
                 {
-                    list.Add(obj);
+                    persons.Enqueue(obj);
                 }
                 if (i == maxRowCount || i == ContractConst.PERSON_COUNT)
                 {
                     MainService sv = new MainService();
-                    sv.MainProc(list);
+                    sv.MainProc(persons);
                     break;
                 }
             }

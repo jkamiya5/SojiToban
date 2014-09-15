@@ -8,12 +8,12 @@ namespace SojiToban.dto
 {
     public class Day
     {
+        public ContractConst.DAYS days { get; set; }
+        public List<Place> place { get; set; }
 
-        public Place P { get; set; }
         public Day()
-        {
-            this.P = new Place();
+        {            
+            this.place = new List<Place>();
         }
-
     }
 }

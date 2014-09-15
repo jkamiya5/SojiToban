@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace SojiToban.dto
 {
-    public class Place
+    public class Plan
     {
-        public Queue<int> value { get; set; }
-        public Place()
-        {
-            this.value = new Queue<int>();
-        }
+        public int id { get; set; }
+        public int varliant { get; set; }
+        public List<Schedule> schedule;
     }
 }

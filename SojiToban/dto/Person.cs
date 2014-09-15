@@ -9,10 +9,16 @@ namespace SojiToban.dto
         // DataGridに表示するデータ
         public class Person
         {
-            public string Name { get; set; }
-            public Gender? Gender { get; set; }            
             public int? No { get; set; }
             public int? Kbn1 { get; set; }
-            public Warifuri warifuri { get; set; }
+            public string Name { get; set; }
+            public ContractConst.GENDER? Gender { get; set; }
+            public List<Day> day;
+            public int? score { get; set; }
+
+            //public Person()
+            //{
+            //    this.day = new List<Day>();
+            //}
         }
 }

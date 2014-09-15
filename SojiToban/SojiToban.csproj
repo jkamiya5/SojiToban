@@ -59,8 +59,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonModule\GenderAllocationJudge.cs" />
+    <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
+    <Compile Include="CommonModule\SamePlaceJudge.cs" />
     <Compile Include="dto\Day.cs" />
     <Compile Include="dto\Place.cs" />
+    <Compile Include="dto\Plan.cs" />
+    <Compile Include="dto\RandamWeekMap.cs" />
     <Compile Include="dto\Schedule.cs" />
     <Compile Include="dto\TeamScedule.cs" />
     <Compile Include="dto\PersonalScedule.cs" />
@@ -74,8 +79,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="contract_const\Const.cs" />
-    <Compile Include="dto\Gender.cs" />
+    <Compile Include="dto\ContractConst.cs" />
     <Compile Include="dto\SojiPlace.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

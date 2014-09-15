@@ -7,11 +7,13 @@ using System.Threading.Tasks;
 namespace SojiToban.dto
 {
     public class Schedule
-    {        
-        public Day D { get; set; }
+    {
+        public int id { get; set; }        
+        public Queue<Person> person { get; set; }
+
         public Schedule()
         {
-            this.D = new Day();
+            this.person = new Queue<Person>();
         }
     }
 }

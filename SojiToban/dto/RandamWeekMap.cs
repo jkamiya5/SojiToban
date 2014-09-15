@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace SojiToban.dto
 {
-    public class Place
+    public class RandamWeekMap
     {
-        public Queue<int> value { get; set; }
-        public Place()
+        public List<Day> day;
+        public RandamWeekMap()
         {
-            this.value = new Queue<int>();
+            this.day = new List<Day>();
         }
     }
 }
