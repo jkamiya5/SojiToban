@@ -9,11 +9,11 @@ namespace SojiToban.dto
     public class Schedule
     {
         public int id { get; set; }        
-        public Queue<Person> person { get; set; }
+        public Queue<Member> person { get; set; }
 
         public Schedule()
         {
-            this.person = new Queue<Person>();
+            this.person = new Queue<Member>();
         }
     }
 }

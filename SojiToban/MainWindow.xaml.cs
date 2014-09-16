@@ -44,8 +44,8 @@ namespace SojiToban
         private void CreateData()
         {
             //Person型の表オブジェクト作成
-            var data = new ObservableCollection<Person>(
-                Enumerable.Range(1, ContractConst.PERSON_COUNT).Select(i => new Person
+            var data = new ObservableCollection<Member>(
+                Enumerable.Range(1, ContractConst.PERSON_COUNT).Select(i => new Member
                 {
                     Name = string.Empty,
                     No = null,
@@ -147,9 +147,9 @@ namespace SojiToban
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var data = this.dataGrid;
-            Queue<Person> persons = new Queue<Person>();
+            Queue<Member> persons = new Queue<Member>();
             int i = 0;
-            foreach (Person obj in data.Items)
+            foreach (Member obj in data.Items)
             {
                 i++;
                 if (obj.Name != "" && obj.No != null)

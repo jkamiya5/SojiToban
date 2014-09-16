@@ -7,7 +7,7 @@ using System.Text;
 namespace SojiToban.dto
 {
         // DataGridに表示するデータ
-        public class Person
+        public class Member
         {
             public int? No { get; set; }
             public int? Kbn1 { get; set; }
@@ -16,9 +16,9 @@ namespace SojiToban.dto
             public List<Day> day;
             public int? score { get; set; }
 
-            //public Person()
-            //{
-            //    this.day = new List<Day>();
-            //}
+            public Member()
+            {
+                this.day = new List<Day>();
+            }
         }
 }

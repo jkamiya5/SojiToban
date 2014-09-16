@@ -17,29 +17,72 @@ namespace SojiToban.Service
     /// </summary>
     class MainService
     {
-        internal void MainProc(Queue<Person> persons)
+        internal void MainProc(Queue<Member> Team)
         {
-            RandamWeekMap RandamWeekMap = CreateNumMap();
-            Person person = new Person();
-            Schedule schedule = new Schedule();
-            
-            //foreach (var day in RandamWeekMap)
-            //{
-            //    foreach (var place in day)
-            //    {
-            //        foreach (var p in persons)
-            //        {
-            //            if (!GenderAllocationJudge.Judge(p.Gender, place))
-            //            {
-            //                continue;
-            //            }
-            //            if (!GenderAllocationJudge.Judge(p.Gender, place))
-            //            {
-            //                continue;
-            //            }
-            //        }
-            //    }                
-            //}
+            //清掃箇所をランダムに割り振った数字列作成
+            RandamWeekMap RandamWeekMap = CreateNumMap();            
+
+            //曜日毎に割り振りを行う
+            foreach (Day EachDay in RandamWeekMap.day)
+            {
+                //メンバー全員に対して割り振り処理を行う
+                foreach (Member member in Team)
+                {
+                    //個人割り振り初回時
+                    if (member.day.Count() == 0)
+                    {
+                        //割り当てオブジェクト作成
+                        Day today = new Day();
+                        //曜日を設定
+                        today.days = EachDay.days;
+
+                        //カレントの曜日の清掃箇所ランダムリストを回す
+                        foreach (var CleaningPart in EachDay.place)
+                        {
+                            //個人割り振り初回時
+                            if (member.day.Count == 0)
+                            {
+                                //清掃箇所のランダムキューに値が存在する間ループを回す
+                                if (CleaningPart.value.Count > 0)
+                                {
+                                    //先頭の清掃箇所を取得
+                                    int randamPlaceValue = CleaningPart.value.Dequeue();
+                                    //清掃可否判定を行う
+                                    if (CheckCleanable(randamPlaceValue))
+                                    {
+
+                                    }                                                                            
+                                    //担当箇所オブジェクト作成
+                                    Place ResponsiblePlace = new Place();
+                                    //同日内清掃箇所リストに追加
+                                    ResponsiblePlace.value.Enqueue(randamPlaceValue);
+                                    //カレントの曜日の清掃箇所を決定
+                                    today.place.Add(ResponsiblePlace);
+                                }
+                            }
+                        }
+                        member.day.Add(today);
+                    }
+                    else
+                    {
+                        //個人割り振り2回目以降
+                        System.Diagnostics.Debug.WriteLine("//個人割り振り2回目以降");
+                    }
+                    System.Diagnostics.Debug.WriteLine(member);
+                }
+                System.Diagnostics.Debug.WriteLine(EachDay);
+            }
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="randamPlaceValue"></param>
+        /// <returns></returns>
+        private bool CheckCleanable(int randamPlaceValue)
+        {
+            throw new NotImplementedException();
         }
 
 
@@ -75,19 +118,25 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 
+        /// ランダムな清掃箇所振り分けマップを作成
         /// </summary>
         /// <returns></returns>
         private RandamWeekMap CreateNumMap()
         {
-            Day RandamDayMap = new Day();
+            Day day = new Day();
             RandamWeekMap RandamWeekMap = new RandamWeekMap();
             for (int i = 0; i < ContractConst.WEEK.Count() - 1; i++)
             {
                 int[] obj = (int[])ContractConst.WEEK[i];
-                RandamDayMap = DayLoccation(obj);
-                RandamWeekMap.day.Add(RandamDayMap);
-                
+                day = DayLoccation(obj);
+                RandamWeekMap.day.Add(day);
+
+            }
+            int j = 0;
+            foreach (ContractConst.DAYS v in Enum.GetValues(typeof(ContractConst.DAYS)))
+            {
+                RandamWeekMap.day[j].days = v;
+                j++;
             }
             System.Diagnostics.Debug.WriteLine(RandamWeekMap);
             return RandamWeekMap;
@@ -95,7 +144,7 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 
+        /// 日ごとに清掃箇所のランダム配列を作成
         /// </summary>
         /// <param name="p"></param>
         /// <returns></returns>

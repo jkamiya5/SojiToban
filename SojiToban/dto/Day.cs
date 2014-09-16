@@ -14,6 +14,7 @@ namespace SojiToban.dto
         public Day()
         {            
             this.place = new List<Place>();
+            this.days = new ContractConst.DAYS();
         }
     }
 }
