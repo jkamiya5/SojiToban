@@ -18,7 +18,7 @@ namespace SojiToban.Service
     /// </summary>
     class MainService
     {
-        internal void MainProc(Queue<Member> Team)
+        internal Queue<Member> MainProc(Queue<Member> Team)
         {
             //清掃箇所をランダムに割り振った数字列作成
             RandamWeekMap RandamWeekMap = CreateNumMap();
@@ -44,7 +44,7 @@ namespace SojiToban.Service
                     System.Diagnostics.Debug.WriteLine(member);
                 }                
                 //メンバーのランダムソートを行う
-                IEnumerable<Member> query = Team.OrderBy(person => person.score);
+                IEnumerable<Member> query = Team.OrderBy(person => person.day.Count).ThenBy(person => person.score); ;
                 foreach (Member member in query)
                 {
                     Console.WriteLine("{0} - {1}", member.Name, member.score);
@@ -53,6 +53,7 @@ namespace SojiToban.Service
                 }
                 System.Diagnostics.Debug.WriteLine(EachDay);
             }
+            return Team;
         }
 
 
@@ -90,9 +91,14 @@ namespace SojiToban.Service
                         today.place.Add(ResponsiblePlace);
                         //得点を足しこむ
                         member.score += ContractConst.COEFFICIENT[randamPlaceValue];
+                        member.day.Add(today);
+                    }
+                    else
+                    {
+
                     }
                 }
-                member.day.Add(today);
+                
             }            
             return member;
         }
@@ -132,11 +138,11 @@ namespace SojiToban.Service
                             today.place.Add(ResponsiblePlace);
                             //得点を足しこむ
                             member.score += ContractConst.COEFFICIENT[randamPlaceValue];
+                            member.day.Add(today);
                         }
-                    }
+                    }                    
                 }
-            }
-            member.day.Add(today);
+            }            
             return member;
         }
 

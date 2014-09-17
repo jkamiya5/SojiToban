@@ -21,7 +21,7 @@ namespace SojiToban.CommonModule
         /// <returns></returns>
         public static Boolean Judge(ContractConst.GENDER? Gender, int TargetPlace)
         {
-            if (Gender == ContractConst.GENDER.MAN)
+            if (Gender == ContractConst.GENDER.男)
             {
                 for (int i = 0; i < ContractConst.WOMAN_LOCATE.Count(); i++)
                 {
@@ -31,7 +31,7 @@ namespace SojiToban.CommonModule
                     }
                 }
             }
-            else if (Gender == ContractConst.GENDER.WOMAN)
+            else if (Gender == ContractConst.GENDER.女)
             {
                 for (int i = 0; i < ContractConst.MAN_LOCATE.Count(); i++)
                 {

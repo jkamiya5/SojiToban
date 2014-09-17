@@ -25,7 +25,7 @@ namespace SojiToban
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int maxRowCount { get; set; }
+        public static int maxRowCount { get; set; }        
 
         /// <summary>
         /// 
@@ -42,10 +42,10 @@ namespace SojiToban
         /// ダミーデータを作成する
         /// </summary>
         private void CreateData()
-        {
+        {            
             //Person型の表オブジェクト作成
             var data = new ObservableCollection<Member>(
-                Enumerable.Range(1, ContractConst.PERSON_COUNT).Select(i => new Member
+                Enumerable.Range(1, ContractConst.MEMBER_COUNT).Select(i => new Member
                 {
                     Name = string.Empty,
                     No = null,
@@ -57,7 +57,7 @@ namespace SojiToban
 
             //SojiPlace型の表オブジェクト作成
             var data1 = new ObservableCollection<SojiPlace>(
-                Enumerable.Range(0, 17).Select(i => new SojiPlace
+                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(i => new SojiPlace
                 {
                     PlaceId = ContractConst.PID[i],
                     Place = ContractConst.PLACE[i],
@@ -130,7 +130,7 @@ namespace SojiToban
                 
                 // 選択位置復元
                 dataGrid.CurrentCell = new DataGridCellInfo(
-                dataGrid.Items[startRowIndex], dataGrid.Columns[2]);
+                dataGrid.Items[startRowIndex], dataGrid.Columns[3]);
                 
 
             }
@@ -147,22 +147,42 @@ namespace SojiToban
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var data = this.dataGrid;
-            Queue<Member> persons = new Queue<Member>();
+            Queue<Member> Team = new Queue<Member>();
+            Queue<Member> ret = new Queue<Member>();
             int i = 0;
             foreach (Member obj in data.Items)
             {
                 i++;
                 if (obj.Name != "" && obj.No != null)
                 {
-                    persons.Enqueue(obj);
+                    Team.Enqueue(obj);
                 }
-                if (i == maxRowCount || i == ContractConst.PERSON_COUNT)
+                if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
                 {
                     MainService sv = new MainService();
-                    sv.MainProc(persons);
+                    ret = sv.MainProc(Team);
                     break;
                 }
             }
+            //割り振り結果を出力する
+            System.Diagnostics.Debug.WriteLine(ret);
+            foreach(var v in ret)
+            {
+                //todo:
+            }
+            //SojiPlace型の表オブジェクト作成
+            var data1 = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
+                {
+                    PlaceId = ContractConst.PID[j],
+                    Place = ContractConst.PLACE[j],
+                    day1 = j,
+                    day2 = j + 1,
+                    day3 = j + 2,
+                    day4 = null,
+                    day5 = null,
+                }));
+            this.targetGrid.ItemsSource = data1;
         }
 
         
