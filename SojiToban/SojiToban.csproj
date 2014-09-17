@@ -59,6 +59,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonModule\IEnumerableExtensions.cs" />
     <Compile Include="CommonModule\GenderAllocationJudge.cs" />
     <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
     <Compile Include="CommonModule\SamePlaceJudge.cs" />

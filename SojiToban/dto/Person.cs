@@ -19,6 +19,7 @@ namespace SojiToban.dto
             public Member()
             {
                 this.day = new List<Day>();
+                this.score = 0;
             }
         }
 }
