@@ -217,7 +217,7 @@ namespace SojiToban
             //        day4 = D4.Dequeue(),
             //        day5 = D5.Dequeue(),
             //    }));
-            this.targetGrid.ItemsSource = data1;
+            //this.targetGrid.ItemsSource = data1;
         }
 
     }
