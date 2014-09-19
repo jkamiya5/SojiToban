@@ -46,8 +46,7 @@ namespace SojiToban.Service
                 //メンバーのランダムソートを行う
                 IEnumerable<Member> query = Team.OrderBy(person => person.day.Count).ThenBy(person => person.score); ;
                 foreach (Member member in query)
-                {
-                    Console.WriteLine("{0} - {1}", member.Name, member.score);
+                {                    
                     Team.Dequeue();
                     Team.Enqueue(member);
                 }

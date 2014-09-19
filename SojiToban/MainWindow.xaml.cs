@@ -33,43 +33,9 @@ namespace SojiToban
         public MainWindow()
         {
             InitializeComponent();
-            CreateData();
+            DataOption.CreateData(this);
 
         }
-
-
-        /// <summary>
-        /// ダミーデータを作成する
-        /// </summary>
-        private void CreateData()
-        {
-            //Member型の表オブジェクト作成
-            var data = new ObservableCollection<Member>(
-                Enumerable.Range(1, ContractConst.MEMBER_COUNT).Select(i => new Member
-                {
-                    Name = string.Empty,
-                    No = null,
-                    Gender = null,
-                    Kbn1 = null
-                }));
-            //バインド
-            this.dataGrid.ItemsSource = data;
-
-            //SojiPlace型の表オブジェクト作成
-            var data1 = new ObservableCollection<SojiPlace>(
-                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(i => new SojiPlace
-                {
-                    PlaceId = ContractConst.PID[i],
-                    Place = ContractConst.PLACE[i],
-                    day1 = null,
-                    day2 = null,
-                    day3 = null,
-                    day4 = null,
-                    day5 = null,
-                }));
-            this.targetGrid.ItemsSource = data1;
-        }
-
 
         /// <summary>
         /// クリップボードを貼り付けるアクションを検知する
@@ -85,57 +51,11 @@ namespace SojiToban
                     var dataGrid = sender as DataGrid;
                     if (dataGrid != null)
                     {
-                        PasteClipboard(dataGrid);
+                        DisplayOption.PasteClipboard(dataGrid);                        
                         //以降のイベントをスキップする
                         e.Handled = true;
                     }
                 }
-            }
-        }
-
-
-        /// <summary>
-        /// クリップボード貼り付け
-        /// </summary>
-        /// <param name="dataGrid"></param>
-        private void PasteClipboard(DataGrid dataGrid)
-        {
-            try
-            {
-                // 張り付け開始位置設定
-                var startRowIndex = dataGrid.ItemContainerGenerator.IndexFromContainer(
-                    (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromItem
-                    (dataGrid.CurrentCell.Item));
-                var startColIndex = dataGrid.SelectedCells[0].Column.DisplayIndex;
-
-                // クリップボード文字列から行を取得
-                var pasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
-                    .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-                maxRowCount = pasteRows.Count();
-                for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
-                {
-                    var rowIndex = startRowIndex + rowCount;
-                    // タブ区切りでセル値を取得
-                    var pasteCells = pasteRows[rowCount].Split('\t');
-                    // 選択位置から列数繰り返す
-                    var maxColCount = Math.Min(pasteCells.Count(), dataGrid.Columns.Count - startColIndex);
-                    for (int colCount = 0; colCount < maxColCount; colCount++)
-                    {
-                        var column = dataGrid.Columns[colCount + startColIndex];
-                        // 貼り付け
-                        column.OnPastingCellClipboardContent(dataGrid.Items[rowIndex], pasteCells[colCount]);
-                    }
-                }
-
-                // 選択位置復元
-                dataGrid.CurrentCell = new DataGridCellInfo(
-                dataGrid.Items[startRowIndex], dataGrid.Columns[3]);
-
-
-            }
-            catch
-            {
             }
         }
 
@@ -152,6 +72,10 @@ namespace SojiToban
             int i = 0;
             foreach (Member obj in data.Items)
             {
+                if(obj.day.Count > 0)
+                {
+                    return;
+                }
                 i++;
                 if (obj.Name != "" && obj.No != null)
                 {
@@ -159,88 +83,28 @@ namespace SojiToban
                 }
                 if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
                 {
-                    MainService sv = new MainService();
-                    RetInfo = sv.MainProc(Team);
+                    MainService service = new MainService();
+                    RetInfo = service.MainProc(Team);
                     break;
                 }
             }
-            Display(RetInfo);
+            DisplayOption.Display(RetInfo, this);
+            this.execute.IsEnabled = false;
 
         }
+
+
+
 
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="RetInfo"></param>
-        private void Display(Queue<Member> RetInfo)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            //割り振り結果を出力する
-            System.Diagnostics.Debug.WriteLine(RetInfo);
-            Dictionary<int, int?> D1 = new Dictionary<int, int?>();
-            Dictionary<int, int?> D2 = new Dictionary<int, int?>();
-            Dictionary<int, int?> D3 = new Dictionary<int, int?>();
-            Dictionary<int, int?> D4 = new Dictionary<int, int?>();
-            Dictionary<int, int?> D5 = new Dictionary<int, int?>();
-            foreach (var member in RetInfo)
-            {
-                foreach (var thisDay in member.day)
-                {                    
-                    if (thisDay.days == ContractConst.DAYS.Mon)
-                    {
-                        foreach(var v in thisDay.place)
-                        {
-                            D1.Add(v.value.Dequeue(), member.No);
-                        }
-                    }
-                    if (thisDay.days == ContractConst.DAYS.Tue)
-                    {
-                        foreach (var v in thisDay.place)
-                        {
-                            D2.Add(v.value.Dequeue(), member.No);
-                        }
-                    }
-                    if (thisDay.days == ContractConst.DAYS.Wed)
-                    {
-                        foreach (var v in thisDay.place)
-                        {
-                            D3.Add(v.value.Dequeue(), member.No);
-                        }
-                    }
-                    if (thisDay.days == ContractConst.DAYS.Thu)
-                    {
-                        foreach (var v in thisDay.place)
-                        {
-                            D4.Add(v.value.Dequeue(), member.No);
-                        }
-                    }
-                    if (thisDay.days == ContractConst.DAYS.Fri)
-                    {
-                        foreach (var v in thisDay.place)
-                        {
-                            D5.Add(v.value.Dequeue(), member.No);
-                        }
-                    }
-                }
-            }
-            int[] Day1 = new int[ContractConst.PLACE_COUNT];
-            int i = 0;
-            foreach(var v in D1)
-            {
-                Day1[i] = (int)v.Value;
-                i++;
-            }
-            //day1.OrderBy(c => c);
-            ////SojiPlace型の表オブジェクト作成
-            var data1 = new ObservableCollection<SojiPlace>(
-                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
-                {
-                    PlaceId = ContractConst.PID[j],
-                    Place = ContractConst.PLACE[j],
-                    day1 = Day1[j]
-                }));
-            this.targetGrid.ItemsSource = data1;
+            
         }
-
     }
 }

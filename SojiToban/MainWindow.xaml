@@ -40,5 +40,6 @@
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>
+        <Button x:Name="clear" Content="クリア"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,235,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="ClearButton_Click"/>
     </Grid>
 </Window>
