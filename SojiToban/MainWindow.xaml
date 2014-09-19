@@ -19,6 +19,16 @@
         </DataGrid>
         <Label Content="清掃箇所の難儀度に応じて平等に掃除当番を割り振るツール" HorizontalAlignment="Left" Margin="0,-51,0,0" VerticalAlignment="Top" Height="42" Width="337" Grid.ColumnSpan="2"/>
         <DataGrid x:Name="targetGrid" ColumnHeaderHeight="40" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell">
+            <DataGrid.ItemContainerStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <!-- IsEmptyがTrueの時だけ背景を設定する -->
+                        <DataTrigger Binding="{Binding IsEmpty}" Value="True">
+                            <Setter Property="Background" Value="LimeGreen" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.ItemContainerStyle>            
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding PlaceId}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding Place}" IsReadOnly="True"/>

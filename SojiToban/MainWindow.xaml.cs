@@ -177,47 +177,69 @@ namespace SojiToban
         {
             //割り振り結果を出力する
             System.Diagnostics.Debug.WriteLine(RetInfo);
-            Dictionary<int, int> D1 = new Dictionary<int, int>();
-            //foreach(var member in RetInfo)
-            //{
-            //    foreach(var thisDay in member.day)
-            //    {
-            //        if(thisDay.days == ContractConst.DAYS.Mon)
-            //        {
-            //            D1.Add(member.No);
-            //        }
-            //        if (thisDay.days == ContractConst.DAYS.Tue)
-            //        {
-
-            //        }
-            //        if (thisDay.days == ContractConst.DAYS.Wed)
-            //        {
-
-            //        }
-            //        if (thisDay.days == ContractConst.DAYS.Thu)
-            //        {
-
-            //        }
-            //        if (thisDay.days == ContractConst.DAYS.Fri)
-            //        {
-
-            //        }
-            //    }
-            //}
-
+            Dictionary<int, int?> D1 = new Dictionary<int, int?>();
+            Dictionary<int, int?> D2 = new Dictionary<int, int?>();
+            Dictionary<int, int?> D3 = new Dictionary<int, int?>();
+            Dictionary<int, int?> D4 = new Dictionary<int, int?>();
+            Dictionary<int, int?> D5 = new Dictionary<int, int?>();
+            foreach (var member in RetInfo)
+            {
+                foreach (var thisDay in member.day)
+                {                    
+                    if (thisDay.days == ContractConst.DAYS.Mon)
+                    {
+                        foreach(var v in thisDay.place)
+                        {
+                            D1.Add(v.value.Dequeue(), member.No);
+                        }
+                    }
+                    if (thisDay.days == ContractConst.DAYS.Tue)
+                    {
+                        foreach (var v in thisDay.place)
+                        {
+                            D2.Add(v.value.Dequeue(), member.No);
+                        }
+                    }
+                    if (thisDay.days == ContractConst.DAYS.Wed)
+                    {
+                        foreach (var v in thisDay.place)
+                        {
+                            D3.Add(v.value.Dequeue(), member.No);
+                        }
+                    }
+                    if (thisDay.days == ContractConst.DAYS.Thu)
+                    {
+                        foreach (var v in thisDay.place)
+                        {
+                            D4.Add(v.value.Dequeue(), member.No);
+                        }
+                    }
+                    if (thisDay.days == ContractConst.DAYS.Fri)
+                    {
+                        foreach (var v in thisDay.place)
+                        {
+                            D5.Add(v.value.Dequeue(), member.No);
+                        }
+                    }
+                }
+            }
+            int[] Day1 = new int[ContractConst.PLACE_COUNT];
+            int i = 0;
+            foreach(var v in D1)
+            {
+                Day1[i] = (int)v.Value;
+                i++;
+            }
+            //day1.OrderBy(c => c);
             ////SojiPlace型の表オブジェクト作成
-            //var data1 = new ObservableCollection<SojiPlace>(
-            //    Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
-            //    {
-            //        PlaceId = ContractConst.PID[j],
-            //        Place = ContractConst.PLACE[j],
-            //        day1 = D1.Dequeue(),
-            //        day2 = D2.Dequeue(),
-            //        day3 = D3.Dequeue(),
-            //        day4 = D4.Dequeue(),
-            //        day5 = D5.Dequeue(),
-            //    }));
-            //this.targetGrid.ItemsSource = data1;
+            var data1 = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
+                {
+                    PlaceId = ContractConst.PID[j],
+                    Place = ContractConst.PLACE[j],
+                    day1 = Day1[j]
+                }));
+            this.targetGrid.ItemsSource = data1;
         }
 
     }

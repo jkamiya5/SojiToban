@@ -14,6 +14,20 @@ namespace SojiToban.dto
         public int? day2 { get; set; }
         public int? day3 { get; set; }
         public int? day4 { get; set; }
-        public int? day5 { get; set; }        
+        public int? day5 { get; set; }
+        public bool IsEmpty
+        {
+            get
+            {
+                if (day1 == 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
