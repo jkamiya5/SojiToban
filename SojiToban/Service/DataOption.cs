@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace SojiToban.Service
 {
+
+    /// <summary>
+    /// データ生成を行う
+    /// </summary>
     public static class DataOption
     {
         /// <summary>
@@ -41,6 +45,56 @@ namespace SojiToban.Service
                     day5 = null,
                 }));
             mainWindow.targetGrid.ItemsSource = data1;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        internal static RandamWeekMap CreateNumMap()
+        {
+            Day day = new Day();
+            RandamWeekMap RandamWeekMap = new RandamWeekMap();
+            for (int i = 0; i < ContractConst.WEEK.Count() - 1; i++)
+            {
+                int[] obj = (int[])ContractConst.WEEK[i];
+                day = DayLoccation(obj);
+                RandamWeekMap.day.Add(day);
+
+            }
+            int j = 0;
+            foreach (ContractConst.DAYS v in Enum.GetValues(typeof(ContractConst.DAYS)))
+            {
+                RandamWeekMap.day[j].days = v;
+                j++;
+            }
+            System.Diagnostics.Debug.WriteLine(RandamWeekMap);
+            return RandamWeekMap;
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        private static Day DayLoccation(int[] p)
+        {
+            Day day = new Day();
+            Place place = new Place();
+            while (place.value.Count() < p.Count())
+            {
+                System.Random rng = new System.Random();
+                int k = rng.Next(p.Count());
+                int num = p[k];
+                if (!place.value.Contains(num))
+                {
+                    place.value.Enqueue(p[k]);
+                }
+            }
+            day.place.Add(place);
+            return day;
         }
     }
 }

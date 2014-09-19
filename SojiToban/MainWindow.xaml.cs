@@ -77,7 +77,7 @@ namespace SojiToban
                     return;
                 }
                 i++;
-                if (obj.Name != "" && obj.No != null)
+                if (obj.Name != string.Empty && obj.No != null)
                 {
                     Team.Enqueue(obj);
                 }
@@ -92,10 +92,6 @@ namespace SojiToban
             this.execute.IsEnabled = false;
 
         }
-
-
-
-
 
         /// <summary>
         /// 

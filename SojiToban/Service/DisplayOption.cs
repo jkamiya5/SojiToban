@@ -10,6 +10,9 @@ using System.Windows.Controls;
 
 namespace SojiToban.Service
 {
+    /// <summary>
+    /// 画面描画に関することを行う
+    /// </summary>
     public class DisplayOption : MainWindow
     {
         

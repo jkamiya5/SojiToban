@@ -73,6 +73,7 @@
     <Compile Include="dto\Rireki.cs" />
     <Compile Include="Service\DataOption.cs" />
     <Compile Include="Service\DisplayOption.cs" />
+    <Compile Include="Service\LoccateOption.cs" />
     <Compile Include="Service\MainService.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
