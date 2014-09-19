@@ -17,7 +17,7 @@ namespace SojiToban.Service
         /// <param name="member"></param>
         /// <returns></returns>
         internal static Member Allocation(Day EachDay, Member member)
-        {                        
+        {
             //カレントの曜日の清掃箇所ランダムリストを回す
             foreach (var CleaningPart in EachDay.place)
             {
@@ -29,8 +29,8 @@ namespace SojiToban.Service
                 //清掃箇所のランダムキューに値が存在する間ループを回す
                 if (CleaningPart.value.Count > 0)
                 {
-                    //先頭の清掃箇所を取得
-                    int randamPlaceValue = CleaningPart.value.Dequeue();
+                    //先頭の清掃箇所を取得                    
+                    int? randamPlaceValue = CleaningPart.value.Dequeue();
                     //清掃可否判定を行う
                     if (CheckCleanable(member, randamPlaceValue, today.days))
                     {
@@ -41,11 +41,20 @@ namespace SojiToban.Service
                         //カレントの曜日の清掃箇所を決定
                         today.place.Add(ResponsiblePlace);
                         //得点を足しこむ
-                        member.score += ContractConst.COEFFICIENT[randamPlaceValue];
+                        if (randamPlaceValue == null)
+                        {
+                            member.score += 0;
+                        }
+                        else
+                        {
+                            member.score += ContractConst.COEFFICIENT[(int)randamPlaceValue];
+                        }
                         member.day.Add(today);
                     }
                     else
                     {
+
+
 
                     }
                 }
@@ -77,7 +86,7 @@ namespace SojiToban.Service
                     if (CleaningPart.value.Count > 0)
                     {
                         //先頭の清掃箇所を取得
-                        int randamPlaceValue = CleaningPart.value.Dequeue();
+                        int? randamPlaceValue = CleaningPart.value.Dequeue();
                         //清掃可否判定を行う
                         if (CheckCleanable(member, randamPlaceValue, today.days))
                         {
@@ -88,7 +97,14 @@ namespace SojiToban.Service
                             //カレントの曜日の清掃箇所を決定
                             today.place.Add(ResponsiblePlace);
                             //得点を足しこむ
-                            member.score += ContractConst.COEFFICIENT[randamPlaceValue];
+                            if (randamPlaceValue == null)
+                            {
+                                member.score += 0;
+                            }
+                            else
+                            {
+                                member.score += ContractConst.COEFFICIENT[(int)randamPlaceValue];
+                            }
                             member.day.Add(today);
                         }
                     }
@@ -106,7 +122,7 @@ namespace SojiToban.Service
         /// <param name="randamPlaceValue"></param>
         /// <param name="dAYS"></param>
         /// <returns></returns>
-        private static bool CheckCleanable(Member member, int randamPlaceValue, ContractConst.DAYS dAYS)
+        private static bool CheckCleanable(Member member, int? randamPlaceValue, ContractConst.DAYS dAYS)
         {
             //男女毎清掃箇所判定
             if (!GenderAllocationJudge.Judge(member.Gender, randamPlaceValue))

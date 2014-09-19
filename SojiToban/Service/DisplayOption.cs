@@ -67,9 +67,9 @@ namespace SojiToban.Service
         /// <param name="RetInfo"></param>
         /// <param name="dAYS"></param>
         /// <returns></returns>
-        private static int[] GetDayRowVal(Queue<Member> RetInfo, ContractConst.DAYS dAYS)
+        private static int?[] GetDayRowVal(Queue<Member> RetInfo, ContractConst.DAYS dAYS)
         {
-            Dictionary<int, int?> D = new Dictionary<int, int?>();
+            Dictionary<int?, int?> D = new Dictionary<int?, int?>();
             foreach (var member in RetInfo)
             {
                 foreach (var thisDay in member.day)
@@ -87,7 +87,7 @@ namespace SojiToban.Service
                     }
                 }
             }
-            int[] Day = new int[ContractConst.PLACE_COUNT];
+            int?[] Day = new int?[ContractConst.PLACE_COUNT];
             int i = 0;
             foreach (var v in D)
             {
@@ -107,11 +107,11 @@ namespace SojiToban.Service
         {
             //割り振り結果を出力する
             System.Diagnostics.Debug.WriteLine(RetInfo);
-            int[] Day1 = new int[ContractConst.PLACE_COUNT];
-            int[] Day2 = new int[ContractConst.PLACE_COUNT];
-            int[] Day3 = new int[ContractConst.PLACE_COUNT];
-            int[] Day4 = new int[ContractConst.PLACE_COUNT];
-            int[] Day5 = new int[ContractConst.PLACE_COUNT];
+            int?[] Day1 = new int?[ContractConst.PLACE_COUNT];
+            int?[] Day2 = new int?[ContractConst.PLACE_COUNT];
+            int?[] Day3 = new int?[ContractConst.PLACE_COUNT];
+            int?[] Day4 = new int?[ContractConst.PLACE_COUNT];
+            int?[] Day5 = new int?[ContractConst.PLACE_COUNT];
             Day1 = GetDayRowVal(RetInfo, ContractConst.DAYS.Mon);
             Day2 = GetDayRowVal(RetInfo, ContractConst.DAYS.Tue);
             Day3 = GetDayRowVal(RetInfo, ContractConst.DAYS.Wed);
@@ -132,6 +132,17 @@ namespace SojiToban.Service
                     day5 = Day5[j]
                 }));
             mainWindow.targetGrid.ItemsSource = data1;
+
+            //if (e.Cell.Row.Index == 0 && e.Cell.Column.Index == 0)
+            //{
+            //    e.Cell.Presenter.Background = new SolidColorBrush(Colors.Red);
+            //    e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
+            //}
+            //if (e.Cell.Row.Index == 1)
+            //{
+            //    e.Cell.Presenter.Background = new SolidColorBrush(Colors.Blue);
+            //    e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
+            //}
         }
     }
 }

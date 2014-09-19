@@ -8,10 +8,10 @@ namespace SojiToban.dto
 {
     public class Place
     {
-        public Queue<int> value { get; set; }
+        public Queue<int?> value { get; set; }
         public Place()
         {
-            this.value = new Queue<int>();
+            this.value = new Queue<int?>();
         }
     }
 }

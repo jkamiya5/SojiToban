@@ -18,7 +18,7 @@ namespace SojiToban.CommonModule
         /// <param name="member"></param>
         /// <param name="TargetPlace"></param>
         /// <returns></returns>
-        public static Boolean Judge(Member member, int TargetPlace)
+        public static Boolean Judge(Member member, int? TargetPlace)
         {
             if (member.day.Count() != 0)
             {

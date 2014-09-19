@@ -74,7 +74,7 @@ namespace SojiToban
             {
                 if(obj.day.Count > 0)
                 {
-                    return;
+                    obj.Clear();                    
                 }
                 i++;
                 if (obj.Name != string.Empty && obj.No != null)
@@ -100,7 +100,35 @@ namespace SojiToban
         /// <param name="e"></param>
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
-            
+            //SojiPlace型の表オブジェクト作成
+            var data1 = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(i => new SojiPlace
+                {
+                    PlaceId = ContractConst.PID[i],
+                    Place = ContractConst.PLACE[i],
+                    day1 = null,
+                    day2 = null,
+                    day3 = null,
+                    day4 = null,
+                    day5 = null,
+                }));
+            this.targetGrid.ItemsSource = data1;
+            this.execute.IsEnabled = true;
         }
+
+
+        //private void targetGrid_LoadedCellPresenter(object sender, DataGridCellEventArgs e)
+        //{
+        //    if (e.Cell.Row.Index == 0 && e.Cell.Column.Index == 0)
+        //    {
+        //        e.Cell.Presenter.Background = new SolidColorBrush(Colors.Red);
+        //        e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
+        //    }
+        //    if (e.Cell.Row.Index == 1)
+        //    {
+        //        e.Cell.Presenter.Background = new SolidColorBrush(Colors.Blue);
+        //        e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
+        //    }
+        //}
     }
 }

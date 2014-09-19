@@ -23,10 +23,10 @@ namespace SojiToban.dto
             }
             public void Clear()
             {
-                this.No = null;
-                this.Kbn1 = null;
-                this.Name = string.Empty;
-                this.Gender = null;
+                //this.No = null;
+                //this.Kbn1 = null;
+                //--this.Name = string.Empty;
+                //this.Gender = null;
                 this.day.Clear();
                 this.score = null;
             }

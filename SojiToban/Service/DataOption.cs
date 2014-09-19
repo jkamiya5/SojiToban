@@ -68,8 +68,7 @@ namespace SojiToban.Service
             {
                 RandamWeekMap.day[j].days = v;
                 j++;
-            }
-            System.Diagnostics.Debug.WriteLine(RandamWeekMap);
+            }            
             return RandamWeekMap;
         }
 

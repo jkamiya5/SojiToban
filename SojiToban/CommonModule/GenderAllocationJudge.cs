@@ -19,7 +19,7 @@ namespace SojiToban.CommonModule
         /// <param name="Gender"></param>
         /// <param name="TargetPlace"></param>
         /// <returns></returns>
-        public static Boolean Judge(ContractConst.GENDER? Gender, int TargetPlace)
+        public static Boolean Judge(ContractConst.GENDER? Gender, int? TargetPlace)
         {
             if (Gender == ContractConst.GENDER.男)
             {
