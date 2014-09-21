@@ -15,12 +15,12 @@ namespace SojiToban.Service
     /// </summary>
     public class DisplayOption : MainWindow
     {
-        
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="dataGrid"></param>
-        public static void PasteClipboard(DataGrid dataGrid)
+        public void PasteClipboard(DataGrid dataGrid)
         {
             try
             {
@@ -62,12 +62,12 @@ namespace SojiToban.Service
         }
 
         /// <summary>
-        /// 
+        /// 各曜日の出力結果を作成
         /// </summary>
         /// <param name="RetInfo"></param>
         /// <param name="dAYS"></param>
         /// <returns></returns>
-        private static int?[] GetDayRowVal(Queue<Member> RetInfo, ContractConst.DAYS dAYS)
+        private int?[] GetDayRowVal(Queue<Member> RetInfo, ContractConst.DAYS dAYS)
         {
             Dictionary<int?, int?> D = new Dictionary<int?, int?>();
             foreach (var member in RetInfo)
@@ -87,11 +87,11 @@ namespace SojiToban.Service
                     }
                 }
             }
-            int?[] Day = new int?[ContractConst.PLACE_COUNT];
+            int?[] Day = new int?[ContractConst.PLACE_COUNT + 1];
             int i = 0;
             foreach (var v in D)
             {
-                Day[i] = (int)v.Value;
+                Day[(int)v.Key] = (int)v.Value;
                 i++;
             }
             return Day;
@@ -103,46 +103,35 @@ namespace SojiToban.Service
         /// </summary>
         /// <param name="RetInfo"></param>
         /// <param name="mainWindow"></param>
-        internal static void Display(Queue<Member> RetInfo, MainWindow mainWindow)
+        internal void Display(Queue<Member> RetInfo, MainWindow mainWindow)
         {
             //割り振り結果を出力する
             System.Diagnostics.Debug.WriteLine(RetInfo);
-            int?[] Day1 = new int?[ContractConst.PLACE_COUNT];
-            int?[] Day2 = new int?[ContractConst.PLACE_COUNT];
-            int?[] Day3 = new int?[ContractConst.PLACE_COUNT];
-            int?[] Day4 = new int?[ContractConst.PLACE_COUNT];
-            int?[] Day5 = new int?[ContractConst.PLACE_COUNT];
-            Day1 = GetDayRowVal(RetInfo, ContractConst.DAYS.Mon);
-            Day2 = GetDayRowVal(RetInfo, ContractConst.DAYS.Tue);
-            Day3 = GetDayRowVal(RetInfo, ContractConst.DAYS.Wed);
-            Day4 = GetDayRowVal(RetInfo, ContractConst.DAYS.Thu);
-            Day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.Fri);
+            int?[] day1 = new int?[ContractConst.PLACE_COUNT + 1];
+            int?[] day2 = new int?[ContractConst.PLACE_COUNT + 1];
+            int?[] day3 = new int?[ContractConst.PLACE_COUNT + 1];
+            int?[] day4 = new int?[ContractConst.PLACE_COUNT + 1];
+            int?[] day5 = new int?[ContractConst.PLACE_COUNT + 1];
+            day1 = GetDayRowVal(RetInfo, ContractConst.DAYS.月);
+            day2 = GetDayRowVal(RetInfo, ContractConst.DAYS.火);
+            day3 = GetDayRowVal(RetInfo, ContractConst.DAYS.水);
+            day4 = GetDayRowVal(RetInfo, ContractConst.DAYS.木);
+            day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.金);
 
-            //day1.OrderBy(c => c);
-            ////SojiPlace型の表オブジェクト作成
-            var data1 = new ObservableCollection<SojiPlace>(
-                Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
+            var data = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(1, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
                 {
-                    PlaceId = ContractConst.PID[j],
-                    Place = ContractConst.PLACE[j],
-                    day1 = Day1[j],
-                    day2 = Day2[j],
-                    day3 = Day3[j],
-                    day4 = Day4[j],
-                    day5 = Day5[j]
+                    m_placeId = ContractConst.PID[j - 1],
+                    m_place = ContractConst.PLACE[j - 1],
+                    m_day1 = day1[j],
+                    m_day2 = day2[j],
+                    m_day3 = day3[j],
+                    m_day4 = day4[j],
+                    m_day5 = day5[j]
                 }));
-            mainWindow.targetGrid.ItemsSource = data1;
-
-            //if (e.Cell.Row.Index == 0 && e.Cell.Column.Index == 0)
-            //{
-            //    e.Cell.Presenter.Background = new SolidColorBrush(Colors.Red);
-            //    e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
-            //}
-            //if (e.Cell.Row.Index == 1)
-            //{
-            //    e.Cell.Presenter.Background = new SolidColorBrush(Colors.Blue);
-            //    e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
-            //}
+            mainWindow.targetGrid.ItemsSource = data;
+            DataOption option = new DataOption();
+            mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
         }
     }
 }

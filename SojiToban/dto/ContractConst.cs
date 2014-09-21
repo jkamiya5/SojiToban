@@ -15,8 +15,9 @@ namespace SojiToban.dto
         public static int[] THURSDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         public static int[] FRIDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 26, 27, 28 };
         public static Object[] WEEK = { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, WEEK };
-        public enum DAYS { Mon, Tue, Wed, Thu, Fri };
+        public enum DAYS { 月, 火, 水, 木, 金 };
         public static int?[] COEFFICIENT = { 999, 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 2, 2, 2, 3, 2, 2, 3, 2, 3, 3};
+        public static String[] DAY_WAREKI = { "月", "火", "水", "木", "金"};
         public enum GENDER { 男, 女 };
         public static int[] MAN_LOCATE = { 10, 12, 16, 23, 27 };
         public static int[] WOMAN_LOCATE = { 11, 17, 24, 28 };
@@ -25,10 +26,8 @@ namespace SojiToban.dto
                                 , "･拭きそうじ（カウンター）"
                                 , "　　　〃　　　（応接室）"
                                 , "　　　〃　　　（会議室）"
-                                , "･ゴミ捨て 朝"
-                                , "（シュレッダー・タバコの 含む）"
-                                , "･ゴミ捨て 夕方"
-                                , "（シュレッダー・タバコの 含む）"
+                                , "･ゴミ捨て 朝 （シュレッダー・タバコの 含む）"
+                                , "･ゴミ捨て 夕方 （シュレッダー・タバコの 含む）"
                                 , "・階段（１階～２階）"
                                 , "・植木・花壇の水かけ"
                                 , "・空気清浄機（水の入替・金曜：洗浄）"

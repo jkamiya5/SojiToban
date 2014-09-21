@@ -1,24 +1,24 @@
 ﻿<Window x:Class="SojiToban.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="560" Width="1118.5">
+        Title="全自動掃除当番割り振りツール" Height="637" Width="1118.5">
 
-    <Grid Margin="41,70,57,62">
+    <Grid Margin="47,28,57,67">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="76*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="dataGrid" ColumnHeaderHeight="40" Margin="0,10,115,0" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
+        <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,10,115,0" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Header="名前" Width="20*" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn x:Name="no" Header="グループNo" Width="20*" Binding="{Binding Path=No}"/>
-                <DataGridTextColumn x:Name="gender" Header="性別" Width="20*" Binding="{Binding Path=Gender}"/>
-                <DataGridTextColumn x:Name="kbn1" Header="区分1" Width="20*" Binding="{Binding Path=Kbn1}"/>
+                <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn x:Name="no" Header="ｸﾞﾙｰﾌﾟNo" Width="3*" Binding="{Binding Path=No}"/>
+                <DataGridTextColumn x:Name="gender" Header="性別" Width="2.5*" Binding="{Binding Path=Gender}"/>
+                <DataGridTextColumn x:Name="score" Header="得点" Width="2.5*" Binding="{Binding Path=Score}"/>
+                <DataGridTextColumn x:Name="info" Header="割り当て" Width="12*" Binding="{Binding Path=Info}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="清掃箇所の難儀度に応じて平等に掃除当番を割り振るツール" HorizontalAlignment="Left" Margin="0,-51,0,0" VerticalAlignment="Top" Height="42" Width="337" Grid.ColumnSpan="2"/>
-        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="40" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell">
+        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell">
             <DataGrid.ItemContainerStyle>
                 <Style TargetType="DataGridRow">
                     <Style.Triggers>
@@ -28,18 +28,21 @@
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
-            </DataGrid.ItemContainerStyle>            
+            </DataGrid.ItemContainerStyle>
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding PlaceId}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding Place}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding day1}"/>
-                <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding day2}"/>
-                <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding day3}"/>
-                <DataGridTextColumn x:Name="day4" Header="木" Width="20*" Binding="{Binding day4}"/>
-                <DataGridTextColumn x:Name="day5" Header="金" Width="20*" Binding="{Binding day5}"/>
+                <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding m_place}" IsReadOnly="True"/>
+                <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding m_day1}"/>
+                <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding m_day2}"/>
+                <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding m_day3}"/>
+                <DataGridTextColumn x:Name="day4" Header="木" Width="20*" Binding="{Binding m_day4}"/>
+                <DataGridTextColumn x:Name="day5" Header="金" Width="20*" Binding="{Binding m_day5}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>
         <Button x:Name="clear" Content="クリア"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,235,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="ClearButton_Click"/>
+        <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Left" Margin="0,432,0,0" Width="54" Click="inputClearButton_Click"/>
+        <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="71,97,0,0" VerticalAlignment="Top" IsChecked="True" Checked="countRbt_Checked"/>
+        <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="120,97,0,0" VerticalAlignment="Top" Checked="scoreRbt_Checked" />
     </Grid>
 </Window>

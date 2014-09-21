@@ -95,7 +95,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dto\Person.cs" />
+    <Compile Include="dto\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

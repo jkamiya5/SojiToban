@@ -25,7 +25,8 @@ namespace SojiToban
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static int maxRowCount { get; set; }
+        public static int maxRowCount { get; set; }        
+
 
         /// <summary>
         /// 
@@ -33,7 +34,8 @@ namespace SojiToban
         public MainWindow()
         {
             InitializeComponent();
-            DataOption.CreateData(this);
+            DataOption dataOption = new DataOption();
+            dataOption.CreateData(this);            
 
         }
 
@@ -51,7 +53,8 @@ namespace SojiToban
                     var dataGrid = sender as DataGrid;
                     if (dataGrid != null)
                     {
-                        DisplayOption.PasteClipboard(dataGrid);                        
+                        DisplayOption displayOption = new DisplayOption();
+                        displayOption.PasteClipboard(dataGrid);                        
                         //以降のイベントをスキップする
                         e.Handled = true;
                     }
@@ -66,12 +69,14 @@ namespace SojiToban
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            var data = this.dataGrid;
-            Queue<Member> Team = new Queue<Member>();
-            Queue<Member> RetInfo = new Queue<Member>();
+            DataOption.s_inData = this.inDataGrid;
+            Queue<Member> team = new Queue<Member>();
+            Queue<Member> retInfo = new Queue<Member>();
             int i = 0;
-            foreach (Member obj in data.Items)
+            foreach (Member obj in DataOption.s_inData.Items)
             {
+                obj.Score = 0;
+                obj.Info = string.Empty;
                 if(obj.day.Count > 0)
                 {
                     obj.Clear();                    
@@ -79,56 +84,65 @@ namespace SojiToban
                 i++;
                 if (obj.Name != string.Empty && obj.No != null)
                 {
-                    Team.Enqueue(obj);
+                    team.Enqueue(obj);
                 }
                 if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
                 {
                     MainService service = new MainService();
-                    RetInfo = service.MainProc(Team);
+                    retInfo = service.MainProc(team, this);
                     break;
                 }
             }
-            DisplayOption.Display(RetInfo, this);
+            DisplayOption displayOption = new DisplayOption();
+            displayOption.Display(retInfo, this);
             this.execute.IsEnabled = false;
 
         }
 
         /// <summary>
-        /// 
+        /// 出力結果をクリアする
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void ClearButton_Click(object sender, RoutedEventArgs e)
         {
             //SojiPlace型の表オブジェクト作成
-            var data1 = new ObservableCollection<SojiPlace>(
+            var data = new ObservableCollection<SojiPlace>(
                 Enumerable.Range(0, ContractConst.PLACE_COUNT).Select(i => new SojiPlace
                 {
-                    PlaceId = ContractConst.PID[i],
-                    Place = ContractConst.PLACE[i],
-                    day1 = null,
-                    day2 = null,
-                    day3 = null,
-                    day4 = null,
-                    day5 = null,
+                    m_placeId = ContractConst.PID[i],
+                    m_place = ContractConst.PLACE[i],
+                    m_day1 = null,
+                    m_day2 = null,
+                    m_day3 = null,
+                    m_day4 = null,
+                    m_day5 = null,
                 }));
-            this.targetGrid.ItemsSource = data1;
+            this.targetGrid.ItemsSource = data;
             this.execute.IsEnabled = true;
         }
 
 
-        //private void targetGrid_LoadedCellPresenter(object sender, DataGridCellEventArgs e)
-        //{
-        //    if (e.Cell.Row.Index == 0 && e.Cell.Column.Index == 0)
-        //    {
-        //        e.Cell.Presenter.Background = new SolidColorBrush(Colors.Red);
-        //        e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
-        //    }
-        //    if (e.Cell.Row.Index == 1)
-        //    {
-        //        e.Cell.Presenter.Background = new SolidColorBrush(Colors.Blue);
-        //        e.Cell.Presenter.Foreground = new SolidColorBrush(Colors.White);
-        //    }
-        //}
+
+        /// <summary>
+        /// 入力内容をクリアする
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void inputClearButton_Click(object sender, RoutedEventArgs e)
+        {
+            DataOption dataOption = new DataOption();
+            this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
+        }
+
+        private void scoreRbt_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void countRbt_Checked(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

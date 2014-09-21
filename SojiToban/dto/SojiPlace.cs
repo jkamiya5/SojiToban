@@ -8,18 +8,18 @@ namespace SojiToban.dto
 {
     class SojiPlace
     {
-        public string PlaceId { get; set; }
-        public string Place { get; set; }
-        public int? day1 { get; set; }
-        public int? day2 { get; set; }
-        public int? day3 { get; set; }
-        public int? day4 { get; set; }
-        public int? day5 { get; set; }
+        public string m_placeId { get; set; }
+        public string m_place { get; set; }
+        public int? m_day1 { get; set; }
+        public int? m_day2 { get; set; }
+        public int? m_day3 { get; set; }
+        public int? m_day4 { get; set; }
+        public int? m_day5 { get; set; }
         public bool IsEmpty
         {
             get
             {
-                if (day1 == 0)
+                if (m_day1 == 0)
                 {
                     return true;
                 }
