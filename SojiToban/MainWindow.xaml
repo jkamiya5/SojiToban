@@ -12,7 +12,7 @@
         <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,10,115,0" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}"/>
-                <DataGridTextColumn x:Name="no" Header="ｸﾞﾙｰﾌﾟNo" Width="3*" Binding="{Binding Path=No}"/>
+                <DataGridTextColumn x:Name="no" Header="No" Width="3*" Binding="{Binding Path=No}"/>
                 <DataGridTextColumn x:Name="gender" Header="性別" Width="2.5*" Binding="{Binding Path=Gender}"/>
                 <DataGridTextColumn x:Name="score" Header="得点" Width="2.5*" Binding="{Binding Path=Score}"/>
                 <DataGridTextColumn x:Name="info" Header="割り当て" Width="12*" Binding="{Binding Path=Info}"/>
@@ -32,6 +32,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding m_place}" IsReadOnly="True"/>
+                <!--<DataGridTextColumn x:Name="afflictionDegree" Header="難儀度" Width="20*" Binding="{Binding m_afflictionDegree}"/>-->
                 <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding m_day1}"/>
                 <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding m_day2}"/>
                 <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding m_day3}"/>
@@ -42,7 +43,8 @@
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>
         <Button x:Name="clear" Content="クリア"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,235,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="ClearButton_Click"/>
         <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Left" Margin="0,432,0,0" Width="54" Click="inputClearButton_Click"/>
-        <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="71,97,0,0" VerticalAlignment="Top" IsChecked="True" Checked="countRbt_Checked"/>
-        <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="120,97,0,0" VerticalAlignment="Top" Checked="scoreRbt_Checked" />
+        <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="71,97,0,0" VerticalAlignment="Top" IsChecked="True"/>
+        <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="120,97,0,0" VerticalAlignment="Top" />
+        <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>
     </Grid>
 </Window>

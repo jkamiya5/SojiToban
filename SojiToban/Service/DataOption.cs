@@ -45,6 +45,7 @@ namespace SojiToban.Service
                 {
                     m_placeId = ContractConst.PID[i],
                     m_place = ContractConst.PLACE[i],
+                    m_afflictionDegree = ContractConst.COEFFICIENT[i + 1] != null ? (int)ContractConst.COEFFICIENT[i + 1] : 0,
                     m_day1 = null,
                     m_day2 = null,
                     m_day3 = null,

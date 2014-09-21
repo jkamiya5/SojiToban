@@ -134,15 +134,5 @@ namespace SojiToban
             DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
-
-        private void scoreRbt_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void countRbt_Checked(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
