@@ -72,39 +72,5 @@ namespace SojiToban.Service
             }
             return Team;
         }
-
-
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="RandamWeekMap"></param>
-        /// <param name="pSchedule"></param>
-        /// <param name="tSchedule"></param>
-        /// <returns></returns>
-        //private TeamSchedule Assign(List<Queue<int>> RandamWeekMap)
-        //{
-        //    System.Random rng = new System.Random();
-        //    List<int> Works = new List<int>();
-        //    Schedule tSchedule = new Schedule();            
-
-        //    for (int i = 0; i < RandamWeekMap.Count(); i++ )
-        //    {
-        //        while (RandamWeekMap[i].Count > 0)
-        //        {
-        //            PersonalSchedule pSchedule = new PersonalSchedule();
-        //            pSchedule.dayIndex.Add(i);
-        //            int N = RandamWeekMap[i].Dequeue();
-        //            pSchedule.placeIndex.Enqueue(N);
-        //            pSchedule.score += ContractConst.COEFFICIENT[N];
-        //            tSchedule.pSchedule.Add(pSchedule);                    
-        //        }
-        //        System.Diagnostics.Debug.WriteLine(tSchedule);
-        //    }          
-        //    return tSchedule;
-        //}
-
     }
-
 }

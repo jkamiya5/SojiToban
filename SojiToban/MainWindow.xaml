@@ -18,26 +18,66 @@
                 <DataGridTextColumn x:Name="info" Header="割り当て" Width="12*" Binding="{Binding Path=Info}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell" CopyingRowClipboardContent="targetGrid_CopyingRowClipboardContent" >
-            <DataGrid.ItemContainerStyle>
-                <Style TargetType="DataGridRow">
-                    <Style.Triggers>
-                        <!-- IsEmptyがTrueの時だけ背景を設定する -->
-                        <DataTrigger Binding="{Binding IsEmpty}" Value="True">
-                            <Setter Property="Background" Value="LimeGreen" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </DataGrid.ItemContainerStyle>
+        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,0" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True"/>
                 <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding m_place}" IsReadOnly="True"/>
-                <!--<DataGridTextColumn x:Name="afflictionDegree" Header="難儀度" Width="20*" Binding="{Binding m_afflictionDegree}"/>-->
-                <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding m_day1}"/>
-                <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding m_day2}"/>
-                <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding m_day3}"/>
-                <DataGridTextColumn x:Name="day4" Header="木" Width="20*" Binding="{Binding m_day4}"/>
-                <DataGridTextColumn x:Name="day5" Header="金" Width="20*" Binding="{Binding m_day5}"/>
+                <DataGridTextColumn x:Name="afflictionDegree" Header="難儀度" Width="20*" Binding="{Binding m_afflictionDegree}"/>
+                <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding m_day1}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day1_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="day2" Header="火" Width="20*" Binding="{Binding m_day2}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day2_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="day3" Header="水" Width="20*" Binding="{Binding m_day3}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day3_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="day4" Header="木" Width="20*" Binding="{Binding m_day4}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day4_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="day5" Header="金" Width="20*" Binding="{Binding m_day5}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day5_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>

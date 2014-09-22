@@ -10,14 +10,14 @@ namespace SojiToban.dto
     {
         public static String[] PID = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28" };
         public static int[] MONDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
-        public static int[] TUESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
-        public static int[] WEDNESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 18, 19, 20, 21, 22, 23, 24 };
-        public static int[] THURSDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        public static int[] TUESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24, 25 };
+        public static int[] WEDNESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
+        public static int[] THURSDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 };
         public static int[] FRIDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 14, 15, 16, 17, 18, 19, 20, 21, 22, 26, 27, 28 };
         public static Object[] WEEK = { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, WEEK };
         public enum DAYS { 月, 火, 水, 木, 金 };
-        public static int?[] COEFFICIENT = { 999, 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 2, 2, 2, 3, 2, 2, 3, 2, 3, 3};
-        public static String[] DAY_WAREKI = { "月", "火", "水", "木", "金"};
+        public static int?[] COEFFICIENT = { 999, 1, 1, 1, 1, 2, 2, 2, 3, 2, 3, 3, 3, 3, 3, 3, 3, 3, 1, 2, 2, 2, 3, 2, 2, 3, 2, 3, 3 };
+        public static String[] DAY_WAREKI = { "月", "火", "水", "木", "金" };
         public enum GENDER { 男, 女 };
         public static int[] MAN_LOCATE = { 10, 12, 16, 23, 27 };
         public static int[] WOMAN_LOCATE = { 11, 17, 24, 28 };

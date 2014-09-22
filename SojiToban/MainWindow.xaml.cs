@@ -134,6 +134,5 @@ namespace SojiToban
             DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
-
     }
 }

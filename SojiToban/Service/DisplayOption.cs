@@ -116,7 +116,7 @@ namespace SojiToban.Service
             day2 = GetDayRowVal(RetInfo, ContractConst.DAYS.火);
             day3 = GetDayRowVal(RetInfo, ContractConst.DAYS.水);
             day4 = GetDayRowVal(RetInfo, ContractConst.DAYS.木);
-            day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.金);
+            day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.金);            
 
             var data = new ObservableCollection<SojiPlace>(
                 Enumerable.Range(1, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
@@ -127,9 +127,17 @@ namespace SojiToban.Service
                     m_day2 = day2[j],
                     m_day3 = day3[j],
                     m_day4 = day4[j],
-                    m_day5 = day5[j]
+                    m_day5 = day5[j],
+                    m_day1_Color = day1[j] == null ? true : false,
+                    m_day2_Color = day2[j] == null ? true : false,
+                    m_day3_Color = day3[j] == null ? true : false,
+                    m_day4_Color = day4[j] == null ? true : false,
+                    m_day5_Color = day5[j] == null ? true : false
                 }));
             mainWindow.targetGrid.ItemsSource = data;
+
+
+            //得点を左ウィンドウに反映
             DataOption option = new DataOption();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
         }
