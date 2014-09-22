@@ -35,7 +35,7 @@ namespace SojiToban
         {
             InitializeComponent();
             DataOption dataOption = new DataOption();
-            dataOption.CreateData(this);            
+            dataOption.CreateData(this);          
 
         }
 
@@ -134,5 +134,6 @@ namespace SojiToban
             DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
+
     }
 }
