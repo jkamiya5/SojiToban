@@ -14,12 +14,12 @@ namespace SojiToban.Service
 
 
     /// <summary>
-    /// 
+    /// メイン処理を行うクラス
     /// </summary>
     class MainService
     {
         /// <summary>
-        /// 
+        /// メイン処理
         /// </summary>
         /// <param name="Team"></param>
         /// <returns></returns>
@@ -68,7 +68,6 @@ namespace SojiToban.Service
                         dataOption.RandamSortByScore(ref Team);
                     }
                 }
-
             }
             return Team;
         }

@@ -25,11 +25,14 @@ namespace SojiToban
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// 
+        /// </summary>
         public static int maxRowCount { get; set; }        
 
 
         /// <summary>
-        /// 
+        /// MainWindowコンストラクタ
         /// </summary>
         public MainWindow()
         {
