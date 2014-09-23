@@ -8,7 +8,7 @@ namespace SojiToban.dto
 {
     public class SojiPlace
     {
-        public string m_placeId { get; set; }
+        public int m_placeId { get; set; }
         public string m_place { get; set; }
         public int? m_afflictionDegree { get; set; }
         public int? m_day1 { get; set; }

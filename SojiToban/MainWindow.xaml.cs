@@ -99,6 +99,11 @@ namespace SojiToban
             DisplayOption displayOption = new DisplayOption();
             displayOption.Display(retInfo, this);
             this.execute.IsEnabled = false;
+            this.chkMon.IsEnabled = false;
+            this.chkTue.IsEnabled = false;
+            this.chkWed.IsEnabled = false;
+            this.chkThu.IsEnabled = false;
+            this.chkFri.IsEnabled = false;
 
         }
 
@@ -123,9 +128,32 @@ namespace SojiToban
                 }));
             this.targetGrid.ItemsSource = data;
             this.execute.IsEnabled = true;
+            this.chkMon.IsEnabled = true;
+            this.chkTue.IsEnabled = true;
+            this.chkWed.IsEnabled = true;
+            this.chkThu.IsEnabled = true;
+            this.chkFri.IsEnabled = true;
         }
 
-
+        /// <summary>
+        /// 休日設定にチェックが入った曜日をグレーアウトする
+        /// </summary>
+        /// <param name="mainWindow"></param>
+        private void GrayOut(MainWindow mainWindow)
+        {
+            var data = new ObservableCollection<SojiPlace>(
+                Enumerable.Range(1, ContractConst.PLACE_COUNT).Select(j => new SojiPlace
+                {
+                    m_placeId = ContractConst.PID[j - 1],
+                    m_place = ContractConst.PLACE[j - 1],
+                    m_day1_Color = mainWindow.chkMon.IsChecked == true ? true : false,
+                    m_day2_Color = mainWindow.chkTue.IsChecked == true ? true : false,
+                    m_day3_Color = mainWindow.chkWed.IsChecked == true ? true : false,
+                    m_day4_Color = mainWindow.chkThu.IsChecked == true ? true : false,
+                    m_day5_Color = mainWindow.chkFri.IsChecked == true ? true : false,
+                }));
+            mainWindow.targetGrid.ItemsSource = data;
+        }
 
         /// <summary>
         /// 入力内容をクリアする
@@ -137,5 +165,55 @@ namespace SojiToban
             DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkMon_Checked(object sender, RoutedEventArgs e)
+        {
+            GrayOut(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkTue_Checked(object sender, RoutedEventArgs e)
+        {
+            GrayOut(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkWed_Checked(object sender, RoutedEventArgs e)
+        {
+            GrayOut(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkThu_Checked(object sender, RoutedEventArgs e)
+        {
+            GrayOut(this);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkFri_Checked(object sender, RoutedEventArgs e)
+        {
+            GrayOut(this);
+        }        
     }
 }

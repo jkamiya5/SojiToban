@@ -8,7 +8,7 @@ namespace SojiToban.dto
 {
     public static class ContractConst
     {
-        public static String[] PID = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28" };
+        public static int[] PID = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28 };
         public static int[] MONDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };
         public static int[] TUESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 19, 20, 21, 22, 23, 24, 25 };
         public static int[] WEDNESDAY = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 };

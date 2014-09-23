@@ -99,7 +99,7 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 
+        /// 表示を行う
         /// </summary>
         /// <param name="RetInfo"></param>
         /// <param name="mainWindow"></param>
