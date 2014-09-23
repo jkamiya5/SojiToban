@@ -28,7 +28,7 @@ namespace SojiToban
         /// <summary>
         /// 
         /// </summary>
-        public static int maxRowCount { get; set; }        
+        public static int maxRowCount { get; set; }
 
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace SojiToban
         {
             InitializeComponent();
             DataOption dataOption = new DataOption();
-            dataOption.CreateData(this);          
+            dataOption.CreateData(this);
 
         }
 
@@ -57,7 +57,7 @@ namespace SojiToban
                     if (dataGrid != null)
                     {
                         DisplayOption displayOption = new DisplayOption();
-                        displayOption.PasteClipboard(dataGrid);                        
+                        displayOption.PasteClipboard(dataGrid);
                         //以降のイベントをスキップする
                         e.Handled = true;
                     }
@@ -72,40 +72,62 @@ namespace SojiToban
         /// <param name="e"></param>
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DataOption.s_inData = this.inDataGrid;
-            Queue<Member> team = new Queue<Member>();
-            Queue<Member> retInfo = new Queue<Member>();
-            int i = 0;
-            foreach (Member obj in DataOption.s_inData.Items)
+            try
             {
-                obj.Score = 0;
-                obj.Info = string.Empty;
-                if(obj.day.Count > 0)
+                DataOption.s_inData = this.inDataGrid;
+                Queue<Member> team = new Queue<Member>();
+                Queue<Member> retInfo = new Queue<Member>();
+                int i = 0;
+                foreach (Member obj in DataOption.s_inData.Items)
                 {
-                    obj.Clear();                    
+                    obj.Score = 0;
+                    obj.Info = string.Empty;
+                    if (obj.day.Count > 0)
+                    {
+                        obj.Clear();
+                    }
+                    i++;
+                    if (obj.Name != string.Empty && obj.No != null)
+                    {
+                        team.Enqueue(obj);
+                    }
+                    if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
+                    {
+                        if(team.Count == 0)
+                        {
+                            ErrorProc(ContractConst.ERROR_MESSAGE_001);
+                            return;
+                        }
+                        MainService service = new MainService();
+                        retInfo = service.MainProc(team, this);
+                        break;
+                    }
                 }
-                i++;
-                if (obj.Name != string.Empty && obj.No != null)
-                {
-                    team.Enqueue(obj);
-                }
-                if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
-                {
-                    MainService service = new MainService();
-                    retInfo = service.MainProc(team, this);
-                    break;
-                }
+                DisplayOption displayOption = new DisplayOption();
+                displayOption.Display(retInfo, this);
+                this.execute.IsEnabled = false;
+                this.chkMon.IsEnabled = false;
+                this.chkTue.IsEnabled = false;
+                this.chkWed.IsEnabled = false;
+                this.chkThu.IsEnabled = false;
+                this.chkFri.IsEnabled = false;
             }
-            DisplayOption displayOption = new DisplayOption();
-            displayOption.Display(retInfo, this);
-            this.execute.IsEnabled = false;
-            this.chkMon.IsEnabled = false;
-            this.chkTue.IsEnabled = false;
-            this.chkWed.IsEnabled = false;
-            this.chkThu.IsEnabled = false;
-            this.chkFri.IsEnabled = false;
-
+            catch
+            {
+                return;
+            }
         }
+
+
+        /// <summary>
+        /// エラー処理を行う
+        /// </summary>
+        /// <param name="p"></param>
+        private void ErrorProc(string p)
+        {
+            this.errorInfo.Content = "  " + p;
+        }
+
 
         /// <summary>
         /// 出力結果をクリアする
@@ -214,6 +236,6 @@ namespace SojiToban
         private void chkFri_Checked(object sender, RoutedEventArgs e)
         {
             GrayOut(this);
-        }        
+        }
     }
 }

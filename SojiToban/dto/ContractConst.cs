@@ -54,5 +54,7 @@ namespace SojiToban.dto
 
         public static int MEMBER_COUNT = 100;
         public static int PLACE_COUNT = 28;
+
+        public static string ERROR_MESSAGE_001 = "入力欄にデータ（名前、No、性別）を入力してください。";
     }
 }

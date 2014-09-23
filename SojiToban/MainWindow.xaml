@@ -3,15 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="全自動掃除当番割り振りツール" Height="637" Width="1118.5">
     
-    <Grid Margin="47,28,57,67">
+    <Grid Margin="47,44,57,51">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="76*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,10,115,0" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
+        <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,14,115,-4" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}"/>
+                <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}" />               
                 <DataGridTextColumn x:Name="no" Header="No" Width="3*" Binding="{Binding Path=No}"/>
                 <DataGridTextColumn x:Name="gender" Header="性別" Width="2.5*" Binding="{Binding Path=Gender}"/>
                 <DataGridTextColumn x:Name="score" Header="得点" Width="2.5*" Binding="{Binding Path=Score}"/>
@@ -85,12 +85,13 @@
         <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Left" Margin="0,432,0,0" Width="54" Click="inputClearButton_Click"/>
         <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="71,97,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="120,97,0,0" VerticalAlignment="Top" />
-        <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-23,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>
+        <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>
         <Label Content="休日設定" Grid.Column="1" HorizontalAlignment="Left" Margin="86,309,0,0" VerticalAlignment="Top" Width="63" Height="30"/>
         <CheckBox x:Name="chkMon" Content="月" Grid.Column="1" HorizontalAlignment="Left" Margin="94,339,0,0" VerticalAlignment="Top" Click="chkMon_Checked"/>
         <CheckBox x:Name="chkTue" Content="火" Grid.Column="1" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Click="chkTue_Checked"/>
         <CheckBox x:Name="chkWed" Content="水" Grid.Column="1" HorizontalAlignment="Left" Margin="94,383,0,0" VerticalAlignment="Top" Click="chkWed_Checked"/>
         <CheckBox x:Name="chkThu" Content="木" Grid.Column="1" HorizontalAlignment="Left" Margin="94,405,0,0" VerticalAlignment="Top" Click="chkThu_Checked"/>
         <CheckBox x:Name="chkFri" Content="金" Grid.Column="1" HorizontalAlignment="Left" Margin="94,427,0,0" VerticalAlignment="Top" Click="chkFri_Checked"/>
+        <Label x:Name="errorInfo" Content="" HorizontalAlignment="Left" Margin="-40,-27,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457" FontWeight="Bold" Foreground="Red"/>
     </Grid>
 </Window>
