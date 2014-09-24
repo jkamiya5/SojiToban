@@ -2,6 +2,12 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="全自動掃除当番割り振りツール" Height="657.896" Width="1151.336">
+    <Window.Background>
+        <ImageBrush
+                    ImageSource="Image/sojitoban.JPG"
+                    Stretch="UniformToFill"
+                    TileMode="None" />
+    </Window.Background>
 
     <Grid Margin="47,44,36,3">
         <Grid.ColumnDefinitions>
@@ -11,18 +17,66 @@
         </Grid.ColumnDefinitions>
         <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,14,115,82" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}" />
-                <DataGridTextColumn x:Name="no" Header="No" Width="3*" Binding="{Binding Path=No}"/>
-                <DataGridTextColumn x:Name="gender" Header="性別" Width="2.5*" Binding="{Binding Path=Gender}"/>
+                <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day1_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="no" Header="No" Width="3*" Binding="{Binding Path=No}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day1_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="gender" Header="性別" Width="2.5*" Binding="{Binding Path=Gender}">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding m_day1_Color}" Value="True">
+                                    <Setter Property="Background" Value="LightGray" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="score" Header="得点" Width="2.5*" Binding="{Binding Path=Score}"/>
                 <DataGridTextColumn x:Name="info" Header="割り当て" Width="12*" Binding="{Binding Path=Info}"/>
             </DataGrid.Columns>
         </DataGrid>
         <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,82" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell" >
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding m_place}" IsReadOnly="True"/>
-                <DataGridTextColumn x:Name="afflictionDegree" Header="難儀度" Width="20*" Binding="{Binding m_afflictionDegree}"/>
+                <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Setter Property="Background" Value="ghostwhite"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="place" Header="清掃箇所" Width="70*" Binding="{Binding m_place}" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Setter Property="Background" Value="ghostwhite"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn x:Name="afflictionDegree" Header="難儀度" Width="20*" Binding="{Binding m_afflictionDegree}" IsReadOnly="True">
+                    <DataGridTextColumn.CellStyle>
+                        <Style TargetType="DataGridCell" >
+                            <Setter Property="Background" Value="ghostwhite"></Setter>
+                        </Style>
+                    </DataGridTextColumn.CellStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn x:Name="day1" Header="月" Width="20*" Binding="{Binding m_day1}">
                     <DataGridTextColumn.CellStyle>
                         <Style TargetType="DataGridCell" >

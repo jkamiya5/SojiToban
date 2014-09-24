@@ -141,6 +141,7 @@ namespace SojiToban
                 {
                     m_placeId = ContractConst.PID[i],
                     m_place = ContractConst.PLACE[i],
+                    m_afflictionDegree = ContractConst.COEFFICIENT[i + 1],
                     m_day1 = null,
                     m_day2 = null,
                     m_day3 = null,
@@ -149,6 +150,9 @@ namespace SojiToban
                 }));
             this.targetGrid.ItemsSource = data;
             this.execute.IsEnabled = true;
+            this.countRbt.IsEnabled = true;
+            this.scoreRbt.IsEnabled = true;
+            this.chkAll.IsEnabled = true;
             this.chkMon.IsEnabled = true;
             this.chkTue.IsEnabled = true;
             this.chkWed.IsEnabled = true;

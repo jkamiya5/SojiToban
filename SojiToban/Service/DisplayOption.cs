@@ -123,6 +123,7 @@ namespace SojiToban.Service
                 {
                     m_placeId = ContractConst.PID[j - 1],
                     m_place = ContractConst.PLACE[j - 1],
+                    m_afflictionDegree = ContractConst.COEFFICIENT[j],
                     m_day1 = day1[j],
                     m_day2 = day2[j],
                     m_day3 = day3[j],
