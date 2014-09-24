@@ -56,7 +56,6 @@ namespace SojiToban.Service
         }
 
 
-
         /// <summary>
         /// Member型のデフォルトオブジェクト生成
         /// </summary>

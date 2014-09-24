@@ -34,8 +34,8 @@ namespace SojiToban.Service
                 var pasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                maxRowCount = pasteRows.Count();
-                for (int rowCount = 0; rowCount < maxRowCount; rowCount++)
+                StaticObject.maxRowCount = pasteRows.Count();
+                for (int rowCount = 0; rowCount < StaticObject.maxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
                     // タブ区切りでセル値を取得

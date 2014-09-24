@@ -85,7 +85,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CommonModule\IEnumerableExtensions.cs" />
     <Compile Include="CommonModule\GenderAllocationJudge.cs" />
     <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
     <Compile Include="CommonModule\SamePlaceJudge.cs" />
@@ -94,6 +93,7 @@
     <Compile Include="dto\Plan.cs" />
     <Compile Include="dto\RandamWeekMap.cs" />
     <Compile Include="dto\Schedule.cs" />
+    <Compile Include="dto\StaticObject.cs" />
     <Compile Include="dto\TeamScedule.cs" />
     <Compile Include="dto\PersonalScedule.cs" />
     <Compile Include="dto\Rireki.cs" />
@@ -101,6 +101,7 @@
     <Compile Include="Service\DisplayOption.cs" />
     <Compile Include="Service\LoccateOption.cs" />
     <Compile Include="Service\MainService.cs" />
+    <Compile Include="WindowFacade.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

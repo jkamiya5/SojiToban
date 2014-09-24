@@ -24,11 +24,7 @@ namespace SojiToban
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static int maxRowCount { get; set; }
+    {     
 
 
         /// <summary>
@@ -91,7 +87,7 @@ namespace SojiToban
                     {
                         team.Enqueue(obj);
                     }
-                    if (i == maxRowCount || i == ContractConst.MEMBER_COUNT)
+                    if (i == StaticObject.maxRowCount || i == ContractConst.MEMBER_COUNT)
                     {
                         if(team.Count == 0)
                         {
@@ -106,6 +102,9 @@ namespace SojiToban
                 DisplayOption displayOption = new DisplayOption();
                 displayOption.Display(retInfo, this);
                 this.execute.IsEnabled = false;
+                this.countRbt.IsEnabled = false;
+                this.scoreRbt.IsEnabled = false;
+                this.chkAll.IsEnabled = false;
                 this.chkMon.IsEnabled = false;
                 this.chkTue.IsEnabled = false;
                 this.chkWed.IsEnabled = false;
@@ -155,6 +154,8 @@ namespace SojiToban
             this.chkWed.IsEnabled = true;
             this.chkThu.IsEnabled = true;
             this.chkFri.IsEnabled = true;
+            DataOption dataOption = new DataOption();
+            dataOption.CreateData(this);
         }
 
         /// <summary>
