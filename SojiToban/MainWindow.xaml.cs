@@ -154,8 +154,7 @@ namespace SojiToban
             this.chkWed.IsEnabled = true;
             this.chkThu.IsEnabled = true;
             this.chkFri.IsEnabled = true;
-            DataOption dataOption = new DataOption();
-            dataOption.CreateData(this);
+
         }
 
         /// <summary>
