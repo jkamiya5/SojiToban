@@ -237,5 +237,51 @@ namespace SojiToban
         {
             GrayOut(this);
         }
+
+
+        /// <summary>
+        /// 全選択/全解除イベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void chkAll_Checked(object sender, RoutedEventArgs e)
+        {
+            if (this.chkAll.IsChecked == true)
+            {
+                this.chkMon.IsChecked = true;
+                this.chkTue.IsChecked = true;
+                this.chkWed.IsChecked = true;
+                this.chkThu.IsChecked = true;
+                this.chkFri.IsChecked = true;
+                chkMon_Checked(sender, e);
+                chkTue_Checked(sender, e);
+                chkWed_Checked(sender, e);
+                chkThu_Checked(sender, e);
+                chkFri_Checked(sender, e);
+            }
+            else if (this.chkAll.IsChecked == false)
+            {
+                this.chkMon.IsChecked = false;
+                this.chkTue.IsChecked = false;
+                this.chkWed.IsChecked = false;
+                this.chkThu.IsChecked = false;
+                this.chkFri.IsChecked = false;
+                chkMon_Checked(sender, e);
+                chkTue_Checked(sender, e);
+                chkWed_Checked(sender, e);
+                chkThu_Checked(sender, e);
+                chkFri_Checked(sender, e);
+            }
+        }
+
+        /// <summary>
+        /// 設定を保存ボタンクリックイベント
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SaveBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

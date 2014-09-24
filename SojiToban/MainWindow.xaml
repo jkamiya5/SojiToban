@@ -86,14 +86,15 @@
         <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="79,97,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="124,97,0,0" VerticalAlignment="Top" />
         <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>
-        <Label Content="休日設定" Grid.Column="1" HorizontalAlignment="Left" Margin="86,309,0,0" VerticalAlignment="Top" Width="63" Height="30"/>
-        <CheckBox x:Name="chkMon" Content="月" Grid.Column="1" HorizontalAlignment="Left" Margin="94,339,0,0" VerticalAlignment="Top" Click="chkMon_Checked"/>
-        <CheckBox x:Name="chkTue" Content="火" Grid.Column="1" HorizontalAlignment="Left" Margin="94,361,0,0" VerticalAlignment="Top" Click="chkTue_Checked"/>
-        <CheckBox x:Name="chkWed" Content="水" Grid.Column="1" HorizontalAlignment="Left" Margin="94,383,0,0" VerticalAlignment="Top" Click="chkWed_Checked"/>
-        <CheckBox x:Name="chkThu" Content="木" Grid.Column="1" HorizontalAlignment="Left" Margin="94,405,0,0" VerticalAlignment="Top" Click="chkThu_Checked"/>
-        <CheckBox x:Name="chkFri" Content="金" Grid.Column="1" HorizontalAlignment="Left" Margin="94,427,0,0" VerticalAlignment="Top" Click="chkFri_Checked"/>
+        <Label Content="休日設定" HorizontalAlignment="Left" Margin="100,322,0,0" VerticalAlignment="Top" Width="63" Height="30" Grid.Column="1"/>
+        <CheckBox x:Name="chkMon" Content="月" Grid.Column="1" HorizontalAlignment="Left" Margin="110,356,0,0" VerticalAlignment="Top" Click="chkMon_Checked"/>
+        <CheckBox x:Name="chkTue" Content="火" Grid.Column="1" HorizontalAlignment="Left" Margin="110,378,0,0" VerticalAlignment="Top" Click="chkTue_Checked"/>
+        <CheckBox x:Name="chkWed" Content="水" Grid.Column="1" HorizontalAlignment="Left" Margin="110,400,0,0" VerticalAlignment="Top" Click="chkWed_Checked"/>
+        <CheckBox x:Name="chkThu" Content="木" Grid.Column="1" HorizontalAlignment="Left" Margin="110,422,0,0" VerticalAlignment="Top" Click="chkThu_Checked"/>
+        <CheckBox x:Name="chkFri" Content="金" Grid.Column="1" HorizontalAlignment="Left" Margin="110,444,0,0" VerticalAlignment="Top" Click="chkFri_Checked"/>
         <Label x:Name="errorInfo" Content="" HorizontalAlignment="Left" Margin="-40,-27,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457" FontWeight="Bold" Foreground="Red"/>
-        <Button Content="PDFに出力" Grid.Column="2" HorizontalAlignment="Left" Margin="452,515,0,27" Width="75"/>
-        <Button Content="設定を保存" Grid.Column="2" HorizontalAlignment="Left" Margin="353,515,0,27" Width="75"/>
+        <Button x:Name="PdfBtn" Content="PDFに出力" Grid.Column="2" HorizontalAlignment="Left" Margin="452,515,0,27" Width="75"/>
+        <Button x:Name="SaveBtn" Content="設定を保存" Grid.Column="2" HorizontalAlignment="Left" Margin="353,515,0,27" Width="75" Click="SaveBtn_Click"/>
+        <CheckBox x:Name="chkAll" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="90,327,0,0" VerticalAlignment="Top" Click="chkAll_Checked"/>
     </Grid>
 </Window>
