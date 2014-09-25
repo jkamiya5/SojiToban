@@ -88,15 +88,15 @@
     <Compile Include="CommonModule\GenderAllocationJudge.cs" />
     <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
     <Compile Include="CommonModule\SamePlaceJudge.cs" />
-    <Compile Include="dto\Day.cs" />
-    <Compile Include="dto\Place.cs" />
-    <Compile Include="dto\Plan.cs" />
-    <Compile Include="dto\RandamWeekMap.cs" />
-    <Compile Include="dto\Schedule.cs" />
-    <Compile Include="dto\StaticObject.cs" />
-    <Compile Include="dto\TeamScedule.cs" />
-    <Compile Include="dto\PersonalScedule.cs" />
-    <Compile Include="dto\Rireki.cs" />
+    <Compile Include="Dto\Day.cs" />
+    <Compile Include="Dto\Place.cs" />
+    <Compile Include="Dto\Plan.cs" />
+    <Compile Include="Dto\RandamWeekMap.cs" />
+    <Compile Include="Dto\Schedule.cs" />
+    <Compile Include="Dto\StaticObject.cs" />
+    <Compile Include="Dto\TeamScedule.cs" />
+    <Compile Include="Dto\PersonalScedule.cs" />
+    <Compile Include="Dto\Rireki.cs" />
     <Compile Include="Service\DataOption.cs" />
     <Compile Include="Service\DisplayOption.cs" />
     <Compile Include="Service\LoccateOption.cs" />
@@ -110,15 +110,15 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="dto\ContractConst.cs" />
-    <Compile Include="dto\SojiPlace.cs" />
+    <Compile Include="Dto\ContractConst.cs" />
+    <Compile Include="Dto\SojiPlace.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dto\Member.cs" />
+    <Compile Include="Dto\Member.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

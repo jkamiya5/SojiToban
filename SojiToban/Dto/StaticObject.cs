@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace SojiToban.Dto
 {
-    public class RandamWeekMap
+    public class StaticObject
     {
-        public List<Day> day;
-        public RandamWeekMap()
-        {
-            this.day = new List<Day>();
-        }
+        public static int maxRowCount { get; set; }
     }
 }

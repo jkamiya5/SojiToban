@@ -1,4 +1,4 @@
-﻿using SojiToban.dto;
+﻿using SojiToban.Dto;
 using SojiToban.Service;
 using System;
 using System.Collections.Generic;
@@ -33,9 +33,31 @@ namespace SojiToban
         public MainWindow()
         {
             InitializeComponent();
+            GetLatestBuildInfo();
             DataOption dataOption = new DataOption();
             dataOption.CreateData(this);
 
+        }
+
+
+        /// <summary>
+        /// ビルド情報を表示する
+        /// </summary>
+        private void GetLatestBuildInfo()
+        {
+            var asm = System.Reflection.Assembly.GetExecutingAssembly();
+            var version = asm.GetName().Version;
+            int days = version.Build;
+            int seconds = version.Revision * 2;
+            DateTime baseDate = new DateTime(2000, 1, 1);
+            DateTime buildDate = baseDate.AddDays(days);
+            DateTime buildDateTime = buildDate.AddSeconds(seconds);
+            StringBuilder sb = new StringBuilder();
+            sb.Append("アセンブリバージョン：");
+            sb.AppendLine(version.ToString());
+            sb.Append("ビルド日時：");
+            sb.AppendLine(buildDateTime.ToString("yyyy'/'MM'/'dd' 'HH':'mm':'ss"));
+            this.LatestBuildDate.Content = sb.ToString();
         }
 
         /// <summary>
