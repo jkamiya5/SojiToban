@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SojiToban.dto
+namespace SojiToban.Dto
 {
     public class Plan
     {

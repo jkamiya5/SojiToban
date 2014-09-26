@@ -1,10 +1,10 @@
-﻿using SojiToban.dto;
+﻿using SojiToban.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SojiToban.dto
+namespace SojiToban.Dto
 {
         // DataGridに表示するデータ
         public class Member
