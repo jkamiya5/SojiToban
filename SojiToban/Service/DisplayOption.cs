@@ -136,8 +136,7 @@ namespace SojiToban.Service
                     m_day5_Color = day5[j] == null ? true : false
                 }));
             mainWindow.targetGrid.ItemsSource = data;
-
-
+ 
             //得点を左ウィンドウに反映
             DataOption option = new DataOption();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);

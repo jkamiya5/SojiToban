@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SojiToban.dto
+namespace SojiToban.Dto
 {
-    public static class StaticObject
+    public class StaticObject
     {
         public static int maxRowCount { get; set; }
     }

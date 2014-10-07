@@ -15,7 +15,7 @@
             <ColumnDefinition Width="27*"/>
             <ColumnDefinition Width="76*"/>
         </Grid.ColumnDefinitions>
-        <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,14,115,82" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2">
+        <DataGrid x:Name="inDataGrid" ColumnHeaderHeight="50" Margin="0,14,115,82" AutoGenerateColumns="False" KeyDown="dataGrid_KeyDown" Grid.ColumnSpan="2" ClipboardCopyMode="IncludeHeader">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="name" Header="名前" Width="6*" Binding="{Binding Path=Name}">
                     <DataGridTextColumn.CellStyle>
@@ -54,7 +54,7 @@
                 <DataGridTextColumn x:Name="info" Header="割り当て" Width="12*" Binding="{Binding Path=Info}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,82" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell" >
+        <DataGrid x:Name="targetGrid" ColumnHeaderHeight="50" Margin="173,10,10,82" AutoGenerateColumns="False"  Grid.ColumnSpan="2" Grid.Column="1" SelectionUnit="Cell" ClipboardCopyMode="IncludeHeader" TextOptions.TextFormattingMode="Display" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="place_id" Header="ID" Width="10*" Binding="{Binding m_placeId}" IsReadOnly="True">
                     <DataGridTextColumn.CellStyle>
@@ -136,7 +136,7 @@
         </DataGrid>
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>
         <Button x:Name="clear" Content="クリア"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,235,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="ClearButton_Click"/>
-        <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Left" Margin="0,432,0,82" Width="54" Click="inputClearButton_Click"/>
+        <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Right" Margin="0,512,258,34" Width="68" Click="inputClearButton_Click"/>
         <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="79,97,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="124,97,0,0" VerticalAlignment="Top" />
         <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>
@@ -150,7 +150,7 @@
         <Button x:Name="PdfBtn" Content="PDFに出力" Grid.Column="2" HorizontalAlignment="Left" Margin="452,515,0,27" Width="75"/>
         <Button x:Name="SaveBtn" Content="設定を保存" Grid.Column="2" HorizontalAlignment="Left" Margin="353,515,0,27" Width="75" Click="SaveBtn_Click"/>
         <CheckBox x:Name="chkAll" Content="" Grid.Column="1" HorizontalAlignment="Left" Margin="90,327,0,0" VerticalAlignment="Top" Click="chkAll_Checked"/>
-        <Label x:Name="LatestBuildDate" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="331,-45,-35,0" VerticalAlignment="Top" Width="241" Height="43"/>
+        <Label x:Name="LatestBuildDate" Content="" Grid.Column="2" HorizontalAlignment="Left" Margin="331,-45,-35,0" VerticalAlignment="Top" Width="241" Height="43"/>       
     </Grid>
 </Window>
 

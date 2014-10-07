@@ -30,6 +30,7 @@ namespace SojiToban.Service
 
             //清掃箇所をランダムに割り振った数字列作成
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
+            int roopCount = 1;
 
             //曜日毎に割り振りを行う
             foreach (Day EachDay in RandamWeekMap.day)
@@ -40,7 +41,7 @@ namespace SojiToban.Service
                     continue;
                 }
 
-                bool ret = true;
+                bool ret = true;                
                 //メンバー全員に対して割り振り処理を行う
                 while (ret == true)
                 {

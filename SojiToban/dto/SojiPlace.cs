@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SojiToban.Dto
 {
+    [Serializable()]
     public class SojiPlace
     {
         public int m_placeId { get; set; }

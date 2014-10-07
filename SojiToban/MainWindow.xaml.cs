@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace SojiToban
     /// MainWindow.xaml の相互作用ロジック
     /// </summary>
     public partial class MainWindow : Window
-    {     
+    {
 
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace SojiToban
                     }
                     if (i == StaticObject.maxRowCount || i == ContractConst.MEMBER_COUNT)
                     {
-                        if(team.Count == 0)
+                        if (team.Count == 0)
                         {
                             ErrorProc(ContractConst.ERROR_MESSAGE_001);
                             return;
@@ -138,6 +140,7 @@ namespace SojiToban
                 return;
             }
         }
+
 
 
         /// <summary>
