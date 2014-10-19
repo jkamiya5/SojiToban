@@ -5,9 +5,16 @@ using SojiToban.Dto;
 
 namespace SojiTobanTest
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class GenderAllocationJudgeTest
     {
+
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckManLoccateTest() {
 
@@ -61,6 +68,10 @@ namespace SojiTobanTest
 
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckWoManLoccateTest()
         {
@@ -111,6 +122,10 @@ namespace SojiTobanTest
             Assert.IsFalse(GenderAllocationJudge.Judge(Gender, -1));
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckAbnormalSystemTest()
         {

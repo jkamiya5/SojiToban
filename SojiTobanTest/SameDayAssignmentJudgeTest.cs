@@ -5,9 +5,15 @@ using SojiToban.Dto;
 
 namespace SojiTobanTest
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class SameDayAssignmentJudgeTest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckSameDayAssignmentJudge()
         {

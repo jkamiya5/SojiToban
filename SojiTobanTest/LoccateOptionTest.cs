@@ -7,9 +7,15 @@ using SojiToban.Service;
 
 namespace SojiTobanTest
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class LoccateOptionTest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckCheckCleanable1()
         {

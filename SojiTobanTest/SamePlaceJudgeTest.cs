@@ -6,9 +6,15 @@ using System.Collections.Generic;
 
 namespace SojiTobanTest
 {
+    /// <summary>
+    /// 
+    /// </summary>
     [TestClass]
     public class SamePlaceJudgeTest
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckSamePlaceJudge1()
         {
@@ -33,6 +39,9 @@ namespace SojiTobanTest
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckSamePlaceJudge2()
         {
@@ -63,6 +72,9 @@ namespace SojiTobanTest
 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckSamePlaceJudge3()
         {
@@ -93,7 +105,9 @@ namespace SojiTobanTest
 
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CheckSamePlaceJudge4()
         {
