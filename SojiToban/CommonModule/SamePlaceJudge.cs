@@ -20,6 +20,11 @@ namespace SojiToban.CommonModule
         /// <returns></returns>
         public static Boolean Judge(Member member, int? TargetPlace)
         {
+            //「Null」を引数に取った場合は「False」を返し処理を終了する
+            if(TargetPlace == null)
+            {
+                return false;
+            }
             if (member.day.Count() != 0)
             {
                 foreach (var day in member.day)

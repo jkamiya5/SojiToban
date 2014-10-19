@@ -52,6 +52,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="LoccateOptionTest.cs" />
+    <Compile Include="SamePlaceJudgeTest.cs" />
+    <Compile Include="SameDayAssignmentJudgeTest.cs" />
     <Compile Include="GenderAllocationJudgeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

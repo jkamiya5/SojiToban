@@ -21,7 +21,7 @@ namespace SojiToban.Service
         /// <param name="EachDay"></param>
         /// <param name="member"></param>
         /// <returns></returns>
-        internal bool Allocation(Day EachDay, Member member)
+        public bool Allocation(Day EachDay, Member member)
         {
             //カレントの曜日の清掃箇所ランダムリストを回す
             foreach (var CleaningPart in EachDay.place)
@@ -81,7 +81,7 @@ namespace SojiToban.Service
         /// <param name="EachDay"></param>
         /// <param name="member"></param>
         /// <returns></returns>
-        internal bool AllocationFirstTime(Day EachDay, Member member)
+        public bool AllocationFirstTime(Day EachDay, Member member)
         {
             //割り当てオブジェクト作成
             Day today = new Day();
@@ -132,13 +132,13 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 
+        /// 清掃可能か判定する
         /// </summary>
         /// <param name="member"></param>
         /// <param name="randamPlaceValue"></param>
         /// <param name="dAYS"></param>
         /// <returns></returns>
-        private bool CheckCleanable(Member member, int? randamPlaceValue, ContractConst.DAYS dAYS)
+        public bool CheckCleanable(Member member, int? randamPlaceValue, ContractConst.DAYS dAYS)
         {
             //男女毎清掃箇所判定
             if (!GenderAllocationJudge.Judge(member.Gender, randamPlaceValue))

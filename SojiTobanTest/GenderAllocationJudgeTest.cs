@@ -2,7 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SojiToban.CommonModule;
 using SojiToban.Dto;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace SojiTobanTest
 {
@@ -115,8 +114,11 @@ namespace SojiTobanTest
         [TestMethod]
         public void CheckAbnormalSystemTest()
         {
+            //異常系のテスト
+            //「男」の場合に清掃箇所インデックス外の値が入った場合
             ContractConst.GENDER? Gender = ContractConst.GENDER.男;
             Assert.IsFalse(GenderAllocationJudge.Judge(Gender, 29));
+            //「女」の場合に清掃箇所インデックス外の値が入った場合
             Gender = ContractConst.GENDER.女;
             Assert.IsFalse(GenderAllocationJudge.Judge(Gender, 29));
         }
