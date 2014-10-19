@@ -136,7 +136,7 @@
         </DataGrid>
         <Button x:Name="execute" Content="割り振る"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,161,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="Button_Click"/>
         <Button x:Name="clear" Content="クリア"  Grid.Column="1" HorizontalAlignment="Left" Margin="86,235,0,0" VerticalAlignment="Top" Width="74" Height="45" Click="ClearButton_Click"/>
-        <Button x:Name="inputClear" Content="クリア" HorizontalAlignment="Left" Margin="0,432,0,82" Width="54" Click="inputClearButton_Click"/>
+        <Button x:Name="inputClear" Content="入力クリア" HorizontalAlignment="Left" Margin="0,515,0,27" Width="99" Click="inputClearButton_Click"/>
         <RadioButton x:Name="countRbt" Content="回数" Grid.Column="1" HorizontalAlignment="Left" Margin="79,97,0,0" VerticalAlignment="Top" IsChecked="True"/>
         <RadioButton x:Name="scoreRbt" Content="得点" Grid.Column="1" HorizontalAlignment="Left" Margin="124,97,0,0" VerticalAlignment="Top" />
         <Label Content="※エクセルに直接貼ると落ちます。一回テキストエディタに貼ってください。" HorizontalAlignment="Left" Margin="-40,-45,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Width="457"/>

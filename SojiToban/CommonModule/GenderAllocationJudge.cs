@@ -21,6 +21,11 @@ namespace SojiToban.CommonModule
         /// <returns></returns>
         public static Boolean Judge(ContractConst.GENDER? Gender, int? TargetPlace)
         {
+            //NULLや負数、清掃箇所のインデックスを外れる値が入った場合には「False」を返し処理終了
+            if (TargetPlace == null || TargetPlace < 0 || TargetPlace > ContractConst.PLACE_COUNT)
+            {
+                return false;
+            }
             if (Gender == ContractConst.GENDER.男)
             {
                 for (int i = 0; i < ContractConst.WOMAN_LOCATE.Count(); i++)
