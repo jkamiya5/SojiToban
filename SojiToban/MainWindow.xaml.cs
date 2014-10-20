@@ -35,7 +35,7 @@ namespace SojiToban
         {
             InitializeComponent();
             GetLatestBuildInfo();
-            DataOption dataOption = new DataOption();
+            DataGenerateClass dataOption = new DataGenerateClass();
             dataOption.CreateData(this);
 
         }
@@ -93,11 +93,11 @@ namespace SojiToban
         {
             try
             {
-                DataOption.s_inData = this.inDataGrid;
+                DataGenerateClass.s_inData = this.inDataGrid;
                 Queue<Member> team = new Queue<Member>();
                 Queue<Member> retInfo = new Queue<Member>();
                 int i = 0;
-                foreach (Member obj in DataOption.s_inData.Items)
+                foreach (Member obj in DataGenerateClass.s_inData.Items)
                 {
                     obj.Score = 0;
                     obj.Info = string.Empty;
@@ -211,7 +211,7 @@ namespace SojiToban
         /// <param name="e"></param>
         private void inputClearButton_Click(object sender, RoutedEventArgs e)
         {
-            DataOption dataOption = new DataOption();
+            DataGenerateClass dataOption = new DataGenerateClass();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
 

@@ -86,6 +86,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CommonModule\HolidayJudge.cs" />
     <Compile Include="CommonModule\GenderAllocationJudge.cs" />
     <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
     <Compile Include="CommonModule\SamePlaceJudge.cs" />
@@ -98,7 +99,7 @@
     <Compile Include="Dto\TeamScedule.cs" />
     <Compile Include="Dto\PersonalScedule.cs" />
     <Compile Include="Dto\Rireki.cs" />
-    <Compile Include="Service\DataOption.cs" />
+    <Compile Include="Service\DataGenerateClass.cs" />
     <Compile Include="Service\DisplayOption.cs" />
     <Compile Include="Service\LoccateOption.cs" />
     <Compile Include="Service\MainService.cs" />

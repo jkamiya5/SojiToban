@@ -18,7 +18,7 @@ namespace SojiToban.Service
     {
 
         /// <summary>
-        /// 
+        /// クリップボードに貼りつける
         /// </summary>
         /// <param name="dataGrid"></param>
         public void PasteClipboard(DataGrid dataGrid)
@@ -140,7 +140,7 @@ namespace SojiToban.Service
 
 
             //得点を左ウィンドウに反映
-            DataOption option = new DataOption();
+            DataGenerateClass option = new DataGenerateClass();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
         }
     }

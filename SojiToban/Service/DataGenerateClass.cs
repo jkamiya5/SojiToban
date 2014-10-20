@@ -14,7 +14,7 @@ namespace SojiToban.Service
     /// <summary>
     /// データ生成を行う
     /// </summary>
-    public class DataOption
+    public class DataGenerateClass
     {
         public static DataGrid s_inData { get; set; }
 
@@ -79,7 +79,7 @@ namespace SojiToban.Service
         /// 一週間分のデータを作成
         /// </summary>
         /// <returns></returns>
-        internal RandamWeekMap CreateNumMap()
+        public RandamWeekMap CreateNumMap()
         {
             Day day = new Day();
             RandamWeekMap RandamWeekMap = new RandamWeekMap();
