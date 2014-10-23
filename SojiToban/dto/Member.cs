@@ -11,10 +11,10 @@ namespace SojiToban.Dto
         {
             public int? No { get; set; }
             public string Name { get; set; }
-            public ContractConst.GENDER? Gender { get; set; }
-            public List<Day> day;
+            public ContractConst.GENDER? Gender { get; set; }            
             public int? Score { get; set; }
             public string Info { get; set; }
+            public List<Day> day;
 
             public Member()
             {
@@ -25,6 +25,15 @@ namespace SojiToban.Dto
             {
                 this.day.Clear();
                 this.Score = null;
+            }
+
+            public Member(string Name, int? No, ContractConst.GENDER? Gender, List<Day> day, int? Score)
+            {
+                this.No = No;
+                this.Name = Name;
+                this.Gender = Gender;
+                this.day = day;
+                this.Score = Score;
             }
         }
 }

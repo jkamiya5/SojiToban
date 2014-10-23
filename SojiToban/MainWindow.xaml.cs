@@ -33,9 +33,11 @@ namespace SojiToban
         /// </summary>
         public MainWindow()
         {
+            //初期設定
             InitializeComponent();
-            GetLatestBuildInfo();
-            DataGenerateClass dataOption = new DataGenerateClass();
+            //最新のビルド情報を取得する
+            GetLatestBuildInfo();            
+            DataOption dataOption = new DataOption();            
             dataOption.CreateData(this);
 
         }
@@ -93,61 +95,39 @@ namespace SojiToban
         {
             try
             {
-                DataGenerateClass.s_inData = this.inDataGrid;
-                Queue<Member> team = new Queue<Member>();
-                Queue<Member> retInfo = new Queue<Member>();
-                int i = 0;
-                foreach (Member obj in DataGenerateClass.s_inData.Items)
-                {
-                    obj.Score = 0;
-                    obj.Info = string.Empty;
-                    if (obj.day.Count > 0)
-                    {
-                        obj.Clear();
-                    }
-                    i++;
-                    if (obj.Name != string.Empty && obj.No != null)
-                    {
-                        team.Enqueue(obj);
-                    }
-                    if (i == StaticObject.maxRowCount || i == ContractConst.MEMBER_COUNT)
-                    {
-                        if(team.Count == 0)
-                        {
-                            ErrorProc(ContractConst.ERROR_MESSAGE_001);
-                            return;
-                        }
-                        MainService service = new MainService();
-                        retInfo = service.MainProc(team, this);
-                        break;
-                    }
-                }
+                DataOption dataOption = new DataOption();
+                Queue<Member> teamData = dataOption.getTeamData(this);     
+          
+                MainService service = new MainService();
+                Queue<Member> resultInfo = service.MainProc(teamData, this);
+
                 DisplayOption displayOption = new DisplayOption();
-                displayOption.Display(retInfo, this);
-                this.execute.IsEnabled = false;
-                this.countRbt.IsEnabled = false;
-                this.scoreRbt.IsEnabled = false;
-                this.chkAll.IsEnabled = false;
-                this.chkMon.IsEnabled = false;
-                this.chkTue.IsEnabled = false;
-                this.chkWed.IsEnabled = false;
-                this.chkThu.IsEnabled = false;
-                this.chkFri.IsEnabled = false;
+                displayOption.Display(resultInfo, this);
+                changeChkStatus(false);
+
             }
-            catch
+            catch(Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
                 return;
             }
         }
 
-
         /// <summary>
-        /// エラー処理を行う
+        /// 
         /// </summary>
-        /// <param name="p"></param>
-        private void ErrorProc(string p)
+        /// <param name="chkStatus"></param>
+        private void changeChkStatus(bool chkStatus)
         {
-            this.errorInfo.Content = "  " + p;
+            this.execute.IsEnabled = chkStatus;
+            this.countRbt.IsEnabled = chkStatus;
+            this.scoreRbt.IsEnabled = chkStatus;
+            this.chkAll.IsEnabled = chkStatus;
+            this.chkMon.IsEnabled = chkStatus;
+            this.chkTue.IsEnabled = chkStatus;
+            this.chkWed.IsEnabled = chkStatus;
+            this.chkThu.IsEnabled = chkStatus;
+            this.chkFri.IsEnabled = chkStatus;
         }
 
 
@@ -211,7 +191,7 @@ namespace SojiToban
         /// <param name="e"></param>
         private void inputClearButton_Click(object sender, RoutedEventArgs e)
         {
-            DataGenerateClass dataOption = new DataGenerateClass();
+            DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
         }
 

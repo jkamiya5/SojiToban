@@ -4,6 +4,7 @@ using SojiToban.CommonModule;
 using SojiToban.Dto;
 using System.Collections.Generic;
 using SojiToban.Service;
+using System.Collections;
 
 namespace SojiTobanTest
 {
@@ -11,7 +12,7 @@ namespace SojiTobanTest
     /// 
     /// </summary>
     [TestClass]
-    public class LoccateOptionTest
+    public class LoccateOptionTest : MainService
     {
 
 
@@ -143,7 +144,7 @@ namespace SojiTobanTest
         public void CheckAllocation()
         {
             //清掃箇所をランダムに割り振った数字列作成
-            DataGenerateClass dataOption = new DataGenerateClass();
+            DataOption dataOption = new DataOption();
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
 
             LoccateOption testTargetClass = new LoccateOption();
@@ -169,6 +170,27 @@ namespace SojiTobanTest
             //        }
             //    }             
             //}
+
+            ArrayList al = new ArrayList();
+            foreach (var member in Team)
+            {
+                List<Day> day = new List<Day>();
+                al.Add(new TestMember(member.Name, member.No, member.Gender, day, 0));
+            }
+
+            //ArrayListに追加されているオブジェクトの型の配列を作成
+            Type[] et = new Type[] { typeof(Member) };
+
+            //XMLファイルに保存する
+            System.Xml.Serialization.XmlSerializer serializer =
+                       new System.Xml.Serialization.XmlSerializer(
+                           typeof(ArrayList), et);
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(
+                @"C:\\sample\\TeamInfo.xml", false, new System.Text.UTF8Encoding(false));
+            //エラーが発生する
+            serializer.Serialize(sw, al);
+            //閉じる
+            sw.Close();
         }
     }
 }

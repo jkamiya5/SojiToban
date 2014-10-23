@@ -8,6 +8,8 @@ using System.Windows.Documents;
 using MathNet.Numerics.Statistics;
 using SojiToban.CommonModule;
 using System.Security.Cryptography;
+using System.Xml;
+using System.Collections;
 
 namespace SojiToban.Service
 {
@@ -16,16 +18,17 @@ namespace SojiToban.Service
     /// <summary>
     /// メイン処理を行うクラス
     /// </summary>
-    class MainService
+    public class MainService
     {
         /// <summary>
         /// メイン処理
         /// </summary>
         /// <param name="Team"></param>
         /// <returns></returns>
-        internal Queue<Member> MainProc(Queue<Member> Team, MainWindow mainWindow)
-        {
-            DataGenerateClass dataOption = new DataGenerateClass();
+        public Queue<Member> MainProc(Queue<Member> Team, MainWindow mainWindow)
+        {           
+
+            DataOption dataOption = new DataOption();
             LoccateOption locateOption = new LoccateOption();
 
             //清掃箇所をランダムに割り振った数字列作成

@@ -57,6 +57,7 @@
     <Compile Include="SameDayAssignmentJudgeTest.cs" />
     <Compile Include="GenderAllocationJudgeTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestDto\TestMember.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SojiToban\SojiToban.csproj">

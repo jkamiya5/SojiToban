@@ -140,7 +140,7 @@ namespace SojiToban.Service
 
 
             //得点を左ウィンドウに反映
-            DataGenerateClass option = new DataGenerateClass();
+            DataOption option = new DataOption();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
         }
     }
