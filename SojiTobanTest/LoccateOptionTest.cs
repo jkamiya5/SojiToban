@@ -5,6 +5,8 @@ using SojiToban.Dto;
 using System.Collections.Generic;
 using SojiToban.Service;
 using System.Collections;
+using System.Xml.Serialization;
+using SojiTobanTest.TestDto;
 
 namespace SojiTobanTest
 {
@@ -170,27 +172,19 @@ namespace SojiTobanTest
             //        }
             //    }             
             //}
+            //XMLシリアル化するオブジェクト
+            //TestMemberClass obj = new TestMemberClass();
+            //obj.Items = new System.Collections.ArrayList();
+            //obj.Items.Add(new TestMember("aaaaaaa", 1, 1));
 
-            ArrayList al = new ArrayList();
-            foreach (var member in Team)
-            {
-                List<Day> day = new List<Day>();
-                al.Add(new TestMember(member.Name, member.No, member.Gender, day, 0));
-            }
-
-            //ArrayListに追加されているオブジェクトの型の配列を作成
-            Type[] et = new Type[] { typeof(Member) };
-
-            //XMLファイルに保存する
-            System.Xml.Serialization.XmlSerializer serializer =
-                       new System.Xml.Serialization.XmlSerializer(
-                           typeof(ArrayList), et);
-            System.IO.StreamWriter sw = new System.IO.StreamWriter(
-                @"C:\\sample\\TeamInfo.xml", false, new System.Text.UTF8Encoding(false));
-            //エラーが発生する
-            serializer.Serialize(sw, al);
-            //閉じる
-            sw.Close();
+            ////ArrayListに追加されているオブジェクトを指定してXMLファイルに保存する
+            //System.Xml.Serialization.XmlSerializer serializer =
+            //    new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
+            //System.IO.StreamWriter sw = new System.IO.StreamWriter(
+            //    @"C:\sample\sample.xml", false, new System.Text.UTF8Encoding(false));
+            //serializer.Serialize(sw, obj);
+            ////閉じる
+            //sw.Close();
         }
     }
 }
