@@ -10,6 +10,8 @@ using SojiToban.CommonModule;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Collections;
+using System.IO;
+using System.Xml.Serialization;
 
 namespace SojiToban.Service
 {
@@ -30,6 +32,9 @@ namespace SojiToban.Service
 
             DataOption dataOption = new DataOption();
             LoccateOption locateOption = new LoccateOption();
+
+            //SerializeTeamData(Team);
+            SerializeTeamData2(Team);
 
             //清掃箇所をランダムに割り振った数字列作成
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
@@ -90,5 +95,69 @@ namespace SojiToban.Service
             return Team;
         }
 
+
+        /// <summary>
+        /// 入力データをXML化して退避する
+        /// </summary>
+        /// <param name="Team"></param>
+        private void SerializeTeamData(Queue<Member> Team)
+        {
+            int i = 0;
+            //保存する配列を作成
+            TestMemberModel[] ary = new TestMemberModel[Team.Count];
+            foreach (var obj in Team)
+            {
+                ary[i] = new TestMemberModel();
+                ary[i].No = obj.No != null ? Convert.ToString(obj.No) : string.Empty;
+                ary[i].Name = obj.Name == null ? "" : obj.Name;
+                ary[i].Score = obj.Score;
+                ary[i].Info = obj.Info == null ? "" : obj.Info;
+                ary[i].Gender = obj.Gender == ContractConst.GENDER.男 ? 0 : 1;
+                i++;
+            }
+
+            //XMLファイルに保存する
+            System.Xml.Serialization.XmlSerializer serializer1 =
+                new System.Xml.Serialization.XmlSerializer(typeof(TestMemberModel[]));
+            System.IO.StreamWriter sw = new System.IO.StreamWriter(
+                @"C:\sample\sample.xml", false, new System.Text.UTF8Encoding(false));
+            serializer1.Serialize(sw, ary);
+            sw.Close();
+        }
+
+        /// <summary>
+        /// 入力データをXML化して退避する
+        /// </summary>
+        /// <param name="Team"></param>
+        private void SerializeTeamData2(Queue<Member> Team)
+        {
+            //サンプルコード
+            //シリアライズする為のPersonsインスタンスを生成
+            TestMembersModel testMembers = new TestMembersModel();
+            testMembers.Members = new List<TestMemberModel>();
+            //インスタンスに値を設定
+            TestMemberModel members = null;
+            foreach (var obj in Team)
+            {
+                members = new TestMemberModel();
+                members.No = obj.No != null ? Convert.ToString(obj.No) : string.Empty;
+                members.Name = obj.Name;
+                members.Gender = obj.Gender == ContractConst.GENDER.男 ? 0 : 1;
+                members.Info = obj.Info != null ? obj.Info : string.Empty;
+                members.Score = obj.Score;
+                testMembers.Members.Add(members);
+            }
+
+            //出力先XMLのストリーム
+            FileStream stream = new FileStream(@"C:\sample\TeamInfo.xml", System.IO.FileMode.Create);
+            StreamWriter writer = new StreamWriter(stream, System.Text.Encoding.UTF8);
+
+            //シリアライズ
+            XmlSerializer serializer = new XmlSerializer(typeof(TestMembersModel));
+            serializer.Serialize(writer, testMembers);
+
+            writer.Flush();
+            writer.Close();
+        }
     }
 }

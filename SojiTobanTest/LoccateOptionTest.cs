@@ -7,6 +7,7 @@ using SojiToban.Service;
 using System.Collections;
 using System.Xml.Serialization;
 using SojiTobanTest.TestDto;
+using System.IO;
 
 namespace SojiTobanTest
 {
@@ -150,41 +151,29 @@ namespace SojiTobanTest
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
 
             LoccateOption testTargetClass = new LoccateOption();
-            Queue<Member> Team = new Queue<Member>();
-            Member testMember = new Member();
-            for (int i = 0; i < 15; i++)
+            Queue<Member> testData = DeSerializeTeamData();
+        }
+
+        
+        public Queue<Member> DeSerializeTeamData()
+        {
+            Queue<Member> ret = new Queue<Member>();
+            //サンプルコード
+            FileStream fs = new FileStream(@"C:\sample\TeamInfo.xml", System.IO.FileMode.Open);
+            XmlSerializer serializer = new XmlSerializer(typeof(TestMembersModel));
+            TestMembersModel model = (TestMembersModel)serializer.Deserialize(fs);
+            foreach (var obj in model.Members)
             {
-                testMember = new Member();
-                testMember.No = i + 1;
-                Team.Enqueue(testMember);
-
+                Member member = new Member();
+                member.No = Convert.ToInt32(obj.No);
+                member.Name = obj.Name;
+                member.Gender = obj.Gender == 0 ? ContractConst.GENDER.男 : ContractConst.GENDER.女;
+                member.Info = obj.Info;
+                member.Score = obj.Score;
+                ret.Enqueue(member);
             }
-            //foreach (Day EachDay in RandamWeekMap.day)
-            //{               
-            //    while (Team.Count > 0)
-            //    {
-            //        Member member = Team.Dequeue();
-            //        Assert.IsTrue(testTargetClass.AssignmentEachDay(EachDay, member));
-            //        Place place = EachDay.place[0];
-            //        if (place.value.Count == 0)
-            //        {
-            //            Assert.IsFalse(testTargetClass.AssignmentEachDay(EachDay, member));
-            //        }
-            //    }             
-            //}
-            //XMLシリアル化するオブジェクト
-            //TestMemberClass obj = new TestMemberClass();
-            //obj.Items = new System.Collections.ArrayList();
-            //obj.Items.Add(new TestMember("aaaaaaa", 1, 1));
-
-            ////ArrayListに追加されているオブジェクトを指定してXMLファイルに保存する
-            //System.Xml.Serialization.XmlSerializer serializer =
-            //    new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
-            //System.IO.StreamWriter sw = new System.IO.StreamWriter(
-            //    @"C:\sample\sample.xml", false, new System.Text.UTF8Encoding(false));
-            //serializer.Serialize(sw, obj);
-            ////閉じる
-            //sw.Close();
+            return ret;
         }
     }
 }
+
