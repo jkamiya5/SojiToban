@@ -8,6 +8,6 @@ namespace SojiToban.dto
 {
     public static class StaticObject
     {
-        public static int maxRowCount { get; set; }
+        public static int MaxRowCount { get; set; }
     }
 }

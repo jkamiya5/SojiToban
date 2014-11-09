@@ -32,15 +32,16 @@ namespace SojiToban.Service
                 var startColIndex = dataGrid.SelectedCells[0].Column.DisplayIndex;
 
                 // クリップボード文字列から行を取得
-                var pasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
+                var PasteRows = ((string)Clipboard.GetData(DataFormats.Text)).Replace("\r", "")
                     .Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries);
 
-                StaticObject.maxRowCount = pasteRows.Count();
-                for (int rowCount = 0; rowCount < StaticObject.maxRowCount; rowCount++)
+                //張り付けた行数を取得
+                StaticObject.MaxRowCount = PasteRows.Count();
+                for (int rowCount = 0; rowCount < StaticObject.MaxRowCount; rowCount++)
                 {
                     var rowIndex = startRowIndex + rowCount;
                     // タブ区切りでセル値を取得
-                    var pasteCells = pasteRows[rowCount].Split('\t');
+                    var pasteCells = PasteRows[rowCount].Split('\t');
                     // 選択位置から列数繰り返す
                     var maxColCount = Math.Min(pasteCells.Count(), dataGrid.Columns.Count - startColIndex);
                     for (int colCount = 0; colCount < maxColCount; colCount++)
@@ -117,7 +118,7 @@ namespace SojiToban.Service
             day2 = GetDayRowVal(RetInfo, ContractConst.DAYS.火);
             day3 = GetDayRowVal(RetInfo, ContractConst.DAYS.水);
             day4 = GetDayRowVal(RetInfo, ContractConst.DAYS.木);
-            day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.金);            
+            day5 = GetDayRowVal(RetInfo, ContractConst.DAYS.金);
 
             var data = new ObservableCollection<SojiPlace>(
                 Enumerable.Range(1, ContractConst.PLACE_COUNT).Select(j => new SojiPlace

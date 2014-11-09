@@ -25,8 +25,8 @@ namespace SojiToban.Service
         /// </summary>
         /// <param name="Team"></param>
         /// <returns></returns>
-        public Queue<Member> MainProc(Queue<Member> Team, MainWindow mainWindow)
-        {           
+        public Queue<Member> AllocationProc(Queue<Member> Team, MainWindow mainWindow)
+        {
 
             DataOption dataOption = new DataOption();
             LoccateOption locateOption = new LoccateOption();
@@ -42,7 +42,7 @@ namespace SojiToban.Service
                 bool isHoliday = HolidayJudge.Judge(mainWindow, EachDay);
 
                 //休日なら次の曜日へ
-                if(isHoliday)
+                if (isHoliday)
                 {
                     continue;
                 }
@@ -59,7 +59,7 @@ namespace SojiToban.Service
                     {
                         //個人割り振り初回時
                         if (member.day.Count() == 0)
-                        {                            
+                        {
                             ret = locateOption.AllocationFirstTime(EachDay, member);
                             if (ret == false)
                             {

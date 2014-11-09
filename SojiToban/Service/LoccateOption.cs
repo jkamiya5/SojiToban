@@ -38,7 +38,7 @@ namespace SojiToban.Service
                     int? randamPlaceValue = CleaningPart.value.Dequeue();
                     //清掃可能か判定する
                     bool IsCleanablePlace = CheckCleanable(member, randamPlaceValue);
-                    
+
                     //清掃可能な箇所の場合
                     if (IsCleanablePlace)
                     {
@@ -78,7 +78,7 @@ namespace SojiToban.Service
             //カレントの曜日の清掃箇所を決定
             today.place.Add(ResponsiblePlace);
             //得点を足しこむ
-            member.Score += randamPlaceValue == null ? 0: ContractConst.COEFFICIENT[(int)randamPlaceValue];
+            member.Score += randamPlaceValue == null ? 0 : ContractConst.COEFFICIENT[(int)randamPlaceValue];
             //備考の内容を設定
             member.Info += today.days.ToString() + randamPlaceValue.ToString() + " ";
             //今日の割り当てを決める
@@ -119,7 +119,7 @@ namespace SojiToban.Service
                         ResponsiblePlace.value.Enqueue(randamPlaceValue);
                         //カレントの曜日の清掃箇所を決定
                         today.place.Add(ResponsiblePlace);
-                        
+
                         if (randamPlaceValue == null)
                         {
                             //清掃箇所が取得できない場合は「0」を加算
@@ -130,6 +130,7 @@ namespace SojiToban.Service
                             //清掃箇所の難儀度に応じた得点を足しこむ
                             member.Score += ContractConst.COEFFICIENT[(int)randamPlaceValue];
                         }
+                        //今日の掃除割り振り情報として格納
                         member.day.Add(today);
                         //備考欄に記載する情報を作成
                         member.Info += today.days.ToString() + randamPlaceValue.ToString() + " ";

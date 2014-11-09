@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Xml;
+using System.Runtime.Serialization;
 
 namespace SojiToban.Service
 {
@@ -230,7 +232,7 @@ namespace SojiToban.Service
                 {
                     team.Enqueue(obj);
                 }
-                if (i == StaticObject.maxRowCount || i == ContractConst.MEMBER_COUNT)
+                if (i == StaticObject.MaxRowCount || i == ContractConst.MEMBER_COUNT)
                 {
                     if (team.Count == 0)
                     {
@@ -243,6 +245,55 @@ namespace SojiToban.Service
                 }
             }
             return null;
+        }
+
+
+        /// <summary>
+        /// チーム情報をシリアル化して外部のxmlファイルに保存
+        /// </summary>
+        /// <param name="teamData"></param>
+        public void SerializeTeamData(Queue<Member> teamData)
+        {
+            //XMLシリアル化するオブジェクト
+            TestMemberClass obj = new TestMemberClass();
+            obj.Items = new List<TestMember>();
+
+            foreach(var v in teamData)
+            {
+                TestMember member = new TestMember();
+                member.No = v.No;
+                member.Name = v.Name;                
+                member.Score = v.Score;
+                member.Info = v.Info;
+                member.Gender = v.Gender == ContractConst.GENDER.男 ? 1 : 2;
+                obj.Items.Add(member);    
+            }
+
+            //出力先XMLのストリーム
+            System.IO.FileStream stream = new System.IO.FileStream(@"C:\test\EXPORT.XML", System.IO.FileMode.Create);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);
+            //シリアライズ
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
+            serializer.Serialize(writer, obj);
+            writer.Flush();
+            writer.Close();
+
+        }
+
+
+        /// <summary>
+        /// シリアライズ化されたXMLファイルからチーム情報を復元
+        /// </summary>
+        /// <param name="teamData"></param>
+        public void DeSerializeTeamData()
+        {
+            //サンプルコード
+            System.IO.FileStream fs = new System.IO.FileStream(@"C:\test\sample.xml", System.IO.FileMode.Open);
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
+            TestMemberClass model = (TestMemberClass)serializer.Deserialize(fs);
+            foreach (TestMember merber in model.Items)
+            {                
+            }
         }
     }
 }

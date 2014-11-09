@@ -65,6 +65,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Controls.Ribbon" />
@@ -99,6 +100,8 @@
     <Compile Include="Dto\TeamScedule.cs" />
     <Compile Include="Dto\PersonalScedule.cs" />
     <Compile Include="Dto\Rireki.cs" />
+    <Compile Include="Dto\TestMember.cs" />
+    <Compile Include="Dto\TestMemberClass.cs" />
     <Compile Include="Service\DataOption.cs" />
     <Compile Include="Service\DisplayOption.cs" />
     <Compile Include="Service\ErrorOption.cs" />

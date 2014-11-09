@@ -36,7 +36,8 @@ namespace SojiToban
             //初期設定
             InitializeComponent();
             //最新のビルド情報を取得する
-            GetLatestBuildInfo();            
+            GetLatestBuildInfo();   
+            //初期表示用のデータを作成する
             DataOption dataOption = new DataOption();            
             dataOption.CreateData(this);
 
@@ -96,10 +97,11 @@ namespace SojiToban
             try
             {
                 DataOption dataOption = new DataOption();
-                Queue<Member> teamData = dataOption.getTeamData(this);     
+                Queue<Member> teamData = dataOption.getTeamData(this);
+                dataOption.SerializeTeamData(teamData);
           
                 MainService service = new MainService();
-                Queue<Member> resultInfo = service.MainProc(teamData, this);
+                Queue<Member> resultInfo = service.AllocationProc(teamData, this);
 
                 DisplayOption displayOption = new DisplayOption();
                 displayOption.Display(resultInfo, this);

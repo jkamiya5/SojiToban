@@ -143,48 +143,13 @@ namespace SojiTobanTest
         /// 配置を行うメソッドのテスト
         /// </summary>
         [TestMethod]
-        public void CheckAllocation()
+        public void CheckMethod_AllocationFirstTime()
         {
             //清掃箇所をランダムに割り振った数字列作成
             DataOption dataOption = new DataOption();
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
 
-            LoccateOption testTargetClass = new LoccateOption();
-            Queue<Member> Team = new Queue<Member>();
-            Member testMember = new Member();
-            for (int i = 0; i < 15; i++)
-            {
-                testMember = new Member();
-                testMember.No = i + 1;
-                Team.Enqueue(testMember);
-
-            }
-            //foreach (Day EachDay in RandamWeekMap.day)
-            //{               
-            //    while (Team.Count > 0)
-            //    {
-            //        Member member = Team.Dequeue();
-            //        Assert.IsTrue(testTargetClass.AssignmentEachDay(EachDay, member));
-            //        Place place = EachDay.place[0];
-            //        if (place.value.Count == 0)
-            //        {
-            //            Assert.IsFalse(testTargetClass.AssignmentEachDay(EachDay, member));
-            //        }
-            //    }             
-            //}
-            //XMLシリアル化するオブジェクト
-            //TestMemberClass obj = new TestMemberClass();
-            //obj.Items = new System.Collections.ArrayList();
-            //obj.Items.Add(new TestMember("aaaaaaa", 1, 1));
-
-            ////ArrayListに追加されているオブジェクトを指定してXMLファイルに保存する
-            //System.Xml.Serialization.XmlSerializer serializer =
-            //    new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
-            //System.IO.StreamWriter sw = new System.IO.StreamWriter(
-            //    @"C:\sample\sample.xml", false, new System.Text.UTF8Encoding(false));
-            //serializer.Serialize(sw, obj);
-            ////閉じる
-            //sw.Close();
+            dataOption.DeSerializeTeamData();
         }
     }
 }
