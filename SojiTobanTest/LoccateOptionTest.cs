@@ -148,8 +148,16 @@ namespace SojiTobanTest
             //清掃箇所をランダムに割り振った数字列作成
             DataOption dataOption = new DataOption();
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
+            Queue<Member> Team = dataOption.DeSerializeTeamData();
+            LoccateOption target = new LoccateOption();
 
-            dataOption.DeSerializeTeamData();
+            foreach (var EachDay in RandamWeekMap.day)
+            {
+                foreach (Member member in Team)
+                {
+                    Assert.IsTrue(target.AllocationFirstTime(EachDay, member));
+                }
+            }
         }
     }
 }

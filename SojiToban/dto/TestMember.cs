@@ -10,7 +10,7 @@ namespace SojiToban.Dto
     public class TestMember
     {
         //ArrayListに追加される型を指定する
-        [System.Xml.Serialization.XmlAttribute("No")]
+        [System.Xml.Serialization.XmlElement("No")]
         public int? No { get; set; }
         [System.Xml.Serialization.XmlElement("Name")]
         public string Name { get; set; }

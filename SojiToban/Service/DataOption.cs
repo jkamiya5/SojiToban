@@ -270,7 +270,7 @@ namespace SojiToban.Service
             }
 
             //出力先XMLのストリーム
-            System.IO.FileStream stream = new System.IO.FileStream(@"C:\test\EXPORT.XML", System.IO.FileMode.Create);
+            System.IO.FileStream stream = new System.IO.FileStream(ContractConst.XMLFILE_PATH, System.IO.FileMode.Create);
             System.IO.StreamWriter writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);
             //シリアライズ
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
@@ -285,15 +285,25 @@ namespace SojiToban.Service
         /// シリアライズ化されたXMLファイルからチーム情報を復元
         /// </summary>
         /// <param name="teamData"></param>
-        public void DeSerializeTeamData()
+        public Queue<Member> DeSerializeTeamData()
         {
             //サンプルコード
-            System.IO.FileStream fs = new System.IO.FileStream(@"C:\test\sample.xml", System.IO.FileMode.Open);
+            System.IO.FileStream fs = new System.IO.FileStream(ContractConst.XMLFILE_PATH, System.IO.FileMode.Open);
             System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(TestMemberClass));
-            TestMemberClass model = (TestMemberClass)serializer.Deserialize(fs);
-            foreach (TestMember merber in model.Items)
-            {                
+            TestMemberClass target = (TestMemberClass)serializer.Deserialize(fs);
+            Queue<Member> Team = new Queue<Member>();
+            foreach (TestMember merber in target.Items)
+            {
+                Member obj = new Member();
+                obj.No = merber.No;
+                obj.Name = merber.Name;
+                obj.Score = merber.Score;
+                obj.Gender = merber.No == 1 ? ContractConst.GENDER.男 : ContractConst.GENDER.女;
+                obj.Info = merber.Info;
+
+                Team.Enqueue(obj);
             }
+            return Team;
         }
     }
 }
