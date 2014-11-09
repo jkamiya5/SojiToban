@@ -298,7 +298,7 @@ namespace SojiToban.Service
                 obj.No = merber.No;
                 obj.Name = merber.Name;
                 obj.Score = merber.Score;
-                obj.Gender = merber.No == 1 ? ContractConst.GENDER.男 : ContractConst.GENDER.女;
+                obj.Gender = merber.Gender == 1 ? ContractConst.GENDER.男 : ContractConst.GENDER.女;
                 obj.Info = merber.Info;
 
                 Team.Enqueue(obj);

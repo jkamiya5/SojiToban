@@ -155,9 +155,23 @@ namespace SojiTobanTest
             {
                 foreach (Member member in Team)
                 {
-                    Assert.IsTrue(target.AllocationFirstTime(EachDay, member));
+                    if (EachDay.place[0].value.Count > 0)
+                    {
+                        Day copy = new Day();
+                        copy = EachDay.Clone();
+                        Member membercopy = new Member();
+                        membercopy = member.Clone();
+
+                        Assert.IsTrue(target.AllocationFirstTime(EachDay, member));
+                        Assert.IsTrue(target.AssignmentEachDay(copy, membercopy));
+                        Assert.AreEqual(EachDay, copy);
+                    }else
+                    {
+                        Assert.IsFalse(target.AllocationFirstTime(EachDay, member));
+                    }                    
                 }
             }
+            System.Diagnostics.Debug.Write("end");
         }
     }
 }

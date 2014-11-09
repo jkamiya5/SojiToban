@@ -35,5 +35,11 @@ namespace SojiToban.Dto
                 this.day = day;
                 this.Score = Score;
             }
+
+            // コピーを作成するメソッド
+            public Member Clone()
+            {
+                return (Member)MemberwiseClone();
+            }
         }
 }

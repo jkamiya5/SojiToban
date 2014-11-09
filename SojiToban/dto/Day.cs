@@ -16,5 +16,13 @@ namespace SojiToban.Dto
             this.place = new List<Place>();
             this.days = new ContractConst.DAYS();
         }
+        // コピーを作成するメソッド
+        public Day Clone()
+        {
+            Day obj = new Day();
+            obj.days = this.days;
+            obj.place = this.place;
+            return obj;
+        }
     }
 }
