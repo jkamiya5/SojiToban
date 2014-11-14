@@ -128,7 +128,7 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 割り振り結果の得点を表示する
+        /// 割り振り結果の得点表示文字列を作成
         /// </summary>
         /// <param name="RetInfo"></param>
         /// <returns></returns>
@@ -164,19 +164,6 @@ namespace SojiToban.Service
             return data;
         }
 
-        /// <summary>
-        /// 得点順にランダムソートを行う
-        /// </summary>
-        /// <param name="Team"></param>
-        public void RandamSortByScore(ref Queue<Member> Team)
-        {
-            IEnumerable<Member> query = Team.OrderBy(member => member.Score).ThenBy(member => member.day.Count);
-            foreach (Member member in query)
-            {
-                Team.Dequeue();
-                Team.Enqueue(member);
-            }
-        }
 
         /// <summary>
         /// 番号順にランダムソートを行う
@@ -185,21 +172,6 @@ namespace SojiToban.Service
         public void RandamSortByNo(ref Queue<Member> Team)
         {
             IEnumerable<Member> query = Team.OrderBy(member => member.No);
-            foreach (Member member in query)
-            {
-                Team.Dequeue();
-                Team.Enqueue(member);
-            }
-        }
-
-
-        /// <summary>
-        /// 回数順にランダムソートを行う
-        /// </summary>
-        /// <param name="Team"></param>
-        public void RandamSortByCount(ref Queue<Member> Team)
-        {
-            IEnumerable<Member> query = Team.OrderBy(member => member.day.Count).ThenBy(member => member.Score);
             foreach (Member member in query)
             {
                 Team.Dequeue();

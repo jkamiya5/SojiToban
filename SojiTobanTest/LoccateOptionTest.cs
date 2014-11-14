@@ -147,10 +147,14 @@ namespace SojiTobanTest
         {
             //清掃箇所をランダムに割り振った数字列作成
             DataOption dataOption = new DataOption();
+            //ランダムに作成した掃除割り当て格納用変数作成
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
+            //XMLフォーマットから復元する
             Queue<Member> Team = dataOption.DeSerializeTeamData();
+            //テストしたいクラス
             LoccateOption target = new LoccateOption();
 
+            //日毎にチームメンバーを配備
             foreach (var EachDay in RandamWeekMap.day)
             {
                 foreach (Member member in Team)

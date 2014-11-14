@@ -20,58 +20,19 @@ namespace SojiToban.Service
     /// </summary>
     public class MainService
     {
+
         /// <summary>
         /// メイン処理
         /// </summary>
-        /// <param name="Team"></param>
+        /// <param name="teamData"></param>
+        /// <param name="mainWindow"></param>
+        /// <param name="RandamWeekMap"></param>
         /// <returns></returns>
-        public Queue<Member> AllocationProc(Queue<Member> Team, MainWindow mainWindow)
-        {
-
-            DataOption dataOption = new DataOption();
-            LoccateOption locateOption = new LoccateOption();
-            //清掃箇所をランダムに割り振った数字列作成
-            RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
-
-            //曜日毎に割り振りを行う
-            foreach (Day EachDay in RandamWeekMap.day)
-            {
-                //休日判定を行う
-                HolidayJudge HolidayJudge = new HolidayJudge();
-                bool isHoliday = HolidayJudge.Judge(mainWindow, EachDay);
-
-                //休日なら次の曜日へ
-                if (isHoliday)
-                {
-                    continue;
-                }
-                
-                //割り振り処理フラグ初期化
-                bool ret = true;
-                //メンバー全員に対して割り振り処理を行う
-                while (ret == true)
-                {
-                    foreach (Member member in Team)
-                    {
-                        ret = locateOption.AssignmentEachDay(EachDay, member);
-                        if (ret == false)
-                        {
-                            break;
-                        }
-                    }
-                    //メンバーのランダムソートを行う
-                    if (mainWindow.countRbt.IsChecked == true)
-                    {
-                        dataOption.RandamSortByCount(ref Team);
-                    }
-                    else if (mainWindow.scoreRbt.IsChecked == true)
-                    {
-                        dataOption.RandamSortByScore(ref Team);
-                    }
-                }
-            }
-            return Team;
-        }
-
+        //public Queue<Member> AllocationProc(Queue<Member> teamData, MainWindow mainWindow, RandamWeekMap RandamWeekMap)
+        //{            
+        //    LoccateOption locateOption = new LoccateOption();
+        //    locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, mainWindow);
+        //    return teamData;
+        //}
     }
 }

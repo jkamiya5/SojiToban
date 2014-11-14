@@ -97,11 +97,13 @@ namespace SojiToban
             try
             {
                 DataOption dataOption = new DataOption();
-                Queue<Member> teamData = dataOption.getTeamData(this);
-                dataOption.SerializeTeamData(teamData);
+                Queue<Member> teamData = dataOption.getTeamData(this);                
           
-                MainService service = new MainService();
-                Queue<Member> resultInfo = service.AllocationProc(teamData, this);
+                //清掃箇所をランダムに割り振った数字列作成
+                RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
+
+                LoccateOption locateOption = new LoccateOption();
+                Queue<Member> resultInfo = locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, this);
 
                 DisplayOption displayOption = new DisplayOption();
                 displayOption.Display(resultInfo, this);
@@ -290,7 +292,9 @@ namespace SojiToban
         /// <param name="e"></param>
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            DataOption dataOption = new DataOption();
+            Queue<Member> teamData = dataOption.getTeamData(this);
+            dataOption.SerializeTeamData(teamData);
         }
     }
 }

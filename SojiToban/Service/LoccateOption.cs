@@ -173,5 +173,85 @@ namespace SojiToban.Service
             }
             return true;
         }
+
+
+        /// <summary>
+        /// 曜日毎に割り振りを行う
+        /// </summary>
+        /// <param name="RandamWeekMap"></param>
+        /// <param name="Team"></param>
+        /// <param name="mainWindow"></param>
+        /// <returns></returns>
+        public Queue<Member> AllocationEachDayOfWeek(RandamWeekMap RandamWeekMap, Queue<Member> Team, MainWindow mainWindow)
+        {
+            //曜日毎に割り振りを行う
+            foreach (Day EachDay in RandamWeekMap.day)
+            {
+                //休日判定を行う
+                HolidayJudge HolidayJudge = new HolidayJudge();
+                bool isHoliday = HolidayJudge.Judge(mainWindow, EachDay);
+
+                //休日なら次の曜日へ
+                if (isHoliday)
+                {
+                    continue;
+                }
+
+                //割り振り処理フラグ初期化
+                bool ret = true;
+                //メンバー全員に対して割り振り処理を行う
+                while (ret == true)
+                {
+                    foreach (Member member in Team)
+                    {
+                        ret = this.AssignmentEachDay(EachDay, member);
+                        if (ret == false)
+                        {
+                            break;
+                        }
+                    }
+                    //メンバーのランダムソートを行う
+                    if (mainWindow.countRbt.IsChecked == true)
+                    {
+                        this.RandamSortByCount(ref Team);
+                    }
+                    else if (mainWindow.scoreRbt.IsChecked == true)
+                    {
+                        this.RandamSortByScore(ref Team);
+                    }
+                }
+            }
+            return Team;
+        }
+
+
+        /// <summary>
+        /// 得点順にランダムソートを行う
+        /// </summary>
+        /// <param name="Team"></param>
+        public void RandamSortByScore(ref Queue<Member> Team)
+        {
+            IEnumerable<Member> query = Team.OrderBy(member => member.Score).ThenBy(member => member.day.Count);
+            foreach (Member member in query)
+            {
+                Team.Dequeue();
+                Team.Enqueue(member);
+            }
+        }
+
+
+        /// <summary>
+        /// 回数順にランダムソートを行う
+        /// </summary>
+        /// <param name="Team"></param>
+        public void RandamSortByCount(ref Queue<Member> Team)
+        {
+            IEnumerable<Member> query = Team.OrderBy(member => member.day.Count).ThenBy(member => member.Score);
+            foreach (Member member in query)
+            {
+                Team.Dequeue();
+                Team.Enqueue(member);
+            }
+        }
     }
 }
