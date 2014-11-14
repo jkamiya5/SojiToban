@@ -89,6 +89,7 @@
     </ApplicationDefinition>
     <Compile Include="CommonModule\HolidayJudge.cs" />
     <Compile Include="CommonModule\GenderAllocationJudge.cs" />
+    <Compile Include="CommonModule\Util.cs" />
     <Compile Include="CommonModule\SameDayAssignmentJudge.cs" />
     <Compile Include="CommonModule\SamePlaceJudge.cs" />
     <Compile Include="Dto\Day.cs" />

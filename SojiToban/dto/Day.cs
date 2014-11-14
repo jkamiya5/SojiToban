@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SojiToban.Dto
 {
+    [Serializable]
     public class Day
     {
         public ContractConst.DAYS days { get; set; }

@@ -157,14 +157,28 @@ namespace SojiTobanTest
                 {
                     if (EachDay.place[0].value.Count > 0)
                     {
-                        Day copy = new Day();
-                        copy = EachDay.Clone();
-                        Member membercopy = new Member();
-                        membercopy = member.Clone();
+                        Day EachDayCopy = new Day();
+                        EachDayCopy = EachDay.CloneDeep();
+                        Member memberCopy = new Member();
+                        memberCopy = member.CloneDeep();
 
                         Assert.IsTrue(target.AllocationFirstTime(EachDay, member));
-                        Assert.IsTrue(target.AssignmentEachDay(copy, membercopy));
-                        Assert.AreEqual(EachDay, copy);
+                        Assert.IsTrue(target.AssignmentEachDay(EachDayCopy, memberCopy));
+
+                        Assert.AreEqual(member.No, memberCopy.No);
+                        Assert.AreEqual(member.Info, memberCopy.Info);
+                        Assert.AreEqual(member.Name, memberCopy.Name);                        
+                        Assert.AreEqual(member.Score, memberCopy.Score);
+                        Assert.AreEqual(member.Gender, memberCopy.Gender);
+
+                        for (int i = 0; i < member.day.Count; i++ )
+                        {
+                            for (int j = 0; j < member.day[i].place.Count; j++)
+                            {
+                                Assert.AreEqual(member.day[i].place[j].value.Peek(),
+                                                memberCopy.day[i].place[j].value.Peek());
+                            }
+                        }                    
                     }else
                     {
                         Assert.IsFalse(target.AllocationFirstTime(EachDay, member));

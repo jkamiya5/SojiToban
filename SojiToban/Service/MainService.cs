@@ -30,7 +30,6 @@ namespace SojiToban.Service
 
             DataOption dataOption = new DataOption();
             LoccateOption locateOption = new LoccateOption();
-
             //清掃箇所をランダムに割り振った数字列作成
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
 
@@ -46,36 +45,20 @@ namespace SojiToban.Service
                 {
                     continue;
                 }
-
-
+                
                 //割り振り処理フラグ初期化
                 bool ret = true;
-
                 //メンバー全員に対して割り振り処理を行う
                 while (ret == true)
                 {
-
                     foreach (Member member in Team)
                     {
-                        //個人割り振り初回時
-                        if (member.day.Count() == 0)
+                        ret = locateOption.AssignmentEachDay(EachDay, member);
+                        if (ret == false)
                         {
-                            ret = locateOption.AllocationFirstTime(EachDay, member);
-                            if (ret == false)
-                            {
-                                break;
-                            }
-                        }
-                        else
-                        {
-                            ret = locateOption.AssignmentEachDay(EachDay, member);
-                            if (ret == false)
-                            {
-                                break;
-                            }
+                            break;
                         }
                     }
-
                     //メンバーのランダムソートを行う
                     if (mainWindow.countRbt.IsChecked == true)
                     {

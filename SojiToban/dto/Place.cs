@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace SojiToban.Dto
 {
+    [Serializable]
     public class Place
     {
         public Queue<int?> value { get; set; }

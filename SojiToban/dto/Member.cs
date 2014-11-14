@@ -1,4 +1,5 @@
-﻿using SojiToban.Dto;
+﻿using SojiToban.CommonModule;
+using SojiToban.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,7 @@ using System.Text;
 namespace SojiToban.Dto
 {
         // DataGridに表示するデータ
+        [Serializable]
         public class Member
         {
             public int? No { get; set; }
@@ -36,10 +38,9 @@ namespace SojiToban.Dto
                 this.Score = Score;
             }
 
-            // コピーを作成するメソッド
-            public Member Clone()
-            {
-                return (Member)MemberwiseClone();
-            }
+            //public Member Clone()
+            //{
+            //    return CloneHelper.Clone<Member>(this);
+            //}
         }
 }
