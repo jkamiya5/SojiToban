@@ -20,6 +20,7 @@ namespace SojiToban.Service
     public class DataOption
     {
         public static DataGrid s_inData { get; set; }
+        public static DataGrid s_targetGrid { get; set; }
 
 
         /// <summary>
@@ -217,6 +218,23 @@ namespace SojiToban.Service
                 }
             }
             return null;
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mainWindow"></param>
+        public void GetPlacementResults(MainWindow mainWindow)
+        {
+            DataOption.s_targetGrid = mainWindow.targetGrid;
+            SojiPlace retInfo = new SojiPlace();
+            foreach(SojiPlace obj in DataOption.s_targetGrid.Items)
+            {
+                System.Diagnostics.Debug.Write(obj);
+                retInfo.m_day1 = obj.m_day1;
+            }
         }
 
 

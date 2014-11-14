@@ -107,7 +107,7 @@ namespace SojiToban
 
                 DisplayOption displayOption = new DisplayOption();
                 displayOption.Display(resultInfo, this);
-                changeChkStatus(false);
+                ChangeChkStatus(false);
 
             }
             catch(Exception ex)
@@ -121,7 +121,7 @@ namespace SojiToban
         /// 
         /// </summary>
         /// <param name="chkStatus"></param>
-        private void changeChkStatus(bool chkStatus)
+        private void ChangeChkStatus(bool chkStatus)
         {
             this.execute.IsEnabled = chkStatus;
             this.countRbt.IsEnabled = chkStatus;
@@ -293,8 +293,11 @@ namespace SojiToban
         private void SaveBtn_Click(object sender, RoutedEventArgs e)
         {
             DataOption dataOption = new DataOption();
-            Queue<Member> teamData = dataOption.getTeamData(this);
+            Queue<Member> teamData = dataOption.getTeamData(this);            
             dataOption.SerializeTeamData(teamData);
+
+            //配置結果を保存
+            dataOption.GetPlacementResults(this);
         }
     }
 }
