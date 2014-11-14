@@ -14,7 +14,7 @@ namespace SojiTobanTest
     /// 
     /// </summary>
     [TestClass]
-    public class LoccateOptionTest : MainService
+    public class LoccateOptionTest
     {
 
 
