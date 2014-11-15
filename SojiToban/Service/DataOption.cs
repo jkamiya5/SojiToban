@@ -186,7 +186,7 @@ namespace SojiToban.Service
         /// </summary>
         /// <param name="mainWindow"></param>
         /// <returns></returns>
-        public Queue<Member> getTeamData(MainWindow mainWindow)
+        public Queue<Member> GetTeamInfoEnteredFromScreen(MainWindow mainWindow)
         {
             DataOption.s_inData = mainWindow.inDataGrid;
             Queue<Member> team = new Queue<Member>();
@@ -223,18 +223,47 @@ namespace SojiToban.Service
 
 
         /// <summary>
-        /// 
+        /// 割り振り結果をシリアル化して外部のxmlファイルに保存
         /// </summary>
         /// <param name="mainWindow"></param>
-        public void GetPlacementResults(MainWindow mainWindow)
-        {
-            DataOption.s_targetGrid = mainWindow.targetGrid;
-            SojiPlace retInfo = new SojiPlace();
-            foreach(SojiPlace obj in DataOption.s_targetGrid.Items)
+        public void SerializePlacementResults(MainWindow mainWindow)
+        {            
+            //XMLシリアル化するオブジェクト
+            SojiPlaceClass sojiPlaceClass = new SojiPlaceClass();
+            sojiPlaceClass.Items = new List<SojiPlace>();
+            int rowCnt = 1;
+            foreach (SojiPlace obj in mainWindow.targetGrid.Items)
             {
+                SojiPlace sojiPlace = new SojiPlace();
                 System.Diagnostics.Debug.Write(obj);
-                retInfo.m_day1 = obj.m_day1;
+                sojiPlace.m_placeId = obj.m_placeId;
+                sojiPlace.m_place = obj.m_place;
+                sojiPlace.m_afflictionDegree = obj.m_afflictionDegree;
+                sojiPlace.m_day1 = obj.m_day1;
+                sojiPlace.m_day2 = obj.m_day2;
+                sojiPlace.m_day3 = obj.m_day3;
+                sojiPlace.m_day4 = obj.m_day4;
+                sojiPlace.m_day5 = obj.m_day5;
+                sojiPlace.m_day1_Color = obj.m_day1_Color;
+                sojiPlace.m_day2_Color = obj.m_day2_Color;
+                sojiPlace.m_day3_Color = obj.m_day3_Color;
+                sojiPlace.m_day4_Color = obj.m_day4_Color;
+                sojiPlace.m_day5_Color = obj.m_day5_Color;
+                sojiPlaceClass.Items.Add(sojiPlace);
+                if (rowCnt == ContractConst.PLACE_COUNT)
+                {
+                    break;
+                }
+                rowCnt++;
             }
+            //出力先XMLのストリーム
+            System.IO.FileStream stream = new System.IO.FileStream(ContractConst.XMLFILE_PATH1 + sojiPlaceClass.GetType().Name + ".xml", System.IO.FileMode.Create);
+            System.IO.StreamWriter writer = new System.IO.StreamWriter(stream, System.Text.Encoding.UTF8);
+            //シリアライズ
+            System.Xml.Serialization.XmlSerializer serializer = new System.Xml.Serialization.XmlSerializer(typeof(SojiPlaceClass));
+            serializer.Serialize(writer, sojiPlaceClass);
+            writer.Flush();
+            writer.Close();
         }
 
 

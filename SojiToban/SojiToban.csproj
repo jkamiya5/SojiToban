@@ -97,6 +97,7 @@
     <Compile Include="Dto\Plan.cs" />
     <Compile Include="Dto\RandamWeekMap.cs" />
     <Compile Include="Dto\Schedule.cs" />
+    <Compile Include="Dto\SojiPlaceClass.cs" />
     <Compile Include="Dto\StaticObject.cs" />
     <Compile Include="Dto\TeamScedule.cs" />
     <Compile Include="Dto\PersonalScedule.cs" />

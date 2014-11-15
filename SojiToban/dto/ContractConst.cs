@@ -58,5 +58,6 @@ namespace SojiToban.Dto
 
         public static string ERROR_MESSAGE_001 = "入力欄にデータ（名前、No、性別）を入力してください。";
         public static string XMLFILE_PATH = @"C:\test\EXPORT.XML";
+        public static string XMLFILE_PATH1 = @"C:\test\";
     }
 }

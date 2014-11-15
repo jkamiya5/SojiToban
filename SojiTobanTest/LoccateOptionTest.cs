@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using SojiToban.Service;
 using System.Collections;
 using System.Xml.Serialization;
-using SojiTobanTest.TestDto;
 
 namespace SojiTobanTest
 {
@@ -171,22 +170,23 @@ namespace SojiTobanTest
 
                         Assert.AreEqual(member.No, memberCopy.No);
                         Assert.AreEqual(member.Info, memberCopy.Info);
-                        Assert.AreEqual(member.Name, memberCopy.Name);                        
+                        Assert.AreEqual(member.Name, memberCopy.Name);
                         Assert.AreEqual(member.Score, memberCopy.Score);
                         Assert.AreEqual(member.Gender, memberCopy.Gender);
 
-                        for (int i = 0; i < member.day.Count; i++ )
+                        for (int i = 0; i < member.day.Count; i++)
                         {
                             for (int j = 0; j < member.day[i].place.Count; j++)
                             {
                                 Assert.AreEqual(member.day[i].place[j].value.Peek(),
                                                 memberCopy.day[i].place[j].value.Peek());
                             }
-                        }                    
-                    }else
+                        }
+                    }
+                    else
                     {
                         Assert.IsFalse(target.AllocationFirstTime(EachDay, member));
-                    }                    
+                    }
                 }
             }
             System.Diagnostics.Debug.Write("end");
