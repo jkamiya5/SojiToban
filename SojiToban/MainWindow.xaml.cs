@@ -165,6 +165,7 @@ namespace SojiToban
             this.chkWed.IsEnabled = true;
             this.chkThu.IsEnabled = true;
             this.chkFri.IsEnabled = true;
+            GrayOut(this);
 
         }
 
@@ -264,6 +265,11 @@ namespace SojiToban
                 this.chkWed.IsChecked = true;
                 this.chkThu.IsChecked = true;
                 this.chkFri.IsChecked = true;
+                this.chkMon.IsEnabled = true;
+                this.chkTue.IsEnabled = true;
+                this.chkWed.IsEnabled = true;
+                this.chkThu.IsEnabled = true;
+                this.chkFri.IsEnabled = true;
                 chkMon_Checked(sender, e);
                 chkTue_Checked(sender, e);
                 chkWed_Checked(sender, e);
@@ -277,6 +283,11 @@ namespace SojiToban
                 this.chkWed.IsChecked = false;
                 this.chkThu.IsChecked = false;
                 this.chkFri.IsChecked = false;
+                this.chkMon.IsEnabled = false;
+                this.chkTue.IsEnabled = false;
+                this.chkWed.IsEnabled = false;
+                this.chkThu.IsEnabled = false;
+                this.chkFri.IsEnabled = false;
                 chkMon_Checked(sender, e);
                 chkTue_Checked(sender, e);
                 chkWed_Checked(sender, e);

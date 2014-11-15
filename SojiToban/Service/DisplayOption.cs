@@ -1,6 +1,7 @@
 ﻿using SojiToban.dto;
 using SojiToban.Dto;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using MathNet.Numerics.Statistics;
 
 namespace SojiToban.Service
 {
@@ -143,6 +145,12 @@ namespace SojiToban.Service
             //得点を左ウィンドウに反映
             DataOption option = new DataOption();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
+            List<double> VarianceScores = new List<double>();
+            foreach(var obj in RetInfo)
+            {
+                VarianceScores.Add((double)obj.Score);
+            }
+            mainWindow.VarianceScores.Content = VarianceScores.PopulationVariance().ToString("0.0000");
         }
     }
 }
