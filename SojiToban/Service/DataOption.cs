@@ -114,7 +114,7 @@ namespace SojiToban.Service
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        private Day DayLoccation(int[] p)
+        public Day DayLoccation(int[] p)
         {
             Day day = new Day();
             Place place = new Place();

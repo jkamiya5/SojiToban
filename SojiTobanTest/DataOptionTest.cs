@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SojiToban.CommonModule;
 using SojiToban.Dto;
 using SojiToban.Service;
+using System.Collections.Generic;
 
 namespace SojiTobanTest
 {
@@ -44,8 +45,8 @@ namespace SojiTobanTest
             Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2900);
             Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2800);
             Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2750);
-            //Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2600);
-            //Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2590);
+            Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2600);
+            Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2590);
             //Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2580);
             //Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2570);
             //Assert.IsTrue(sw.Elapsed.TotalMilliseconds < 2560);
@@ -75,45 +76,51 @@ namespace SojiTobanTest
             DataOption dataOption = new DataOption();
             RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
 
-            //分散を調べる
+            //標準偏差を調べる
             foreach (var obj in RandamWeekMap.day)
             {
                 if (obj.days == ContractConst.DAYS.月)
                 {
                     Assert.IsTrue(obj.place[0].value.Count == ContractConst.MONDAY.Length);
-                    double Variance = obj.place[0].value.PopulationVarianceT();
-                    Assert.IsTrue(Variance < 12.0000);
-                    Assert.IsTrue(Variance < 11.9500);
-
+                    double StandardDeviation = obj.place[0].value.PopulationStandardDeviationT();
+                    Assert.IsTrue(StandardDeviation < 3.4600);
                 }
                 if (obj.days == ContractConst.DAYS.火)
                 {
                     Assert.IsTrue(obj.place[0].value.Count == ContractConst.TUESDAY.Length);
-                    double Variance = obj.place[0].value.PopulationVarianceT();
-                    Assert.IsTrue(Variance < 61.0000);
-                    Assert.IsTrue(Variance < 60.5000);
+                    double StandardDeviation = obj.place[0].value.PopulationStandardDeviationT();
+                    Assert.IsTrue(StandardDeviation < 7.7700);
                 }
                 if (obj.days == ContractConst.DAYS.水)
                 {
                     Assert.IsTrue(obj.place[0].value.Count == ContractConst.WEDNESDAY.Length);
-                    double Variance = obj.place[0].value.PopulationVarianceT();
-                    Assert.IsTrue(Variance < 12.0000);
-                    Assert.IsTrue(Variance < 11.9500);
+                    double StandardDeviation = obj.place[0].value.PopulationStandardDeviationT();
+                    Assert.IsTrue(StandardDeviation < 3.4600);
                 }
                 if (obj.days == ContractConst.DAYS.木)
                 {
                     Assert.IsTrue(obj.place[0].value.Count == ContractConst.THURSDAY.Length);
-                    double Variance = obj.place[0].value.PopulationVarianceT();
-                    Assert.IsTrue(Variance < 14.5000);
-                    Assert.IsTrue(Variance < 14.4000);
+                    double StandardDeviation = obj.place[0].value.PopulationStandardDeviationT();
+                    Assert.IsTrue(StandardDeviation < 3.7500);
                 }
                 if (obj.days == ContractConst.DAYS.金)
                 {
                     Assert.IsTrue(obj.place[0].value.Count == ContractConst.FRIDAY.Length);
-                    double Variance = obj.place[0].value.PopulationVarianceT();
-                    Assert.IsTrue(Variance < 68.5000);
-                    Assert.IsTrue(Variance < 68.3500);
+                    double StandardDeviation = obj.place[0].value.PopulationStandardDeviationT();
+                    Assert.IsTrue(StandardDeviation < 8.2700);
                 }
+            }
+        }
+
+
+        [TestMethod]
+        public void DayLoccation_Test()
+        {
+            DataOption dataOption = new DataOption();
+            for (int i = 0; i < ContractConst.WEEK.Length - 1; i++)
+            {
+                int[] obj = (int[])ContractConst.WEEK[i];
+                Day day = dataOption.DayLoccation(obj);             
             }
         }
     }

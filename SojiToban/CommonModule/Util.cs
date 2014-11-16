@@ -39,15 +39,15 @@ namespace SojiToban.CommonModule
         /// <typeparam name="T"></typeparam>
         /// <param name="Target"></param>
         /// <returns></returns>
-        public static double PopulationVarianceT<T>(this IEnumerable<T> Target)
+        public static double PopulationStandardDeviationT<T>(this IEnumerable<T> Target)
         {
             List<double> Ret = new List<double>();
             foreach(var v in Target)
             {
                 Ret.Add(Convert.ToDouble(v));
             }
-            double Variance = Ret.PopulationVariance();
-            return Variance;
+            double StandardDeviation = Ret.PopulationStandardDeviation();
+            return StandardDeviation;
         }
     }
 }
