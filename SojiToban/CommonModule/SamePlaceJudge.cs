@@ -21,7 +21,7 @@ namespace SojiToban.CommonModule
         public static Boolean Judge(Member member, int? TargetPlace)
         {
             //「Null」を引数に取った場合は「False」を返し処理を終了する
-            if(TargetPlace == null)
+            if (TargetPlace == null)
             {
                 return false;
             }
@@ -40,7 +40,8 @@ namespace SojiToban.CommonModule
                         }
                     }
                 }
-            }else
+            }
+            else
             {
                 return true;
             }

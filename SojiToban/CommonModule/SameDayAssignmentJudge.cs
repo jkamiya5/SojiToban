@@ -29,7 +29,8 @@ namespace SojiToban.CommonModule
                         return false;
                     }
                 }
-            }else
+            }
+            else
             {
                 return true;
             }

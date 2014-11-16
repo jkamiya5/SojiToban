@@ -16,7 +16,6 @@ namespace SojiToban.Dto
         public string m_place { get; set; }
         [System.Xml.Serialization.XmlElement("m_afflictionDegree")]
         public int? m_afflictionDegree { get; set; }
-
         [System.Xml.Serialization.XmlElement("m_day1")]
         public int? m_day1 { get; set; }
         [System.Xml.Serialization.XmlElement("m_day2")]
@@ -27,7 +26,6 @@ namespace SojiToban.Dto
         public int? m_day4 { get; set; }
         [System.Xml.Serialization.XmlElement("m_day5")]
         public int? m_day5 { get; set; }
-
         [System.Xml.Serialization.XmlElement("m_day1_Color")]
         public bool m_day1_Color { get; set; }
         [System.Xml.Serialization.XmlElement("m_day2_Color")]

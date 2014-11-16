@@ -37,16 +37,16 @@ namespace SojiToban.CommonModule
         /// 分散を返す拡張メソッド
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="target"></param>
+        /// <param name="Target"></param>
         /// <returns></returns>
-        public static double PopulationVarianceT<T>(this IEnumerable<T> target)
+        public static double PopulationVarianceT<T>(this IEnumerable<T> Target)
         {
-            List<double> ret = new List<double>();
-            foreach(var v in target)
+            List<double> Ret = new List<double>();
+            foreach(var v in Target)
             {
-                ret.Add(Convert.ToDouble(v));
+                Ret.Add(Convert.ToDouble(v));
             }
-            double Variance = ret.PopulationVariance();
+            double Variance = Ret.PopulationVariance();
             return Variance;
         }
     }

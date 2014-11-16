@@ -12,7 +12,9 @@ namespace SojiTobanTest
     [TestClass]
     public class DataOptionTest
     {
-
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
         public void CreateNumMap_ProcessingTimeTest()
         {
@@ -64,8 +66,10 @@ namespace SojiTobanTest
             Console.WriteLine(sw.Elapsed);
         }
 
-
-        [TestMethod]
+        /// <summary>
+        /// 
+        /// </summary>
+        [TestMethod]       
         public void CreateNumMap_VarianceValueTest()
         {
             DataOption dataOption = new DataOption();
