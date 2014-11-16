@@ -96,15 +96,18 @@ namespace SojiToban
         {
             try
             {
-                DataOption dataOption = new DataOption();                
-                Queue<Member> teamData = dataOption.GetTeamInfoEnteredFromScreen(this);                                                
-                RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
-                LoccateOption locateOption = new LoccateOption();                
-                Queue<Member> resultInfo = locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, this);
-                DisplayOption displayOption = new DisplayOption();                
-                displayOption.Display(resultInfo, this);
-                ChangeVisibilityOfControl(false);
-
+                DataOption dataOption = new DataOption();
+                Queue<Member> teamData = dataOption.GetTeamInfoEnteredFromScreen(this);
+                if (teamData != null)
+                {
+                    RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
+                    LoccateOption locateOption = new LoccateOption();
+                    Queue<Member> resultInfo = locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, this);
+                    DisplayOption displayOption = new DisplayOption();
+                    displayOption.Display(resultInfo, this);
+                    ChangeVisibilityOfControl(false);                    
+                }
+                return;
             }
             catch(Exception ex)
             {
@@ -199,6 +202,7 @@ namespace SojiToban
         {
             DataOption dataOption = new DataOption();
             this.inDataGrid.ItemsSource = dataOption.CreateDefaultMemberObject();
+            this.VarianceScores.Content = string.Empty;
         }
 
         /// <summary>
