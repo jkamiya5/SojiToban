@@ -103,7 +103,7 @@ namespace SojiToban
                 Queue<Member> resultInfo = locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, this);
                 DisplayOption displayOption = new DisplayOption();                
                 displayOption.Display(resultInfo, this);
-                ChangeChkStatus(false);
+                ChangeVisibilityOfControl(false);
 
             }
             catch(Exception ex)
@@ -114,10 +114,10 @@ namespace SojiToban
         }
 
         /// <summary>
-        /// 
+        /// チェックのステータスを指定のものにする
         /// </summary>
         /// <param name="chkStatus"></param>
-        private void ChangeChkStatus(bool chkStatus)
+        private void ChangeVisibilityOfControl(bool chkStatus)
         {
             this.execute.IsEnabled = chkStatus;
             this.countRbt.IsEnabled = chkStatus;
