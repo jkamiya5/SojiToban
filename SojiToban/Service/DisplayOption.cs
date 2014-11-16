@@ -146,7 +146,7 @@ namespace SojiToban.Service
             DataOption option = new DataOption();
             mainWindow.inDataGrid.ItemsSource = option.CreateScoreObject(RetInfo);
             List<double> VarianceScores = new List<double>();
-            foreach(var obj in RetInfo)
+            foreach (Member obj in RetInfo)
             {
                 VarianceScores.Add((double)obj.Score);
             }

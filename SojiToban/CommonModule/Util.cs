@@ -5,6 +5,8 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Threading.Tasks;
+using MathNet.Numerics.Statistics;
+using System.Collections;
 
 namespace SojiToban.CommonModule
 {
@@ -29,6 +31,23 @@ namespace SojiToban.CommonModule
                 clone = formatter.Deserialize(stream);
             }
             return (T)clone;
+        }
+
+        /// <summary>
+        /// 分散を返す拡張メソッド
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static double PopulationVarianceT<T>(this IEnumerable<T> target)
+        {
+            List<double> ret = new List<double>();
+            foreach(var v in target)
+            {
+                ret.Add(Convert.ToDouble(v));
+            }
+            double Variance = ret.PopulationVariance();
+            return Variance;
         }
     }
 }

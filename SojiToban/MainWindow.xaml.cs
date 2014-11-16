@@ -96,16 +96,12 @@ namespace SojiToban
         {
             try
             {
-                DataOption dataOption = new DataOption();
-                Queue<Member> teamData = dataOption.GetTeamInfoEnteredFromScreen(this);                
-          
-                //清掃箇所をランダムに割り振った数字列作成
+                DataOption dataOption = new DataOption();                
+                Queue<Member> teamData = dataOption.GetTeamInfoEnteredFromScreen(this);                                                
                 RandamWeekMap RandamWeekMap = dataOption.CreateNumMap();
-
-                LoccateOption locateOption = new LoccateOption();
+                LoccateOption locateOption = new LoccateOption();                
                 Queue<Member> resultInfo = locateOption.AllocationEachDayOfWeek(RandamWeekMap, teamData, this);
-
-                DisplayOption displayOption = new DisplayOption();
+                DisplayOption displayOption = new DisplayOption();                
                 displayOption.Display(resultInfo, this);
                 ChangeChkStatus(false);
 
@@ -154,6 +150,11 @@ namespace SojiToban
                     m_day3 = null,
                     m_day4 = null,
                     m_day5 = null,
+                    m_day1_Color = false,
+                    m_day2_Color = false,
+                    m_day3_Color = false,
+                    m_day4_Color = false,
+                    m_day5_Color = false
                 }));
             this.targetGrid.ItemsSource = data;
             this.execute.IsEnabled = true;

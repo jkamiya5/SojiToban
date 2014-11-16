@@ -55,6 +55,11 @@ namespace SojiToban.Service
                     m_day3 = null,
                     m_day4 = null,
                     m_day5 = null,
+                    m_day1_Color = false,
+                    m_day2_Color = false,
+                    m_day3_Color = false,
+                    m_day4_Color = false,
+                    m_day5_Color = false
                 }));
             return data;
         }

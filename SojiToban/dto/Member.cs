@@ -37,10 +37,5 @@ namespace SojiToban.Dto
                 this.day = day;
                 this.Score = Score;
             }
-
-            //public Member Clone()
-            //{
-            //    return CloneHelper.Clone<Member>(this);
-            //}
         }
 }
